@@ -19,6 +19,9 @@ styles.css
 # obsidian
 data.json
 
+# reference
+ref/
+
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store
 
