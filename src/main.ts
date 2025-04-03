@@ -1,15 +1,12 @@
-import { Plugin, WorkspaceLeaf, addIcon, ItemView } from 'obsidian';
+import { Plugin, WorkspaceLeaf, ItemView } from 'obsidian';
 import { YearlyGlanceSettingsTab } from './views/SettingsTab';
 import { YearlyCalendarView } from './views/YearlyCalendarView';
 import { DEFAULT_EVENT_TYPES, DEFAULT_SETTINGS, EventType, YearlyGlanceSettings, Holiday, Birthday, CustomEvent } from './models/types';
 import { EventListModal, EventModal } from './views/EventModal';
-import '../styles.css';
+import '../style/styles.css';
 
 // 定义视图类型
 const VIEW_TYPE_YEARLY_GLANCE = 'yearly-glance-view';
-
-// 添加自定义图标
-const CALENDAR_ICON = `<svg t="1680347920392" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2374" width="100" height="100"><path d="M725.333333 128h42.666667v42.666667a85.333333 85.333333 0 0 0 85.333333 85.333333h42.666667v554.666667a128 128 0 0 1-128 128H256a128 128 0 0 1-128-128V256h42.666667a85.333333 85.333333 0 0 0 85.333333-85.333333V128h42.666667v42.666667a85.333333 85.333333 0 0 0 85.333333 85.333333h213.333333a85.333333 85.333333 0 0 0 85.333334-85.333333V128z m42.666667 384H256v298.666667a42.666667 42.666667 0 0 0 42.666667 42.666666h512a42.666667 42.666667 0 0 0 42.666666-42.666666V512zM384 341.333333a42.666667 42.666667 0 1 1 0-85.333333 42.666667 42.666667 0 0 1 0 85.333333z m256 0a42.666667 42.666667 0 1 1 0-85.333333 42.666667 42.666667 0 0 1 0 85.333333zM213.333333 170.666667v42.666666a42.666667 42.666667 0 0 1-42.666666 42.666667H128V170.666667h85.333333z m725.333334 0v85.333333h-42.666667a42.666667 42.666667 0 0 1-42.666667-42.666667V170.666667h85.333334z" p-id="2375"></path></svg>`;
 
 // 扩展 ItemView 类型声明，添加 containerEl 属性
 declare module 'obsidian' {
@@ -97,10 +94,7 @@ export default class YearlyGlancePlugin extends Plugin {
     private eventTypes: Record<string, EventType>;
 
     async onload() {
-        console.log('加载年度概览插件');
-        
-        // 注册自定义图标
-        addIcon('calendar-yearly', CALENDAR_ICON);
+        console.log('[yearly-glance] 加载年度概览插件');
 
         // 加载设置
         await this.loadSettings();
@@ -163,7 +157,7 @@ export default class YearlyGlancePlugin extends Plugin {
         this.addSettingTab(new YearlyGlanceSettingsTab(this.app, this));
 
         // 添加左侧栏图标
-        this.addRibbonIcon('calendar-yearly', '年度概览', () => {
+        this.addRibbonIcon('lucide-telescope', '年度概览', () => {
             this.activateView();
         });
     }
