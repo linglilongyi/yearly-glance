@@ -40,7 +40,7 @@ If your plugin does not need CSS, delete this file.
     --current-month-border-color: #bf2727;
     --event-border-color: #434343;
     --weekdays-bg-color: #2c2c2c;
-    --event-border-hover-color: #dcdd8099;
+    --event-border-hover-color: #dcdd80;
 }
 
 /* ------- */
