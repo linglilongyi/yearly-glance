@@ -537,6 +537,52 @@ interface EventFormWrapperProps {
 	onCancel: () => void;
 }
 
+// 添加Tab组件
+interface TabProps {
+	value: string;
+	active: boolean;
+	onClick: () => void;
+	children: React.ReactNode;
+}
+
+const Tab: React.FC<TabProps> = ({ value, active, onClick, children }) => {
+	return (
+		<button
+			type="button"
+			className={`event-type-tab ${active ? 'active' : ''}`}
+			onClick={onClick}
+			aria-selected={active}
+			role="tab"
+		>
+			{children}
+		</button>
+	);
+};
+
+// 添加TabNav组件
+interface TabNavProps {
+	value: string;
+	onChange: (value: string) => void;
+	tabs: { value: string; label: string }[];
+}
+
+const TabNav: React.FC<TabNavProps> = ({ value, onChange, tabs }) => {
+	return (
+		<div className="event-type-tabs" role="tablist">
+			{tabs.map((tab) => (
+				<Tab
+					key={tab.value}
+					value={tab.value}
+					active={value === tab.value}
+					onClick={() => onChange(tab.value)}
+				>
+					{tab.label}
+				</Tab>
+			))}
+		</div>
+	);
+};
+
 const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 	plugin,
 	initialEventType,
@@ -564,11 +610,10 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 		<div className="yearly-glance-event-modal">
 			{allowTypeChange && (
 				<div className="event-type-selector">
-					<Select
-						label={t("view.eventManager.form.eventType")}
+					<TabNav
 						value={eventType}
-						onValueChange={handleEventTypeChange}
-						options={EVENT_TYPE_OPTIONS}
+						onChange={handleEventTypeChange}
+						tabs={EVENT_TYPE_OPTIONS}
 					/>
 				</div>
 			)}

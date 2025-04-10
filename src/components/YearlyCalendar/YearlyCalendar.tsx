@@ -308,7 +308,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 						title={t("view.yearlyGlance.actions.limitListHeight")}
 					>
 						<span className="button-icon">
-							{limitListHeight ? "🔼" : "🔽"}
+							{limitListHeight ? "🚧" : "♾️"}
 						</span>
 					</button>
 				)}

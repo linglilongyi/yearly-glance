@@ -185,7 +185,7 @@ const translations: BaseMessage = {
 	},
 	command: {
 		openYearlyGlance: "Open Yearly Glance",
-		openEventManager: "Open Yearly Glance Events Manager",
+		openEventManager: "Open Events Manager",
 		addEvent: "Add Event",
 	},
 };
