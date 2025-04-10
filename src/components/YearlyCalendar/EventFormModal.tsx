@@ -13,8 +13,8 @@ import {
 	Holiday,
 } from "@/src/core/interfaces/Events";
 import { HelpCircle, RotateCcw } from "lucide-react";
-import { Select } from "@/src/components/Base/Select";
-import { Toggle } from "@/src/components/Base/Toggle";
+import { Select } from "../Base/Select";
+import { Toggle } from "../Base/Toggle";
 import { DatePicker } from "@/src/components/DatePicker/DatePicker";
 import { t } from "@/src/i18n/i18n";
 import "./style/EventFormModal.css";

@@ -11,7 +11,7 @@ import {
 import { Telescope } from "lucide-react";
 import { EVENT_TYPE_OPTIONS } from "./EventFormModal";
 import { useYearlyGlanceConfig } from "@/src/core/hook/useYearlyGlanceConfig";
-import { Input } from "@/src/components/Base/Input";
+import { Input } from "../Base/Input";
 import { t } from "@/src/i18n/i18n";
 import "./style/EventManagerView.css";
 import { parseDateValue } from "@/src/core/utils/dateParser";
