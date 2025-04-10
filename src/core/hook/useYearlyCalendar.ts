@@ -129,7 +129,7 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 				if (holiday.isShow) {
 					events.push({
 						...holiday,
-						type: "holiday",
+						eventType: "holiday",
 					});
 				}
 			});
@@ -140,7 +140,7 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 			birthdays.forEach((birthday) => {
 				events.push({
 					...birthday,
-					type: "birthday",
+					eventType: "birthday",
 				});
 			});
 		}
@@ -150,7 +150,7 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 			customEvents.forEach((customEvent) => {
 				events.push({
 					...customEvent,
-					type: "customEvent",
+					eventType: "customEvent",
 				});
 			});
 		}
