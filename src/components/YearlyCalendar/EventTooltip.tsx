@@ -22,12 +22,12 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 	event,
 	onClose,
 }) => {
-	const eventType = event.type;
+	const eventType = event.eventType;
 
 	// 编辑事件
 	const handleEditEvent = () => {
 		// 将类型从 CalendarEvent.type 转换为 EventType
-		const type = event.type as EventType;
+		const eventType = event.eventType as EventType;
 
 		// 关闭当前tooltip，否则可能会导致UI堆叠问题
 		onClose();
@@ -35,7 +35,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 		// 使用延迟确保tooltip已完全关闭
 		setTimeout(() => {
 			plugin.openEventForm(
-				type,
+				eventType,
 				{
 					// 只传递基础事件需要的属性，避免传入CalendarEvent特有属性导致匹配问题
 					date: event.date,
@@ -46,7 +46,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 					remark: event.remark,
 
 					// 根据事件类型添加特定属性
-					...(type === "holiday"
+					...(eventType === "holiday"
 						? {
 								type: (event as Holiday).type,
 								isShow: (event as Holiday).isShow,
@@ -54,7 +54,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 						  }
 						: {}),
 
-					...(type === "birthday"
+					...(eventType === "birthday"
 						? {
 								nextBirthday: (event as Birthday).nextBirthday,
 								age: (event as Birthday).age,
@@ -63,7 +63,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 						  }
 						: {}),
 
-					...(type === "customEvent"
+					...(eventType === "customEvent"
 						? {
 								isRepeat: (event as CustomEvent).isRepeat,
 						  }
