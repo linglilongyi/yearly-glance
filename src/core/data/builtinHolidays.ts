@@ -1,5 +1,5 @@
-import { Holiday } from "../interfaces/Events";
-import { EVENT_TYPE_DEFAULT } from "../interfaces/Events";
+import { Holiday } from "@/src/core/interfaces/Events";
+import { EVENT_TYPE_DEFAULT } from "@/src/core/interfaces/Events";
 
 /**
  * 内置节日数据
