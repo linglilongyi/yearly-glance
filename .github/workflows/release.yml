@@ -96,7 +96,7 @@ jobs:
                 if [ ! -z "$BREAKING_CHANGES" ]; then
                   echo -e "\n### ⚠️ BREAKING CHANGES\n" >> temp_changelog.md
                   while IFS= read -r COMMIT; do
-                    if [[ $COMMIT =~ ^-\ ([^(!:]+)(\([^)]+\))?!:\ (.*)$ ]]; then
+                    if [[ $COMMIT =~ ^-\ ([a-zA-Z]+)(\([^)]+\))?!:\ (.*)$ ]]; then
                       TYPE="${BASH_REMATCH[1]}"
                       SCOPE="${BASH_REMATCH[2]}"
                       SCOPE="${SCOPE//[()]/}"  # 移除括号
