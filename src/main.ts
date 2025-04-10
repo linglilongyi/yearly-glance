@@ -1,6 +1,6 @@
 import { Plugin } from "obsidian";
 import { DEFAULT_CONFIG, YearlyGlanceConfig } from "./core/interfaces/types";
-import YearlyGlanceSettingsTab from "./components/settings/SettingsTab";
+import YearlyGlanceSettingsTab from "./components/Settings/SettingsTab";
 import {
 	VIEW_TYPE_YEARLY_GLANCE,
 	YearlyGlanceView,

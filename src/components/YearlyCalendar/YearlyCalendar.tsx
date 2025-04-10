@@ -10,11 +10,11 @@ import {
 import {
 	layoutOptions,
 	viewTypeOptions,
-} from "@/src/components/settings/ViewSettings";
+} from "@/src/components/Settings/ViewSettings";
 import { LayoutConfigMap } from "@/src/core/interfaces/Settings";
 import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
 import { EventTooltip } from "./EventTooltip";
-import { Select } from "../base/Select";
+import { Select } from "../Base/Select";
 import { t } from "@/src/i18n/i18n";
 import "./style/YearlyCalendarView.css";
 
