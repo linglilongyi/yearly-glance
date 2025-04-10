@@ -14,7 +14,7 @@ import {
 import { LayoutConfigMap } from "@/src/core/interfaces/Settings";
 import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
 import { EventTooltip } from "./EventTooltip";
-import { Select } from "@/src//components/Base/Select";
+import { Select } from "@/src/components/Base/Select";
 import { t } from "@/src/i18n/i18n";
 import "./style/YearlyCalendarView.css";
 
