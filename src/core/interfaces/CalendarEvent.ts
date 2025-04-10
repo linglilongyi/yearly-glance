@@ -2,7 +2,7 @@ import { BaseEvent, EventType } from "./Events";
 
 // 日历事件接口
 export interface CalendarEvent extends BaseEvent {
-	type: EventType; // 事件类型
+	eventType: EventType; // 事件类型
 }
 
 // 日数据接口

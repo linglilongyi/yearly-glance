@@ -229,57 +229,57 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 				{showLegend && (
 					<div className="event-legend">
 						{EVENT_TYPE_LIST.filter(
-							(type) =>
-								(type === "holiday" && showHolidays) ||
-								(type === "birthday" && showBirthdays) ||
-								(type === "customEvent" && showCustomEvents) ||
+							(eventType) =>
+								(eventType === "holiday" && showHolidays) ||
+								(eventType === "birthday" && showBirthdays) ||
+								(eventType === "customEvent" && showCustomEvents) ||
 								// 包含禁用的事件类型，以便可以重新启用它们
-								type === "holiday" ||
-								type === "birthday" ||
-								type === "customEvent"
-						).map((type) => {
+								eventType === "holiday" ||
+								eventType === "birthday" ||
+								eventType === "customEvent"
+						).map((eventType) => {
 							// 确定当前事件类型是否启用
 							const isEnabled =
-								(type === "holiday" && showHolidays) ||
-								(type === "birthday" && showBirthdays) ||
-								(type === "customEvent" && showCustomEvents);
+								(eventType === "holiday" && showHolidays) ||
+								(eventType === "birthday" && showBirthdays) ||
+								(eventType === "customEvent" && showCustomEvents);
 
 							return (
 								<div
 									className={`legend-item ${
 										isEnabled ? "enabled" : "disabled"
 									}`}
-									key={type}
+									key={eventType}
 									onClick={() =>
-										toggleEventTypeVisibility(type)
+										toggleEventTypeVisibility(eventType)
 									}
 									title={
 										isEnabled
 											? `${t(
 													"view.yearlyGlance.actions.clickToHide"
 											  )}${t(
-													`view.yearlyGlance.legend.${type}` as any
+													`view.yearlyGlance.legend.${eventType}` as any
 											  )}`
 											: `${t(
 													"view.yearlyGlance.actions.clickToShow"
 											  )}${t(
-													`view.yearlyGlance.legend.${type}` as any
+													`view.yearlyGlance.legend.${eventType}` as any
 											  )}`
 									}
 								>
 									<span
 										className="legend-icon"
 										style={{
-											color: EVENT_TYPE_DEFAULT[type]
+											color: EVENT_TYPE_DEFAULT[eventType]
 												.color,
-											backgroundColor: `${EVENT_TYPE_DEFAULT[type].color}20`,
+											backgroundColor: `${EVENT_TYPE_DEFAULT[eventType].color}20`,
 										}}
 									>
-										{EVENT_TYPE_DEFAULT[type].emoji}
+										{EVENT_TYPE_DEFAULT[eventType].emoji}
 									</span>
 									<span className="legend-text">
 										{t(
-											`view.yearlyGlance.legend.${type}` as any
+											`view.yearlyGlance.legend.${eventType}` as any
 										)}
 									</span>
 								</div>
