@@ -1,5 +1,5 @@
 import { Lunar, Solar } from "lunar-typescript";
-import { Birthday, CustomEvent, Holiday } from "../interfaces/Events";
+import { Birthday, CustomEvent, Holiday } from "@/src/core/interfaces/Events";
 import { isValidLunarDate, parseDateValue } from "./dateParser";
 
 // 计算当前选择年份下时间的的公历日期
