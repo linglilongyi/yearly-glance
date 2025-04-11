@@ -1,14 +1,15 @@
 中文 | [English](./README.md)
 
-# Yearly Glance (年度概览)
-
-可定制化管理的年度事件概览。
+# Yearly Glance：时光不漏，一眼尽览
 
 [![GitHub stars](https://img.shields.io/github/stars/Moyf/yearly-glance?style=flat&label=星标)](https://github.com/Moyf/yearly-glance/stargazers)
 [![Total Downloads](https://img.shields.io/github/downloads/Moyf/yearly-glance/total?style=flat&label=总下载量)](https://github.com/Moyf/yearly-glance/releases)
 [![GitHub License](https://img.shields.io/github/license/Moyf/yearly-glance?style=flat&label=许可证)](https://github.com/Moyf/yearly-glance/blob/master/LICENSE)
 [![GitHub Issues](https://img.shields.io/github/issues/Moyf/yearly-glance?style=flat&label=问题)](https://github.com/Moyf/yearly-glance/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Moyf/yearly-glance?style=flat&label=最后提交)](https://github.com/Moyf/yearly-glance/commits/master)
+
+Yearly Glance（年度一览）是一款 Obsidian 插件，用于提供可定制化管理的年度事件概览。
+![preview](./doc/yearly-glance-preview.png)
 
 ## 功能介绍
 
