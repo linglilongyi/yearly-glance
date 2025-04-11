@@ -8,7 +8,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/Moyf/yearly-glance?style=flat&label=问题)](https://github.com/Moyf/yearly-glance/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Moyf/yearly-glance?style=flat&label=最后提交)](https://github.com/Moyf/yearly-glance/commits/master)
 
-Yearly Glance（年度一览）是一款 Obsidian 插件，用于提供可定制化管理的年度事件概览。
+Yearly Glance（年度一览）是一款 [Obsidian](https://obsidian.md/) 插件，用于提供可定制化管理的年度事件概览。
 ![preview](./doc/yearly-glance-preview.png)
 
 ## 功能介绍

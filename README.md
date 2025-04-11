@@ -8,7 +8,7 @@ English | [中文](./README-zh.md)
 [![GitHub Issues](https://img.shields.io/github/issues/Moyf/yearly-glance?style=flat&label=Issues)](https://github.com/Moyf/yearly-glance/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Moyf/yearly-glance?style=flat&label=Last%20Commit)](https://github.com/Moyf/yearly-glance/commits/master)
 
-Yearly Glance is a Obsidian plugin, to display Yearly event overview with customizable management.
+Yearly Glance is an [Obsidian](https://obsidian.md/) plugin, to display Yearly event overview with customizable management.
 
 ![preview](./doc/yearly-glance-preview.png)
 
