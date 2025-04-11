@@ -10,7 +10,25 @@ English | [中文](./README-zh.md)
 
 Yearly Glance is an [Obsidian](https://obsidian.md/) plugin, to display Yearly event overview with customizable management.
 
-![preview](./doc/yearly-glance-preview.png)
+![preview](./doc/glance.webp)
+
+Besides the yearly overview view, it also provides a very convenient event view and editing function.
+
+## Screenshots
+
+More details:
+
+![details](./doc/details.png)
+
+View event:
+
+![view](./doc/view.webp)
+
+Edit details:
+
+![edit](./doc/edit.webp)
+
+
 
 ## Features
 
