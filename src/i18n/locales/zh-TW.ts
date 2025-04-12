@@ -185,7 +185,7 @@ const translations: BaseMessage = {
 	},
 	command: {
 		openYearlyGlance: "打開年度概覽",
-		openEventManager: "打開年度概覽事件管理",
+		openEventManager: "打開事件管理",
 		addEvent: "添加事件",
 	},
 };
