@@ -39,16 +39,16 @@ export interface CustomEvent extends BaseEvent {
 
 // 事件类型
 export type EventType = (typeof EVENT_TYPE_LIST)[number];
-export const EVENT_TYPE_LIST = ["holiday", "birthday", "customEvent"] as const;
+export const EVENT_TYPE_LIST = ["customEvent", "birthday", "holiday"] as const;
 
 // 事件类型默认图标
 export const EVENT_TYPE_DEFAULT: Record<
 	EventType,
 	{ emoji: string; color: string }
 > = {
-	holiday: { emoji: "🎉", color: "#ff7875" },
-	birthday: { emoji: "🎂", color: "#fa8c16" },
 	customEvent: { emoji: "📌", color: "#73d13d" },
+	birthday: { emoji: "🎂", color: "#fa8c16" },
+	holiday: { emoji: "🎉", color: "#ff7875" },
 };
 
 export const DEFAULT_EVENTS: Events = {

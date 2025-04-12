@@ -30,9 +30,9 @@ import {
 import { Solar } from "lunar-typescript";
 
 interface EventFormProps {
-	event: Partial<Holiday | Birthday | CustomEvent>;
+	event: Partial<CustomEvent | Birthday | Holiday >;
 	eventType: EventType;
-	onSave: (event: Holiday | Birthday | CustomEvent) => void;
+	onSave: (event: CustomEvent | Birthday | Holiday ) => void;
 	onCancel: () => void;
 	isEditing: boolean;
 }
@@ -83,7 +83,7 @@ const EventForm: React.FC<EventFormProps> = ({
 	const todayDisplayFormat = `${today.getYear()}-${today.getMonth()}-${today.getDay()}`;
 
 	const [formData, setFormData] = React.useState<
-		Partial<Holiday | Birthday | CustomEvent>
+		Partial<CustomEvent | Birthday | Holiday>
 	>({
 		...event,
 		// 如果是新建事件且没有提供date，默认使用今天的日期
@@ -198,7 +198,7 @@ const EventForm: React.FC<EventFormProps> = ({
 		};
 
 		// 根据事件类型构建完整事件对象
-		let completeEvent: Holiday | Birthday | CustomEvent;
+		let completeEvent: CustomEvent | Birthday | Holiday;
 
 		if (eventType === "holiday") {
 			completeEvent = {
@@ -527,11 +527,11 @@ const EventForm: React.FC<EventFormProps> = ({
 interface EventFormWrapperProps {
 	plugin: YearlyGlancePlugin;
 	initialEventType: EventType;
-	event: Partial<Holiday | Birthday | CustomEvent>;
+	event: Partial<CustomEvent | Birthday | Holiday >;
 	isEditing: boolean;
 	allowTypeChange: boolean;
 	onSave: (
-		event: Holiday | Birthday | CustomEvent,
+		event: CustomEvent | Birthday | Holiday ,
 		eventType: EventType
 	) => Promise<void>;
 	onCancel: () => void;
@@ -602,7 +602,7 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 	};
 
 	// 处理保存事件
-	const handleSave = (event: Holiday | Birthday | CustomEvent) => {
+	const handleSave = (event: CustomEvent | Birthday | Holiday ) => {
 		onSave(event, eventType);
 	};
 
@@ -631,15 +631,15 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 export class EventFormModal extends Modal {
 	private plugin: YearlyGlancePlugin;
 	private root: Root | null = null;
-	private event: Partial<Holiday | Birthday | CustomEvent>;
+	private event: Partial<CustomEvent | Birthday | Holiday >;
 	private eventType: EventType;
 	private isEditing: boolean;
 	private allowTypeChange: boolean;
 
 	constructor(
 		plugin: YearlyGlancePlugin,
-		eventType: EventType = "holiday",
-		event: Partial<Holiday | Birthday | CustomEvent> = {},
+		eventType: EventType = "customEvent",
+		event: Partial<CustomEvent | Birthday | Holiday > = {},
 		isEditing: boolean = false,
 		allowTypeChange: boolean = false
 	) {
@@ -676,7 +676,7 @@ export class EventFormModal extends Modal {
 
 	// 处理保存事件
 	async handleSave(
-		event: Holiday | Birthday | CustomEvent,
+		event: CustomEvent | Birthday | Holiday,
 		eventType: EventType
 	) {
 		const config = this.plugin.getSettings();

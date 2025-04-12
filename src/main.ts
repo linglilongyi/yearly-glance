@@ -130,7 +130,7 @@ export default class YearlyGlancePlugin extends Plugin {
 			id: "add-event",
 			name: t("command.addEvent"),
 			callback: () => {
-				this.openEventForm("holiday", {}, false, true);
+				this.openEventForm("customEvent", {}, false, true);
 			},
 		});
 	}
@@ -219,8 +219,8 @@ export default class YearlyGlancePlugin extends Plugin {
 
 	// 添加打开事件表单的方法
 	openEventForm(
-		eventType: EventType = "holiday",
-		event: Partial<Holiday | Birthday | CustomEvent> = {},
+		eventType: EventType = "customEvent",
+		event: Partial<CustomEvent | Birthday | Holiday> = {},
 		isEditing: boolean = false,
 		allowTypeChange: boolean = false
 	) {

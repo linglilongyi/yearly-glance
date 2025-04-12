@@ -339,7 +339,8 @@ const EventList: React.FC<EventListProps> = ({
 
 const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 	const { events, updateEvents } = useYearlyGlanceConfig(plugin);
-	const [activeTab, setActiveTab] = React.useState<EventType>("holiday");
+	// 激活的标签页
+	const [activeTab, setActiveTab] = React.useState<EventType>("customEvent");
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const [searchExpanded, setSearchExpanded] = React.useState(false);
 	const searchContainerRef = React.useRef<HTMLDivElement>(null);

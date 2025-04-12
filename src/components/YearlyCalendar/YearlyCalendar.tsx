@@ -50,7 +50,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 		plugin.openPluginView(VIEW_TYPE_EVENT_MANAGER);
 	};
 	const handleEventForm = () => {
-		plugin.openEventForm("holiday", {}, false, true);
+		plugin.openEventForm("customEvent", {}, false, true);
 	};
 	const handleEventTooltip = (event: any) => {
 		if (showTooltips) {
