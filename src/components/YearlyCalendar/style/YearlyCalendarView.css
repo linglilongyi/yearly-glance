@@ -525,6 +525,7 @@
 					background-color: var(--yg-button-hover-bg-color);
 					border: 1px solid var(--yg-button-hover-border-color);
 					box-shadow: 0 2px 4px var(--yg-shadow-color);
+					cursor: pointer;
 				}
 			}
 		}
