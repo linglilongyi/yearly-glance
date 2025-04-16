@@ -355,6 +355,8 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
+
+				
 			}
 
 			&:hover {
@@ -366,6 +368,7 @@
 					background-color: var(--yg-button-hover-bg-color);
 					border: 1px solid var(--yg-button-hover-border-color);
 					box-shadow: 0 2px 4px var(--yg-shadow-color);
+					cursor: pointer;
 				}
 			}
 
@@ -386,7 +389,7 @@
 			margin-top: 3px;
 		}
 
-		/* ------- 事件样式 ------- */
+		/* ------- 事件样式（日历） ------- */
 
 		.event {
 			display: flex;
@@ -519,6 +522,8 @@
 			}
 		}
 
+		/* ------- 事件样式（列表） ------- */
+
 		.events-list {
 			display: flex;
 			flex-direction: column;
@@ -530,6 +535,8 @@
 			font-size: 0.85em;
 			padding: 5px 10px;
 			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.2s ease;
 
 			&.font-small {
 				font-size: 0.8em;
@@ -541,6 +548,13 @@
 
 			&.font-large {
 				font-size: 1.1em;
+			}
+
+			&:hover {
+				transform: translateY(-1px);
+				outline: 1px solid var(--yg-event-border-hover-color);
+				box-shadow: 0 3px 8px var(--yg-tooltip-shadow);
+				z-index: 10;
 			}
 		}
 
@@ -917,10 +931,6 @@
 
 		.day-row {
 			padding: 6px 10px;
-		}
-
-		.events-list .event {
-			padding: 4px 8px;
 		}
 
 		.event-emoji {
