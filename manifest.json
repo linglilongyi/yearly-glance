@@ -1,7 +1,7 @@
 {
 	"id": "yearly-glance",
 	"name": "Yearly Glance",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"minAppVersion": "1.6.7",
 	"description": "Yearly event overview with customizable management.",
 	"author": "Moy & RavenHogWarts",
