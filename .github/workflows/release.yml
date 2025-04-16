@@ -47,17 +47,29 @@ jobs:
             - name: Generate Changelog
               id: changelog
               run: |
-                  # Define emojis for different section types
-                  declare -A EMOJI_MAP
-                  EMOJI_MAP["Bug Fixes"]="🐛 Bug Fixes"
-                  EMOJI_MAP["Features"]="✨ Features"
-                  EMOJI_MAP["BREAKING CHANGES"]="💥 BREAKING CHANGES"
-                  EMOJI_MAP["Styles"]="🎨 Styles"
-                  EMOJI_MAP["Chores"]="🔧 Chores"
-                  EMOJI_MAP["Documentation"]="📝 Documentation"
-                  EMOJI_MAP["Refactors"]="♻️ Refactors"
-                  EMOJI_MAP["Performance"]="⚡ Performance"
-                  EMOJI_MAP["Tests"]="✅ Tests"
+                  # Define section names (without emojis)
+                  declare -A SECTION_MAP
+                  SECTION_MAP["Bug Fixes"]="Bug Fixes"
+                  SECTION_MAP["Features"]="Features"
+                  SECTION_MAP["BREAKING CHANGES"]="BREAKING CHANGES"
+                  SECTION_MAP["Styles"]="Styles"
+                  SECTION_MAP["Chores"]="Chores"
+                  SECTION_MAP["Documentation"]="Documentation"
+                  SECTION_MAP["Refactors"]="Refactors"
+                  SECTION_MAP["Performance"]="Performance"
+                  SECTION_MAP["Tests"]="Tests"
+
+                  # Define Chinese translations
+                  declare -A ZH_SECTION_MAP
+                  ZH_SECTION_MAP["Bug Fixes"]="修复"
+                  ZH_SECTION_MAP["Features"]="新功能"
+                  ZH_SECTION_MAP["BREAKING CHANGES"]="破坏性变更"
+                  ZH_SECTION_MAP["Styles"]="样式"
+                  ZH_SECTION_MAP["Chores"]="杂项"
+                  ZH_SECTION_MAP["Documentation"]="文档"
+                  ZH_SECTION_MAP["Refactors"]="重构"
+                  ZH_SECTION_MAP["Performance"]="性能优化"
+                  ZH_SECTION_MAP["Tests"]="测试"
 
                   # Initialize changelog files
                   CHANGELOG_EN="CHANGELOG.md"
@@ -68,6 +80,7 @@ jobs:
                   format_changelog() {
                     local changelog_file=$1
                     local output_file=$2
+                    local is_chinese=$3
                     local in_first_version=false
                     local in_section=false
                     local current_section=""
@@ -88,7 +101,7 @@ jobs:
                           break
                         fi
                         
-                        if [[ $line =~ ^###\ BREAKING\ CHANGES ]]; then
+                        if [[ $line =~ ^###\ BREAKING\ CHANGES ]] || [[ $line =~ ^###\ 破坏性变更 ]]; then
                           in_section=true
                           current_section="BREAKING CHANGES"
                           continue
@@ -110,7 +123,11 @@ jobs:
                     
                     # Print breaking changes if found
                     if [[ -n $found_breaking_changes ]]; then
-                      echo -e "### ${EMOJI_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
+                      if [ "$is_chinese" = true ]; then
+                        echo -e "### ${ZH_SECTION_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
+                      else
+                        echo -e "### ${SECTION_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
+                      fi
                       echo -e "$found_breaking_changes" >> "$output_file"
                       echo -e "\n" >> "$output_file"
                     fi
@@ -134,21 +151,17 @@ jobs:
                           break
                         fi
                         
-                        # Detect section headers and convert them
+                        # Detect section headers
                         if [[ $line =~ ^###\ (.*)$ ]]; then
                           section="${BASH_REMATCH[1]}"
                           # Skip breaking changes as we've already processed them
-                          if [[ $section == "BREAKING CHANGES" ]]; then
+                          if [[ $section == "BREAKING CHANGES" ]] || [[ $section == "破坏性变更" ]]; then
                             in_section=false
                             continue
                           fi
                           
-                          # Map section header to emoji version if available
-                          if [[ -n "${EMOJI_MAP[$section]}" ]]; then
-                            echo -e "### ${EMOJI_MAP[$section]}\n" >> "$output_file"
-                          else
-                            echo -e "### $section\n" >> "$output_file"
-                          fi
+                          # Keep section header as is (without emoji mapping)
+                          echo -e "### $section\n" >> "$output_file"
                           
                           in_section=true
                           current_section="$section"
@@ -156,7 +169,7 @@ jobs:
                         fi
                         
                         # Write content lines for current section
-                        if $in_section && [[ $current_section != "BREAKING CHANGES" ]]; then
+                        if $in_section && [[ $current_section != "BREAKING CHANGES" ]] && [[ $current_section != "破坏性变更" ]]; then
                           if [[ -n $line ]]; then
                             echo "$line" >> "$output_file"
                           fi
@@ -167,7 +180,7 @@ jobs:
 
                   # Process English changelog
                   if [ -f "$CHANGELOG_EN" ]; then
-                    format_changelog "$CHANGELOG_EN" "en_$TEMP_CHANGELOG"
+                    format_changelog "$CHANGELOG_EN" "en_$TEMP_CHANGELOG" false
                   else
                     echo "English changelog file not found. Using fallback."
                     echo -e "## Changes\n\nNo changelog available." > "en_$TEMP_CHANGELOG"
@@ -175,7 +188,7 @@ jobs:
 
                   # Process Chinese changelog
                   if [ -f "$CHANGELOG_ZH" ]; then
-                    format_changelog "$CHANGELOG_ZH" "zh_$TEMP_CHANGELOG"
+                    format_changelog "$CHANGELOG_ZH" "zh_$TEMP_CHANGELOG" true
                     
                     # Combine both changelogs
                     echo -e "# English Changelog\n" > "$TEMP_CHANGELOG"

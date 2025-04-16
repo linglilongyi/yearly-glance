@@ -9,10 +9,9 @@
 		"build:local": "tsc -noEmit -skipLibCheck && node scripts/esbuild.config.mjs production && node scripts/copy-to-vault.mjs",
 		"version": "node scripts/version-bump.mjs",
 		"release": "npm run build && npm run version",
-		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && conventional-changelog -p angular -i CHANGELOG-zh.md -s",
-		"changelog:u": "conventional-changelog -p angular -i CHANGELOG.md -s -u && conventional-changelog -p angular -i CHANGELOG-zh.md -s -u",
-		"changelog:all": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && conventional-changelog -p angular -i CHANGELOG-zh.md -s -r 0",
-		"commitizen:init": "commitizen init cz-conventional-changelog --save-dev --save-exact",
+		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -n ./scripts/changelog-option.js && conventional-changelog -p angular -i CHANGELOG-zh.md -s -n ./scripts/changelog-option-zh.js",
+		"changelog:u": "conventional-changelog -p angular -i CHANGELOG.md -s -u -n ./scripts/changelog-option.js && conventional-changelog -p angular -i CHANGELOG-zh.md -s -u -n ./scripts/changelog-option-zh.js",
+		"changelog:all": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 -n ./scripts/changelog-option.js && conventional-changelog -p angular -i CHANGELOG-zh.md -s -r 0 -n ./scripts/changelog-option-zh.js",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "eslint . --ext .ts,.tsx --fix"
 	},
