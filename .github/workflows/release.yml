@@ -47,64 +47,149 @@ jobs:
             - name: Generate Changelog
               id: changelog
               run: |
-                  # 检查是否存在任何tag
-                  if ! git describe --tags > /dev/null 2>&1; then
-                    # 如果没有任何tag，使用初始commit作为起点
-                    echo "## 🎉 First Release" > temp_changelog.md
-                    COMMITS=$(git log --pretty=format:"- %s" --reverse)
-                  else
-                    # 获取最近的两个tag
-                    LATEST_TAG=$(git describe --tags --abbrev=0)
+                  # Define emojis for different section types
+                  declare -A EMOJI_MAP
+                  EMOJI_MAP["Bug Fixes"]="🐛 Bug Fixes"
+                  EMOJI_MAP["Features"]="✨ Features"
+                  EMOJI_MAP["BREAKING CHANGES"]="💥 BREAKING CHANGES"
+                  EMOJI_MAP["Styles"]="🎨 Styles"
+                  EMOJI_MAP["Chores"]="🔧 Chores"
+                  EMOJI_MAP["Documentation"]="📝 Documentation"
+                  EMOJI_MAP["Refactors"]="♻️ Refactors"
+                  EMOJI_MAP["Performance"]="⚡ Performance"
+                  EMOJI_MAP["Tests"]="✅ Tests"
+
+                  # Initialize changelog files
+                  CHANGELOG_EN="CHANGELOG.md"
+                  CHANGELOG_ZH="CHANGELOG-zh.md"
+                  TEMP_CHANGELOG="temp_changelog.md"
+
+                  # Function to extract and format changelog content
+                  format_changelog() {
+                    local changelog_file=$1
+                    local output_file=$2
+                    local in_first_version=false
+                    local in_section=false
+                    local current_section=""
+                    local found_breaking_changes=""
                     
-                    # 尝试获取前一个tag，如果不存在则使用第一个commit
-                    if git describe --tags --abbrev=0 `git rev-list --tags --skip=1 --max-count=1` > /dev/null 2>&1; then
-                      PREVIOUS_TAG=$(git describe --tags --abbrev=0 `git rev-list --tags --skip=1 --max-count=1`)
-                      COMMITS=$(git log ${PREVIOUS_TAG}..${LATEST_TAG} --no-merges --pretty=format:"- %s" --reverse)
-                    else
-                      FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)
-                      COMMITS=$(git log ${FIRST_COMMIT}..${LATEST_TAG} --no-merges --pretty=format:"- %s" --reverse)
+                    > "$output_file"  # Initialize empty file
+                    
+                    # First pass to extract BREAKING CHANGES
+                    while IFS= read -r line; do
+                      if [[ $line =~ ^#\ \[.*\].*$ ]] && ! $in_first_version; then
+                        in_first_version=true
+                        continue
+                      fi
+                      
+                      if $in_first_version; then
+                        if [[ $line =~ ^#\ \[.*\].*$ ]]; then
+                          # We've reached the next version, stop processing
+                          break
+                        fi
+                        
+                        if [[ $line =~ ^###\ BREAKING\ CHANGES ]]; then
+                          in_section=true
+                          current_section="BREAKING CHANGES"
+                          continue
+                        fi
+                        
+                        if [[ $line =~ ^###\  ]]; then
+                          in_section=false
+                          continue
+                        fi
+                        
+                        if $in_section && [[ $current_section == "BREAKING CHANGES" ]]; then
+                          # Collect breaking changes content
+                          if [[ -n $line ]]; then
+                            found_breaking_changes+="$line"$'\n'
+                          fi
+                        fi
+                      fi
+                    done < "$changelog_file"
+                    
+                    # Print breaking changes if found
+                    if [[ -n $found_breaking_changes ]]; then
+                      echo -e "### ${EMOJI_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
+                      echo -e "$found_breaking_changes" >> "$output_file"
+                      echo -e "\n" >> "$output_file"
                     fi
                     
-                    echo -e "## Changes\n" > temp_changelog.md
+                    # Second pass for other sections
+                    in_first_version=false
+                    in_section=false
+                    current_section=""
+                    
+                    while IFS= read -r line; do
+                      if [[ $line =~ ^#\ \[.*\].*$ ]] && ! $in_first_version; then
+                        # Extract and write the version title
+                        echo -e "## Changes\n" >> "$output_file"
+                        in_first_version=true
+                        continue
+                      fi
+                      
+                      if $in_first_version; then
+                        if [[ $line =~ ^#\ \[.*\].*$ ]]; then
+                          # We've reached the next version, stop processing
+                          break
+                        fi
+                        
+                        # Detect section headers and convert them
+                        if [[ $line =~ ^###\ (.*)$ ]]; then
+                          section="${BASH_REMATCH[1]}"
+                          # Skip breaking changes as we've already processed them
+                          if [[ $section == "BREAKING CHANGES" ]]; then
+                            in_section=false
+                            continue
+                          fi
+                          
+                          # Map section header to emoji version if available
+                          if [[ -n "${EMOJI_MAP[$section]}" ]]; then
+                            echo -e "### ${EMOJI_MAP[$section]}\n" >> "$output_file"
+                          else
+                            echo -e "### $section\n" >> "$output_file"
+                          fi
+                          
+                          in_section=true
+                          current_section="$section"
+                          continue
+                        fi
+                        
+                        # Write content lines for current section
+                        if $in_section && [[ $current_section != "BREAKING CHANGES" ]]; then
+                          if [[ -n $line ]]; then
+                            echo "$line" >> "$output_file"
+                          fi
+                        fi
+                      fi
+                    done < "$changelog_file"
+                  }
+
+                  # Process English changelog
+                  if [ -f "$CHANGELOG_EN" ]; then
+                    format_changelog "$CHANGELOG_EN" "en_$TEMP_CHANGELOG"
+                  else
+                    echo "English changelog file not found. Using fallback."
+                    echo -e "## Changes\n\nNo changelog available." > "en_$TEMP_CHANGELOG"
                   fi
 
-                  # 定义要处理的commit类型
-                  TYPES=("feat" "fix" "perf" "refactor" "style" "docs" "test" "chore")
-
-                  for TYPE in "${TYPES[@]}"; do
-                    # 从所有commits中过滤出特定类型的commits
-                    TYPE_COMMITS=$(echo "$COMMITS" | grep "^- ${TYPE}:" || true)
+                  # Process Chinese changelog
+                  if [ -f "$CHANGELOG_ZH" ]; then
+                    format_changelog "$CHANGELOG_ZH" "zh_$TEMP_CHANGELOG"
                     
-                    if [ ! -z "$TYPE_COMMITS" ]; then
-                      # 转换commit类型为可读文本
-                      case $TYPE in
-                        "feat") TITLE="✨ New Features";;
-                        "fix") TITLE="🐛 Bug Fixes";;
-                        "perf") TITLE="⚡ Performance";;
-                        "refactor") TITLE="♻️ Refactors";;
-                        "style") TITLE="💄 Styles";;
-                        "docs") TITLE="📝 Documentation";;
-                        "test") TITLE="✅ Tests";;
-                        "chore") TITLE="🔧 Chores";;
-                        *) TITLE="Other";;
-                      esac
-                      
-                      # 添加分类标题
-                      echo -e "\n### ${TITLE}\n" >> temp_changelog.md
-                      
-                      # 处理每个commit消息，提取描述
-                      while IFS= read -r COMMIT; do
-                        if [[ $COMMIT =~ ^-\ ${TYPE}:\ (.*)$ ]]; then
-                          DESC="${BASH_REMATCH[1]}"
-                          echo "- ${DESC}" >> temp_changelog.md
-                        fi
-                      done <<< "$TYPE_COMMITS"
-                    fi
-                  done
+                    # Combine both changelogs
+                    echo -e "# English Changelog\n" > "$TEMP_CHANGELOG"
+                    cat "en_$TEMP_CHANGELOG" >> "$TEMP_CHANGELOG"
+                    echo -e "\n# 中文更新日志\n" >> "$TEMP_CHANGELOG"
+                    cat "zh_$TEMP_CHANGELOG" >> "$TEMP_CHANGELOG"
+                  else
+                    # If no Chinese changelog, just use the English one
+                    cp "en_$TEMP_CHANGELOG" "$TEMP_CHANGELOG"
+                  fi
 
-                  # 将处理后的changelog保存到GITHUB_OUTPUT
+                  # Output the changelog for GitHub Actions
                   echo "changelog<<EOF" >> $GITHUB_OUTPUT
-                  cat temp_changelog.md >> $GITHUB_OUTPUT
+                  cat "$TEMP_CHANGELOG" >> $GITHUB_OUTPUT
                   echo "EOF" >> $GITHUB_OUTPUT
 
             - name: Create Release
@@ -122,9 +207,11 @@ jobs:
 
                       **Version:** ${{ github.ref_name }}
 
+                      [English Changelog](https://github.com/Moyf/yearly-glance/blob/master/CHANGELOG.md) | [中文更新日志](https://github.com/Moyf/yearly-glance/blob/master/CHANGELOG-zh.md)
+
                       ${{ steps.changelog.outputs.changelog }}
 
-                      ## Installation
+                      # Installation
                       1. Download the files from the Assets section below
                       2. Copy them to your vault's plugins folder: `<vault>/.obsidian/plugins/yearly-glance/`
                       3. Reload Obsidian
