@@ -74,17 +74,17 @@
 		padding: 12px 0;
 		border-bottom: 2px solid var(--yg-border-color);
 		position: relative;
-	}
 
-	.yearly-calendar-title::after {
-		content: "";
-		position: absolute;
-		bottom: -2px;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 100px;
-		height: 2px;
-		background-color: var(--yg-current-month-color);
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: -2px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 100px;
+			height: 2px;
+			background-color: var(--yg-current-month-color);
+		}
 	}
 
 	/* ------- 操作栏样式 ------- */
@@ -147,39 +147,39 @@
 		border-radius: 6px;
 		border: 1px solid transparent;
 		position: relative;
-	}
 
-	.legend-item:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 3px 8px var(--yg-shadow-color);
-	}
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 3px 8px var(--yg-shadow-color);
+		}
 
-	.legend-item.enabled {
-		background-color: var(--yg-button-hover-bg-color);
-		border-color: var(--yg-button-hover-border-color);
-		box-shadow: 0 2px 4px var(--yg-shadow-color);
-	}
+		&.enabled {
+			background-color: var(--yg-button-hover-bg-color);
+			border-color: var(--yg-button-hover-border-color);
+			box-shadow: 0 2px 4px var(--yg-shadow-color);
+		}
 
-	.legend-item.disabled {
-		border: 1px dashed var(--yg-border-color);
-		background-color: rgba(0, 0, 0, 0.03);
-		opacity: 0.8;
-	}
+		&.disabled {
+			border: 1px dashed var(--yg-border-color);
+			background-color: rgba(0, 0, 0, 0.03);
+			opacity: 0.8;
 
-	.legend-item.disabled .legend-icon,
-	.legend-item.disabled .legend-text {
-		opacity: 0.6;
-	}
+			.legend-icon,
+			.legend-text {
+				opacity: 0.6;
+			}
 
-	.legend-item.disabled:hover {
-		background-color: rgba(0, 0, 0, 0.05);
-		border-color: var(--yg-border-color);
-		opacity: 0.9;
-	}
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.05);
+				border-color: var(--yg-border-color);
+				opacity: 0.9;
 
-	.legend-item.disabled:hover .legend-icon,
-	.legend-item.disabled:hover .legend-text {
-		opacity: 0.8;
+				.legend-icon,
+				.legend-text {
+					opacity: 0.8;
+				}
+			}
+		}
 	}
 
 	.legend-icon {
@@ -249,35 +249,36 @@
 			transform: translateY(-3px);
 			box-shadow: 0 6px 16px var(--yg-shadow-color);
 		}
+
+		/* 空白月份容器 */
+		.empty-month {
+			background-color: transparent;
+			border: none;
+			box-shadow: none;
+		}
+
+		/* ------- 月份标题样式 ------- */
+
+		.month-header {
+			background-color: var(--yg-month-bg-color);
+			padding: 12px;
+			text-align: center;
+			font-weight: bold;
+			border-bottom: 1px solid var(--yg-border-bottom-color);
+			font-size: 1.1em;
+
+			/* 当前月份标题样式 */
+			&.current-month {
+				background-color: var(--yg-current-month-bg-color);
+				color: var(--yg-current-month-color);
+				font-weight: bold;
+				border-bottom: 2px solid var(--yg-current-month-border-color);
+				box-shadow: 0 2px 4px var(--yg-shadow-color);
+			}
+		}
 	}
 
-	/* 空白月份容器 */
-	.empty-month {
-		background-color: transparent;
-		border: none;
-		box-shadow: none;
-	}
-
-	/* ------- 月份标题样式 ------- */
-
-	.month-header {
-		background-color: var(--yg-month-bg-color);
-		padding: 12px;
-		text-align: center;
-		font-weight: bold;
-		border-bottom: 1px solid var(--yg-border-bottom-color);
-		font-size: 1.1em;
-	}
-
-	/* 当前月份标题样式 */
-	.month-header.current-month {
-		background-color: var(--yg-current-month-bg-color);
-		color: var(--yg-current-month-color);
-		font-weight: bold;
-		border-bottom: 2px solid var(--yg-current-month-border-color);
-		box-shadow: 0 2px 4px var(--yg-shadow-color);
-	}
-
+	/* ------- 日历网格样式 ------- */
 	.month-days-calendar {
 		/* ------- 星期几样式 ------- */
 
@@ -289,11 +290,11 @@
 			background-color: var(--yg-weekdays-bg-color);
 			border-bottom: 1px solid var(--yg-border-bottom-color);
 			width: 100%;
-		}
 
-		.weekdays div {
-			padding: 6px 0;
-			font-weight: 500;
+			div {
+				padding: 6px 0;
+				font-weight: 500;
+			}
 		}
 
 		/* ------- 日期网格样式 ------- */
@@ -317,31 +318,31 @@
 			text-align: right;
 			border: 1px solid transparent;
 			transition: all 0.2s ease;
+
+			&.empty {
+				background-color: transparent;
+			}
+
+			&.today {
+				font-weight: bold;
+				border: 2px solid var(--yg-today-border-color);
+				background-color: var(--yg-today-bg-color);
+				box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+			}
+
+			&.weekend {
+				background-color: var(--yg-day-weekend-bg-color);
+			}
+
+			&.has-events {
+				border-color: var(--yg-event-border-color);
+			}
 		}
 
 		.day:hover:not(.empty) {
 			background-color: var(--yg-today-bg-color);
 			opacity: 0.9;
 			z-index: 1;
-		}
-
-		.day.empty {
-			background-color: transparent;
-		}
-
-		.day.today {
-			font-weight: bold;
-			border: 2px solid var(--yg-today-border-color);
-			background-color: var(--yg-today-bg-color);
-			box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-		}
-
-		.day.weekend {
-			background-color: var(--yg-day-weekend-bg-color);
-		}
-
-		.day.has-events {
-			border-color: var(--yg-event-border-color);
 		}
 
 		.day-info {
@@ -374,67 +375,55 @@
 				font-weight: 500;
 			}
 		}
-	}
 
-	/* ------- 事件容器 ------- */
+		/* ------- 事件容器 ------- */
 
-	.events {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		margin-top: 3px;
-	}
+		.events {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			margin-top: 3px;
+		}
 
-	/* ------- 事件样式 ------- */
+		/* ------- 事件样式 ------- */
 
-	.event {
-		display: flex;
-		align-items: center;
-		padding: 2px 4px;
-		margin-bottom: 2px;
-		border-radius: 3px;
-		font-size: 0.75em;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		cursor: pointer;
-		transition: all 0.2s ease;
-		color: var(--yg-event-text-color);
-	}
+		.event {
+			display: flex;
+			align-items: center;
+			padding: 2px 4px;
+			margin-bottom: 2px;
+			border-radius: 3px;
+			font-size: 0.75em;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			color: var(--yg-event-text-color);
 
-	/* 鼠标悬浮效果 */
-	.event:hover {
-		transform: translateY(-1px);
-		outline: 1px solid var(--yg-event-border-hover-color);
-		box-shadow: 0 3px 8px var(--yg-tooltip-shadow);
-		z-index: 10;
-	}
+			/* 鼠标悬浮效果 */
+			&:hover {
+				transform: translateY(-1px);
+				outline: 1px solid var(--yg-event-border-hover-color);
+				box-shadow: 0 3px 8px var(--yg-tooltip-shadow);
+				z-index: 10;
+			}
 
-	/* ------- 事件文本字体大小 ------- */
+			/* ------- 事件文本字体大小 ------- */
 
-	.event.font-small {
-		font-size: 0.7em;
-	}
+			&.font-small {
+				font-size: 0.7em;
+			}
 
-	.event.font-medium {
-		font-size: 0.85em;
-	}
+			&.font-medium {
+				font-size: 0.85em;
+			}
 
-	.event.font-large {
-		font-size: 0.95em;
-	}
-
-	.events-list .event.font-small {
-		font-size: 0.8em;
-	}
-
-	.events-list .event.font-medium {
-		font-size: 0.95em;
-	}
-
-	.events-list .event.font-large {
-		font-size: 1.1em;
+			&.font-large {
+				font-size: 0.95em;
+			}
+		}
 	}
 
 	.event-emoji {
@@ -541,25 +530,37 @@
 			font-size: 0.85em;
 			padding: 5px 10px;
 			border-radius: 4px;
+
+			&.font-small {
+				font-size: 0.8em;
+			}
+
+			&.font-medium {
+				font-size: 0.95em;
+			}
+
+			&.font-large {
+				font-size: 1.1em;
+			}
 		}
-	}
 
-	.month-days-list::-webkit-scrollbar {
-		width: 6px;
-	}
+		&::-webkit-scrollbar {
+			width: 6px;
+		}
 
-	.month-days-list::-webkit-scrollbar-thumb {
-		background-color: var(--yg-border-bottom-color);
-		border-radius: 3px;
-	}
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--yg-border-bottom-color);
+			border-radius: 3px;
+		}
 
-	.month-days-list::-webkit-scrollbar-track {
-		background-color: var(--yg-month-bg-color);
-	}
+		&::-webkit-scrollbar-track {
+			background-color: var(--yg-month-bg-color);
+		}
 
-	.month-days-list.no-height-limit {
-		max-height: none;
-		overflow-y: visible;
+		&.no-height-limit {
+			max-height: none;
+			overflow-y: visible;
+		}
 	}
 
 	/* ------- 彩色模式样式 ------- */
