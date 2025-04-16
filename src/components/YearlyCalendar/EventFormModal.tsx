@@ -1,6 +1,7 @@
 import * as React from "react";
 import { createRoot, Root } from "react-dom/client";
 import { Modal } from "obsidian";
+import { Solar } from "lunar-typescript";
 import YearlyGlancePlugin from "@/src/main";
 import {
 	BaseEvent,
@@ -12,12 +13,6 @@ import {
 	EventType,
 	Holiday,
 } from "@/src/core/interfaces/Events";
-import { ChevronDown, ChevronRight, HelpCircle, RotateCcw } from "lucide-react";
-import { Select } from "../Base/Select";
-import { Toggle } from "../Base/Toggle";
-import { DatePicker } from "@/src/components/DatePicker/DatePicker";
-import { t } from "@/src/i18n/i18n";
-import "./style/EventFormModal.css";
 import {
 	calculateDateObj,
 	updateBirthdayInfo,
@@ -27,7 +22,13 @@ import {
 	parseDateValue,
 	parseExtendedISO,
 } from "@/src/core/utils/dateParser";
-import { Solar } from "lunar-typescript";
+import { ChevronDown, ChevronRight, HelpCircle } from "lucide-react";
+import { Select } from "../Base/Select";
+import { Toggle } from "../Base/Toggle";
+import { DatePicker } from "@/src/components/DatePicker/DatePicker";
+import { ColorSelector } from "../Base/ColorSelector";
+import { t } from "@/src/i18n/i18n";
+import "./style/EventFormModal.css";
 
 interface EventFormProps {
 	event: Partial<CustomEvent | Birthday | Holiday>;
@@ -433,25 +434,18 @@ const EventForm: React.FC<EventFormProps> = ({
 				{/* 事件颜色 */}
 				<div className="form-group">
 					<label>{t("view.eventManager.form.eventColor")}</label>
-					<input
-						type="color"
-						name="color"
+					<ColorSelector
 						value={formData.color || ""}
-						onChange={handleChange}
-					/>
-					<button
-						type="button"
-						className="color-reset-button"
-						onClick={() => {
+						defaultColor={EVENT_TYPE_DEFAULT[eventType].color}
+						onChange={(color) => {
 							setFormData((prev) => ({
 								...prev,
-								color: undefined,
+								color: color,
 							}));
 						}}
-						title={t("view.eventManager.form.reset")}
-					>
-						<RotateCcw />
-					</button>
+						resetTitle={t("view.eventManager.form.reset")}
+						submitDefaultAsValue={false}
+					/>
 				</div>
 				{/* 节日字段：是否显示，节日起源时间 */}
 				{eventType === "holiday" && (
