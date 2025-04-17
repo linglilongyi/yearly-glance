@@ -1,3 +1,24 @@
+# [2.1.0](https://github.com/Moyf/yearly-glance/compare/2.0.0...2.1.0) (2025-04-17)
+
+### ✨ New Features: Hide Them All! 🙈
+
+* **Hide Events:** Add a "hidden" property to all event types ([ae62f4d](https://github.com/Moyf/yearly-glance/commit/ae62f4dddcfba4e27c4afd28046c982c01b336c0)), closes [#25](https://github.com/Moyf/yearly-glance/issues/25)
+* **Hide Empty Dates:** Add a "hide empty dates" button to the list view, which can be used with height limits and type filters to view a simplified view of filtered events ([12831e5](https://github.com/Moyf/yearly-glance/commit/12831e59ed6b32f81948144ece735ee7d8be744b)), closes [#26](https://github.com/Moyf/yearly-glance/issues/26)
+
+
+### 🎨 Style
+
+* **Event Manager:** Add a "datatype" property to different event pages (event-list) and adjust the icon of the button ([28a20c4](https://github.com/Moyf/yearly-glance/commit/28a20c4129e3e7cea33eef4316129e9c3512fe9c))
+* **List View:** Fix the hover style of list mode ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
+
+
+### 📝 Documentation
+
+* ci: Attempt to add commits to changelog automatically when submitting ([73fbb82](https://github.com/Moyf/yearly-glance/commit/73fbb82397c0dbff6d16cf59e27a8b4fe76ecd28))
+* Fix irregularities in changelog ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054) [e838743](https://github.com/Moyf/yearly-glance/commit/e8387439f63d96566a83bae4eb071271fe956b4e))
+* **changelog:** Add English and Chinese documentation for the 2.0.0 version changelog ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
+
+
 # [2.0.0](https://github.com/Moyf/yearly-glance/compare/1.0.0...2.0.0) (2025-04-17)
 
 

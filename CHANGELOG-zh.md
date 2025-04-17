@@ -1,3 +1,24 @@
+# [2.1.0](https://github.com/Moyf/yearly-glance/compare/2.0.0...2.1.0) (2025-04-17)
+
+### ✨ 新功能：全都可以藏起来！ 🙈
+
+* **隐藏事件:** 给所有事件类型都增加「可隐藏」属性 ([ae62f4d](https://github.com/Moyf/yearly-glance/commit/ae62f4dddcfba4e27c4afd28046c982c01b336c0)), closes [#25](https://github.com/Moyf/yearly-glance/issues/25)
+* **隐藏空日期:** 增加列表视图「隐藏空日期」的按钮，可以配合高度限制以及类型筛选查看过滤后的简化视图 ([12831e5](https://github.com/Moyf/yearly-glance/commit/12831e59ed6b32f81948144ece735ee7d8be744b)), closes [#26](https://github.com/Moyf/yearly-glance/issues/26)
+
+
+### 🎨 样式
+
+* **事件管理器：** 给不同的事件页面（event-list）增加了 datatype 属性；并调整了按钮的图标 ([28a20c4](https://github.com/Moyf/yearly-glance/commit/28a20c4129e3e7cea33eef4316129e9c3512fe9c))
+* **列表视图：** 修复列表模式的 hover 样式 ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
+
+
+### 📝 文档
+
+* ci: 尝试提交时自动添加commit进changelog ([73fbb82](https://github.com/Moyf/yearly-glance/commit/73fbb82397c0dbff6d16cf59e27a8b4fe76ecd28))
+* 修复changelog中不规范的提交 ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054) [e838743](https://github.com/Moyf/yearly-glance/commit/e8387439f63d96566a83bae4eb071271fe956b4e))
+* **changelog:** 增加2.0.0版本更新日志的中英文文档 ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
+
+
 # [2.0.0](https://github.com/Moyf/yearly-glance/compare/1.0.0...2.0.0) (2025-04-17)
 
 
