@@ -29,15 +29,11 @@
 * **YearlyCalendar:** Adjust month-row gap for improved layout consistency ([5de40e9](https://github.com/Moyf/yearly-glance/commit/5de40e9abca87d2552fa6a07e80ad2a873f66a06))
 * **YearlyCalendar:** Refactor CSS for improved readability and maintainability ([caab2e8](https://github.com/Moyf/yearly-glance/commit/caab2e8d49cb0fb6b49b99f3e6b7cc0825baa212))
 * **YearlyCalendar:** Refactor tab component and enhance styling ([972b091](https://github.com/Moyf/yearly-glance/commit/972b091b0950233b2bae1777cdd3db809027725b))
-* **yearlyglancelist:** 修复列表模式的 hover 样式 ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
+* **yearlyglancelist:** Fix the hover style in list mode ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
 
 
 ### 🐛 Bug Fixes
 
-* action ([ed76e28](https://github.com/Moyf/yearly-glance/commit/ed76e28a8aba4a3f4d817b1835c20abddeafe3e1))
-* **action:** action build failed ([e966245](https://github.com/Moyf/yearly-glance/commit/e9662453e6a4b1bb604ff180125b45c9824b7e89))
-* **action:** action build failed ([2b6d5cc](https://github.com/Moyf/yearly-glance/commit/2b6d5cc6def10240bf8d057d585ff1d1543eef34))
-* **action:** action build failed ([555a8c9](https://github.com/Moyf/yearly-glance/commit/555a8c9b7711d44d770af6f97fce27aea29fcfe1))
 * Ensure consistent casing in file imports and update TypeScript configuration ([a1b32aa](https://github.com/Moyf/yearly-glance/commit/a1b32aa33bcb8d90033badc39acc3b018d393259))
 * Refine regex patterns for commit message parsing in release workflow ([ffc792d](https://github.com/Moyf/yearly-glance/commit/ffc792ddadc5570cbef82d88e4bacdf36d563bef))
 * Update event type references for consistency ([5efd7c0](https://github.com/Moyf/yearly-glance/commit/5efd7c0ba1b8d751c9266327ac3e59b51b62486e))
@@ -46,7 +42,41 @@
 
 ### 📝 Documentation
 
-* **changelog:** 增加2.0.0版本更新日志的中英文文档 ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
+* 修复changelog中不规范的提交 ([88e7019](https://github.com/Moyf/yearly-glance/commit/88e7019d27c50091796b49365c4aa5c97e8359fa))
+
+* 修复changelog中不规范的提交 ([49309d2](https://github.com/Moyf/yearly-glance/commit/49309d24fe51b641c66b7495bede6a0b40e6c9e1))
+
+* 修复changelog中不规范的提交 ([5c53173](https://github.com/Moyf/yearly-glance/commit/5c531739457bba7bec180e78d7866e12c0fda1ca))
+
+* 修复changelog中不规范的提交 ([a06e150](https://github.com/Moyf/yearly-glance/commit/a06e15015877712becafdadc202218804092e372))
+
+* 修复changelog中不规范的提交 ([f64c216](https://github.com/Moyf/yearly-glance/commit/f64c216fc60a330fa4add17b61168b5d3c38cc76))
+
+* 修复changelog中不规范的提交 ([e44ffe4](https://github.com/Moyf/yearly-glance/commit/e44ffe4ffe9b2dd9f8e30a6cf9d9e905f69dedbf))
+
+* 修复changelog中不规范的提交 ([831e612](https://github.com/Moyf/yearly-glance/commit/831e612912c493e1cc0ebc0c845b8445a560990b))
+
+* 修复changelog中不规范的提交 ([a39c2df](https://github.com/Moyf/yearly-glance/commit/a39c2df940e6e74b036d75c897f6e787201c7198))
+
+* 修复changelog中不规范的提交 ([f6cbbda](https://github.com/Moyf/yearly-glance/commit/f6cbbdac1c819f936d6956de4f56f458feb9f7cb))
+
+* 修复changelog中不规范的提交 ([6495799](https://github.com/Moyf/yearly-glance/commit/64957994503027138954f7c58464b442e4af96c1))
+
+* 修复changelog中不规范的提交 ([321af25](https://github.com/Moyf/yearly-glance/commit/321af250a5c3490381dcac63597db6882986d665))
+
+* 修复changelog中不规范的提交 ([0e5730a](https://github.com/Moyf/yearly-glance/commit/0e5730a8aef9b061fdcfcc09ccb59132817bb796))
+
+* 修复changelog中不规范的提交 ([d4cb975](https://github.com/Moyf/yearly-glance/commit/d4cb97582a27efdad0e5c6a0915109f0da486143))
+
+* 修复changelog中不规范的提交 ([18a0ab9](https://github.com/Moyf/yearly-glance/commit/18a0ab98e378665545f65162a2c44bbe2af92a4f))
+
+* 修复changelog中不规范的提交 ([22097fd](https://github.com/Moyf/yearly-glance/commit/22097fd90985948590f209f4cd0971bbfb7b7e42))
+
+* 修复changelog中不规范的提交 ([2d63073](https://github.com/Moyf/yearly-glance/commit/2d63073a6291ace2c20d58df2b8366eccb87f02c))
+
+* 修复changelog中不规范的提交 ([30800f1](https://github.com/Moyf/yearly-glance/commit/30800f11f393a59d11fc6d55eaf78cc4a99d01be))
+
+* **changelog:** Add Chinese and English documentation for the 2.0.0 version changelog. ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
 
 
 
@@ -61,18 +91,12 @@
 ### ✨ Features
 
 * **event:** Introduce tabbed interface for event type selection in EventFormModal ([ba8845e](https://github.com/Moyf/yearly-glance/commit/ba8845e8edd3fa39a52198b476b11cf52752f7ef))
-* **script:** change the icon ([a2686e3](https://github.com/Moyf/yearly-glance/commit/a2686e3b599a457c363b357ce64bf64190b8e80e))
 * **script:** change the icon ([7f908a0](https://github.com/Moyf/yearly-glance/commit/7f908a0da166498a5cdbc1353fbcc6150d019188))
-* **style:** update hover color in dark theme) ([1e17337](https://github.com/Moyf/yearly-glance/commit/1e17337b66159a7033942a2027d48bf5c4fadd8e))
 * **style:** update hover color in dark theme) ([635b834](https://github.com/Moyf/yearly-glance/commit/635b834798be9b9963bce88ffa4cd6aed582cd45))
 
 
 ### 🐛 Bug Fixes
 
-* action ([23c8bbc](https://github.com/Moyf/yearly-glance/commit/23c8bbcf3a9168e9457bd78fb5434d9075d69d11))
-* action ([131054e](https://github.com/Moyf/yearly-glance/commit/131054e7def01991bef1283421c02c2310c6f00d))
-* **action:** action build failed ([ef15e63](https://github.com/Moyf/yearly-glance/commit/ef15e63255b8ac7464f29c6fe8d3efcda7de5f28))
-* **action:** action build failed ([788c9db](https://github.com/Moyf/yearly-glance/commit/788c9db7294183fd4cde083ec7e864c07e9425ed))
 * **script:** Add 'manifest.json' to the list of files to be copied to the vault ([b9c8af9](https://github.com/Moyf/yearly-glance/commit/b9c8af98014bf9c4691feba8c83ee83fe1a0b43a))
 
 
