@@ -16,6 +16,7 @@ export interface Events {
  * emoji: 事件图标
  * color: 事件颜色
  * remark: 事件备注
+ * isHidden: 是否隐藏，默认 false
  */
 export interface BaseEvent {
 	id: string;
@@ -26,17 +27,16 @@ export interface BaseEvent {
 	emoji?: string;
 	color?: string;
 	remark?: string;
+	isHidden?: boolean;
 }
 
 /**
  * 节日接口
  * type: 节日类型, 内置节日或自定义添加的节日
- * isShow: 是否在年历中显示，
  * foundDate?: 节日起源日期, 年月日，年月，年，一般用于计算周年
  */
 export interface Holiday extends BaseEvent {
 	type: "INTERNAT" | "CUSTOM";
-	isShow: boolean;
 	foundDate?: string;
 }
 

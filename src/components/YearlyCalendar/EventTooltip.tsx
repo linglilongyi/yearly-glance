@@ -56,7 +56,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 					...(eventType === "holiday"
 						? {
 								type: (event as Holiday).type,
-								isShow: (event as Holiday).isShow,
+								isHidden: (event as Holiday).isHidden,
 								foundDate: (event as Holiday).foundDate,
 						  }
 						: {}),
@@ -67,12 +67,14 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 								age: (event as Birthday).age,
 								animal: (event as Birthday).animal,
 								zodiac: (event as Birthday).zodiac,
+								isHidden: (event as Birthday).isHidden,
 						  }
 						: {}),
 
 					...(eventType === "customEvent"
 						? {
 								isRepeat: (event as CustomEvent).isRepeat,
+								isHidden: (event as CustomEvent).isHidden,
 						  }
 						: {}),
 				},

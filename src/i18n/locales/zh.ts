@@ -160,6 +160,7 @@ const translations: BaseMessage = {
 				eventDateType: "事件日期类型",
 				optional: "可选",
 				eventRepeat: "重复",
+				eventHidden: "隐藏",
 				eventEmoji: "事件图标",
 				eventColor: "事件颜色",
 				eventRemark: "事件备注",
@@ -178,7 +179,6 @@ const translations: BaseMessage = {
 			holiday: {
 				name: "节日",
 				type: "类型",
-				isShow: "是否显示",
 				foundDate: "节日起源时间",
 				internat: "内置节日",
 				custom: "自定义节日",

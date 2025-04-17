@@ -210,10 +210,10 @@ const EventForm: React.FC<EventFormProps> = ({
 			completeEvent = {
 				...baseEvent,
 				type: (updatedFormData as Holiday).type || "CUSTOM",
-				isShow:
-					(updatedFormData as Holiday).isShow !== undefined
-						? (updatedFormData as Holiday).isShow
-						: true,
+				isHidden:
+					(updatedFormData as Holiday).isHidden !== undefined
+						? (updatedFormData as Holiday).isHidden
+						: false,
 				foundDate: (updatedFormData as Holiday).foundDate,
 			} as Holiday;
 		} else if (eventType === "birthday") {
@@ -223,6 +223,10 @@ const EventForm: React.FC<EventFormProps> = ({
 				age: (updatedFormData as Birthday).age,
 				animal: (updatedFormData as Birthday).animal,
 				zodiac: (updatedFormData as Birthday).zodiac,
+				isHidden:
+					(updatedFormData as Birthday).isHidden !== undefined
+						? (updatedFormData as Birthday).isHidden
+						: false,
 			} as Birthday;
 		} else {
 			completeEvent = {
@@ -230,6 +234,10 @@ const EventForm: React.FC<EventFormProps> = ({
 				isRepeat:
 					(updatedFormData as CustomEvent).isRepeat !== undefined
 						? (updatedFormData as CustomEvent).isRepeat
+						: false,
+				isHidden:
+					(updatedFormData as CustomEvent).isHidden !== undefined
+						? (updatedFormData as CustomEvent).isHidden
 						: false,
 			} as CustomEvent;
 		}
@@ -452,15 +460,15 @@ const EventForm: React.FC<EventFormProps> = ({
 					<>
 						<div className="form-group checkbox">
 							<label>
-								{t("view.eventManager.holiday.isShow")}
+								{t("view.eventManager.form.eventHidden")}
 							</label>
 							<Toggle
-								checked={(formData as Holiday).isShow ?? true}
+								checked={(formData as Holiday).isHidden ?? false}
 								onChange={(checked) =>
-									handleToggleChange("isShow", checked)
+									handleToggleChange("isHidden", checked)
 								}
 								aria-label={t(
-									"view.eventManager.holiday.isShow"
+									"view.eventManager.form.eventHidden"
 								)}
 							/>
 						</div>
@@ -490,6 +498,19 @@ const EventForm: React.FC<EventFormProps> = ({
 								handleToggleChange("isRepeat", checked)
 							}
 							aria-label={t("view.eventManager.form.eventRepeat")}
+						/>
+					</div>
+				)}
+				{/* 自定义事件字段：是否隐藏 */}
+				{eventType === "customEvent" && (
+					<div className="form-group checkbox">
+						<label>{t("view.eventManager.form.eventHidden")}</label>
+						<Toggle
+							checked={(formData as CustomEvent).isHidden ?? false}
+							onChange={(checked) =>
+								handleToggleChange("isHidden", checked)
+							}
+							aria-label={t("view.eventManager.form.eventHidden")}
 						/>
 					</div>
 				)}

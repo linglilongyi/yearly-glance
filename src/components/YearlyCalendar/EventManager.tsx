@@ -55,16 +55,16 @@ const EventItem: React.FC<EventItemProps> = ({
 			const holiday = event as Holiday;
 			return (
 				<>
-					<div className="event-info-row" data-property="isShow">
+					<div className="event-info-row" data-property="isHidden">
 						<span className="info-label">
-							{t("view.eventManager.holiday.isShow")}:
+							{t("view.eventManager.form.eventHidden")}:
 						</span>
 						<span
 							className={`info-value ${
-								holiday.isShow ? "active" : "inactive"
+								holiday.isHidden ? "active" : "inactive"
 							}`}
 						>
-							{holiday.isShow ? "✔" : "✘"}
+							{holiday.isHidden ? "✔" : "✘"}
 						</span>
 					</div>
 					{holiday.foundDate && (
@@ -125,11 +125,36 @@ const EventItem: React.FC<EventItemProps> = ({
 							</span>
 						</div>
 					)}
+					<div className="event-info-row" data-property="isHidden">
+						<span className="info-label">
+							{t("view.eventManager.form.eventHidden")}:
+						</span>
+						<span
+							className={`info-value ${
+								birthday.isHidden ? "active" : "inactive"
+							}`}
+						>
+							{birthday.isHidden ? "✔" : "✘"}
+						</span>
+					</div>
 				</>
 			);
 		} else {
 			const customEvent = event as CustomEvent;
 			return (
+				<>
+				<div className="event-info-row" data-property="isHidden">
+					<span className="info-label">
+						{t("view.eventManager.form.eventHidden")}:
+					</span>
+					<span
+						className={`info-value ${
+							customEvent.isHidden ? "active" : "inactive"
+						}`}
+					>
+						{customEvent.isHidden ? "✔" : "✘"}
+					</span>
+				</div>
 				<div className="event-info-row" data-property="isRepeat">
 					<span className="info-label">
 						{t("view.eventManager.customEvent.repeat")}:
@@ -142,6 +167,7 @@ const EventItem: React.FC<EventItemProps> = ({
 						{customEvent.isRepeat ? "✔" : "✘"}
 					</span>
 				</div>
+				</>
 			);
 		}
 	};
