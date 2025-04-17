@@ -1,25 +1,9 @@
-# [2.1.0](https://github.com/Moyf/yearly-glance/compare/2.0.0...2.1.0) (2025-04-17)
-
-### ✨ 新功能：全都可以藏起来！ 🙈
-
-* **隐藏事件:** 给所有事件类型都增加「可隐藏」属性 ([ae62f4d](https://github.com/Moyf/yearly-glance/commit/ae62f4dddcfba4e27c4afd28046c982c01b336c0)), closes [#25](https://github.com/Moyf/yearly-glance/issues/25)
-* **隐藏空日期:** 增加列表视图「隐藏空日期」的按钮，可以配合高度限制以及类型筛选查看过滤后的简化视图 ([12831e5](https://github.com/Moyf/yearly-glance/commit/12831e59ed6b32f81948144ece735ee7d8be744b)), closes [#26](https://github.com/Moyf/yearly-glance/issues/26)
+# [2.1.0](https://github.com/Moyf/yearly-glance/compare/1.0.0...2.1.0) (2025-04-17)
 
 
-### 🎨 样式
-
-* **事件管理器：** 给不同的事件页面（event-list）增加了 datatype 属性；并调整了按钮的图标 ([28a20c4](https://github.com/Moyf/yearly-glance/commit/28a20c4129e3e7cea33eef4316129e9c3512fe9c))
-* **列表视图：** 修复列表模式的 hover 样式 ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
-
-
-### 📝 文档
+### ⏪️ 回退
 
 * ci: 尝试提交时自动添加commit进changelog ([73fbb82](https://github.com/Moyf/yearly-glance/commit/73fbb82397c0dbff6d16cf59e27a8b4fe76ecd28))
-* 修复changelog中不规范的提交 ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054) [e838743](https://github.com/Moyf/yearly-glance/commit/e8387439f63d96566a83bae4eb071271fe956b4e))
-* **changelog:** 增加2.0.0版本更新日志的中英文文档 ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
-
-
-# [2.0.0](https://github.com/Moyf/yearly-glance/compare/1.0.0...2.0.0) (2025-04-17)
 
 
 ### ♻️ 重构
@@ -32,9 +16,11 @@
 
 * **ColorSelector:** 为事件自定义添加颜色选择器组件 ([cfbf6ca](https://github.com/Moyf/yearly-glance/commit/cfbf6ca5e76a04d544233534e3511d1c2a225576))
 * **confirm-dialog:** 实现用于事件删除确认的ConfirmDialog组件 ([24813f4](https://github.com/Moyf/yearly-glance/commit/24813f416a21fe695f2933fa7c1e48aa2330abdd))
+* **event-hidden:** 给所有事件类型都增加「可隐藏」属性 ([ae62f4d](https://github.com/Moyf/yearly-glance/commit/ae62f4dddcfba4e27c4afd28046c982c01b336c0)), closes [#25](https://github.com/Moyf/yearly-glance/issues/25)
 * **EventForm:** 增强事件创建功能，添加更多属性 ([c9b2943](https://github.com/Moyf/yearly-glance/commit/c9b2943e33e054679e85f07cb0f14c1b15fbe690))
 * **EventManager:** 实现事件搜索功能并增强工具提示操作 ([93bc380](https://github.com/Moyf/yearly-glance/commit/93bc380db806cd0d2313e2ed071258a317090cd4))
 * **EventTooltip:** 为事件提示框添加日期显示功能 ([4d4e789](https://github.com/Moyf/yearly-glance/commit/4d4e789d6262717f5d6ce04a5e2986a65f68e9c5))
+* **newbutton:** 增加列表视图「隐藏空日期」的按钮，可以配合高度限制以及类型筛选查看过滤后的简化视图 ([12831e5](https://github.com/Moyf/yearly-glance/commit/12831e59ed6b32f81948144ece735ee7d8be744b)), closes [#26](https://github.com/Moyf/yearly-glance/issues/26)
 * **UUID:** 集成UUID生成功能用于事件ID，并加强事件管理 ([17446e0](https://github.com/Moyf/yearly-glance/commit/17446e083d7883dc8d92f61b8621347dd48d9624))
 * **YearlyCalendar:** 添加视图预设选项及配置处理 ([ee19736](https://github.com/Moyf/yearly-glance/commit/ee19736dd352520459d6bc34a9e00ccfa7f538c1))
 
@@ -45,6 +31,7 @@
 * 调整 flex 值 ([46beb47](https://github.com/Moyf/yearly-glance/commit/46beb47fa81a6d4e9ceb246bc778a193a560c944))
 * 调整表单选项的样式 ([60edc3a](https://github.com/Moyf/yearly-glance/commit/60edc3ad755d8e68895ec27b2827c6296b83009d))
 * 修改边框样式 ([fc9dd72](https://github.com/Moyf/yearly-glance/commit/fc9dd726d284fbbc4d9cd03e18a75a01265e4f8e))
+* **event-manager:** 给不同的事件页面（event-list）增加了 datatype 属性；并调整了按钮的图标 ([28a20c4](https://github.com/Moyf/yearly-glance/commit/28a20c4129e3e7cea33eef4316129e9c3512fe9c))
 * **EventManager:** 为事件信息行添加数据属性以提升可访问性 ([28c453e](https://github.com/Moyf/yearly-glance/commit/28c453e72c0ce1e039651c2b48d45f298d77fc1e))
 * **EventTooltip:** 增大操作按钮间距以优化布局 ([08850c1](https://github.com/Moyf/yearly-glance/commit/08850c1b12c013fe55c1c755c7091bacf9b77e6a))
 * **YearlyCalendar:** 调整月份行间距以改善布局一致性 ([5de40e9](https://github.com/Moyf/yearly-glance/commit/5de40e9abca87d2552fa6a07e80ad2a873f66a06))
@@ -63,9 +50,27 @@
 
 ### 📝 文档
 
-* 修复changelog中不规范的提交 ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054))
-
 * **changelog:** 增加2.0.0版本更新日志的中英文文档 ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
+
+
+### 🔧 持续集成
+
+* 尝试提交时自动添加commit进changelog ([24b6114](https://github.com/Moyf/yearly-glance/commit/24b61144c0cda6cfb32027b9e968b2aaf937041a))
+* 更改release更新日志的生成方式 ([17405bf](https://github.com/Moyf/yearly-glance/commit/17405bfd15531d52befd2c9c4c2176768881a685))
+* 简化命令，changelog:unreleased 改成 changelog:u ([d413d4a](https://github.com/Moyf/yearly-glance/commit/d413d4a79a51fe2163ef5c94556b773c9bd4b85c))
+* 重构changelog的生成方式 ([343c0a1](https://github.com/Moyf/yearly-glance/commit/343c0a164f50cd306c54983f94e7de095bb7b047))
+* **scripts:** 更新version-bump脚本，beta版本改成修改manifest-beta.json文件 ([80b04a8](https://github.com/Moyf/yearly-glance/commit/80b04a8c901b982d9c454357f305056b2dfbeb8e))
+
+
+### 🔨 杂项
+
+* **commit:** 使用 conventional 和 commitizen 工具 ([829f5a8](https://github.com/Moyf/yearly-glance/commit/829f5a81c379c4bee09d4cf82b5ba78b662e8168))
+* 更新工具提示中的日期标签并增强国际化支持 ([6504060](https://github.com/Moyf/yearly-glance/commit/6504060a3f0bb9b7cc01c06fb95699aca3c3052c))
+
+
+### 💥 破坏性变更
+
+* **version:** 给所有事件增加了 UUID，可能会导致系统内置节日重复创建，可以去 data.json 手动删除，或者删除 data.json 文件并重置插件
 
 
 
@@ -74,19 +79,19 @@
 
 ### ♻️ 重构
 
-* **release.yml:** 增强变更日志生成功能，支持重大变更和改进的提交类型分类 ([be2ee77](https://github.com/Moyf/yearly-glance/commit/be2ee779a6e6d8bfe25c01f50820c66ef49e09c5))
+* **release.yml:** 增强变更日志生成，支持重大变更和改进的提交类型分类 ([be2ee77](https://github.com/Moyf/yearly-glance/commit/be2ee779a6e6d8bfe25c01f50820c66ef49e09c5))
 
 
 ### ✨ 新功能
 
-* **event:** 在EventFormModal中引入选项卡式界面以选择事件类型 ([ba8845e](https://github.com/Moyf/yearly-glance/commit/ba8845e8edd3fa39a52198b476b11cf52752f7ef))
+* **event:** 为EventFormModal引入带有选项卡界面的事件类型选择 ([ba8845e](https://github.com/Moyf/yearly-glance/commit/ba8845e8edd3fa39a52198b476b11cf52752f7ef))
 * **script:** 更改图标 ([7f908a0](https://github.com/Moyf/yearly-glance/commit/7f908a0da166498a5cdbc1353fbcc6150d019188))
-* **style:** 更新深色主题中的悬停颜色) ([635b834](https://github.com/Moyf/yearly-glance/commit/635b834798be9b9963bce88ffa4cd6aed582cd45))
+* **style:** 更新深色主题下的悬停颜色) ([635b834](https://github.com/Moyf/yearly-glance/commit/635b834798be9b9963bce88ffa4cd6aed582cd45))
 
 
 ### 🐛 修复
 
-* **script:** 将 'manifest.json' 添加到需复制至保险库的文件列表中 ([b9c8af9](https://github.com/Moyf/yearly-glance/commit/b9c8af98014bf9c4691feba8c83ee83fe1a0b43a))
+* **script:** 将 'manifest.json' 添加到需复制至保管库的文件列表中 ([b9c8af9](https://github.com/Moyf/yearly-glance/commit/b9c8af98014bf9c4691feba8c83ee83fe1a0b43a))
 
 
 ### 📝 文档
@@ -94,6 +99,13 @@
 * **init:** 初始化插件信息 ([2f988aa](https://github.com/Moyf/yearly-glance/commit/2f988aaf5ac4f8118626d9badd8897d900737d1a))
 * **manifest:** 为 Yearly Glance 插件添加 manifest-beta.json ([6e831f0](https://github.com/Moyf/yearly-glance/commit/6e831f0a82f08eb203d01f5c4edcf357d2d511ec))
 * **README:** 为项目添加星标、下载量、许可证、问题及最近提交的徽章；在英文和中文的README文件中均包含星标历史图表 ([f07c875](https://github.com/Moyf/yearly-glance/commit/f07c8751ea6c91da2f6f65df3a1d8ecc54b50749))
+
+
+### 🔨 杂项
+
+* **.gitignore:** 将'styles.css'添加到忽略文件列表中 ([e99ec99](https://github.com/Moyf/yearly-glance/commit/e99ec99a0167c45a9125c00d83886f7c9666644c))
+* **.gitignore:** 排除 Thumbs.db 以防止 Windows Explorer 跟踪视图状态 ([2f6924c](https://github.com/Moyf/yearly-glance/commit/2f6924c717a300c011ec29351259b3cd5b3cc985))
+* **style:** remove tooltip CSS ([6dbca9e](https://github.com/Moyf/yearly-glance/commit/6dbca9e883fe2e29c0cf0d1e1f0d3a6959d351ab))
 
 
 

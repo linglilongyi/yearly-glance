@@ -12,10 +12,10 @@ module.exports = {
 				style: "🎨 Styles",
 				refactor: "♻️ Refactor",
 				perf: "⚡️ Performance",
-				// test: "✅ Tests",
-				// build: "👷 Build",
-				// ci: "🔧 CI",
-				// chore: "🔨 Chore",
+				test: "✅ Tests",
+				build: "👷 Build",
+				ci: "🔧 CI",
+				chore: "🔨 Chore",
 				revert: "⏪️ Reverts",
 			};
 
