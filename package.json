@@ -11,7 +11,6 @@
 		"release": "npm run build && npm run version",
 		"changelog:u": "conventional-changelog -p angular -i CHANGELOG.md -s -u -n ./scripts/changelog-option.js && conventional-changelog -p angular -i CHANGELOG-zh.md -s -u -n ./scripts/changelog-option-zh.js",
 		"changelog:all": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 -n ./scripts/changelog-option.js && conventional-changelog -p angular -i CHANGELOG-zh.md -s -r 0 -n ./scripts/changelog-option-zh.js",
-		"changelog:append": "node scripts/append-changelog.js",
 		"lint": "eslint . --ext .ts,.tsx",
 		"lint:fix": "eslint . --ext .ts,.tsx --fix"
 	},
