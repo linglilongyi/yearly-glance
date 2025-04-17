@@ -291,7 +291,7 @@ const EventList: React.FC<EventListProps> = ({
 		);
 
 		return (
-			<div className="event-list">
+			<div className="event-list" data-type={eventType}>
 				{internatHolidays.length > 0 && (
 					<div className="event-group">
 						<div
@@ -367,7 +367,7 @@ const EventList: React.FC<EventListProps> = ({
 
 	// 生日和自定义事件直接显示列表
 	return (
-		<div className="event-list">
+		<div className="event-list" data-type={eventType}>
 			<div className="event-items-grid">
 				{events.map((event, index) => (
 					<EventItem

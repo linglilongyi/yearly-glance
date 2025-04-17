@@ -424,7 +424,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 					onClick={handleEventManager}
 					title={t("view.yearlyGlance.actions.manager")}
 				>
-					<span className="button-icon">📜</span>
+					<span className="button-icon">🗂️</span>
 				</button>
 				{/* 事件添加 */}
 				<button
