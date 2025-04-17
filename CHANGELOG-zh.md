@@ -1,44 +1,58 @@
 # [2.1.0](https://github.com/Moyf/yearly-glance/compare/1.0.0...2.1.0) (2025-04-17)
 
 
-### ⏪️ 回退
+## 2.1.0 改动
 
-* ci: 尝试提交时自动添加commit进changelog ([73fbb82](https://github.com/Moyf/yearly-glance/commit/73fbb82397c0dbff6d16cf59e27a8b4fe76ecd28))
+### ✨ 新功能：全都可以藏起来！ 🙈
 
-
-### ♻️ 重构
-
-* **confirm-dialog:** 将onCancel重命名为onClose以保持一致性 ([b93750e](https://github.com/Moyf/yearly-glance/commit/b93750ebc9f664a3444f3903c22d17f412af546e))
-* **Event:** 更改事件类型的默认排序 ([f562d9e](https://github.com/Moyf/yearly-glance/commit/f562d9ecf95cd14cdad1ca8a616646bef1e75a95))
-
-
-### ✨ 新功能
-
-* **ColorSelector:** 为事件自定义添加颜色选择器组件 ([cfbf6ca](https://github.com/Moyf/yearly-glance/commit/cfbf6ca5e76a04d544233534e3511d1c2a225576))
-* **confirm-dialog:** 实现用于事件删除确认的ConfirmDialog组件 ([24813f4](https://github.com/Moyf/yearly-glance/commit/24813f416a21fe695f2933fa7c1e48aa2330abdd))
-* **event-hidden:** 给所有事件类型都增加「可隐藏」属性 ([ae62f4d](https://github.com/Moyf/yearly-glance/commit/ae62f4dddcfba4e27c4afd28046c982c01b336c0)), closes [#25](https://github.com/Moyf/yearly-glance/issues/25)
-* **EventForm:** 增强事件创建功能，添加更多属性 ([c9b2943](https://github.com/Moyf/yearly-glance/commit/c9b2943e33e054679e85f07cb0f14c1b15fbe690))
-* **EventManager:** 实现事件搜索功能并增强工具提示操作 ([93bc380](https://github.com/Moyf/yearly-glance/commit/93bc380db806cd0d2313e2ed071258a317090cd4))
-* **EventTooltip:** 为事件提示框添加日期显示功能 ([4d4e789](https://github.com/Moyf/yearly-glance/commit/4d4e789d6262717f5d6ce04a5e2986a65f68e9c5))
-* **newbutton:** 增加列表视图「隐藏空日期」的按钮，可以配合高度限制以及类型筛选查看过滤后的简化视图 ([12831e5](https://github.com/Moyf/yearly-glance/commit/12831e59ed6b32f81948144ece735ee7d8be744b)), closes [#26](https://github.com/Moyf/yearly-glance/issues/26)
-* **UUID:** 集成UUID生成功能用于事件ID，并加强事件管理 ([17446e0](https://github.com/Moyf/yearly-glance/commit/17446e083d7883dc8d92f61b8621347dd48d9624))
-* **YearlyCalendar:** 添加视图预设选项及配置处理 ([ee19736](https://github.com/Moyf/yearly-glance/commit/ee19736dd352520459d6bc34a9e00ccfa7f538c1))
+* **隐藏事件:** 给所有事件类型都增加「可隐藏」属性 ([ae62f4d](https://github.com/Moyf/yearly-glance/commit/ae62f4dddcfba4e27c4afd28046c982c01b336c0)), closes [#25](https://github.com/Moyf/yearly-glance/issues/25)
+* **隐藏空日期:** 增加列表视图「隐藏空日期」的按钮，可以配合高度限制以及类型筛选查看过滤后的简化视图 ([12831e5](https://github.com/Moyf/yearly-glance/commit/12831e59ed6b32f81948144ece735ee7d8be744b)), closes [#26](https://github.com/Moyf/yearly-glance/issues/26)
 
 
 ### 🎨 样式
 
-* 为添加事件设置指针光标样式 ([f1d3d0a](https://github.com/Moyf/yearly-glance/commit/f1d3d0a5a9b1d716909477a5075a020d75b8340e))
-* 调整 flex 值 ([46beb47](https://github.com/Moyf/yearly-glance/commit/46beb47fa81a6d4e9ceb246bc778a193a560c944))
-* 调整表单选项的样式 ([60edc3a](https://github.com/Moyf/yearly-glance/commit/60edc3ad755d8e68895ec27b2827c6296b83009d))
-* 修改边框样式 ([fc9dd72](https://github.com/Moyf/yearly-glance/commit/fc9dd726d284fbbc4d9cd03e18a75a01265e4f8e))
-* **event-manager:** 给不同的事件页面（event-list）增加了 datatype 属性；并调整了按钮的图标 ([28a20c4](https://github.com/Moyf/yearly-glance/commit/28a20c4129e3e7cea33eef4316129e9c3512fe9c))
-* **EventManager:** 为事件信息行添加数据属性以提升可访问性 ([28c453e](https://github.com/Moyf/yearly-glance/commit/28c453e72c0ce1e039651c2b48d45f298d77fc1e))
-* **EventTooltip:** 增大操作按钮间距以优化布局 ([08850c1](https://github.com/Moyf/yearly-glance/commit/08850c1b12c013fe55c1c755c7091bacf9b77e6a))
-* **YearlyCalendar:** 调整月份行间距以改善布局一致性 ([5de40e9](https://github.com/Moyf/yearly-glance/commit/5de40e9abca87d2552fa6a07e80ad2a873f66a06))
-* **YearlyCalendar:** 重构CSS以提高可读性和可维护性 ([caab2e8](https://github.com/Moyf/yearly-glance/commit/caab2e8d49cb0fb6b49b99f3e6b7cc0825baa212))
-* **YearlyCalendar:** 重构标签页组件并优化样式 ([972b091](https://github.com/Moyf/yearly-glance/commit/972b091b0950233b2bae1777cdd3db809027725b))
-* **yearlyglancelist:** 修复列表模式的 hover 样式 ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
+* **事件管理器：** 给不同的事件页面（event-list）增加了 datatype 属性；并调整了按钮的图标 ([28a20c4](https://github.com/Moyf/yearly-glance/commit/28a20c4129e3e7cea33eef4316129e9c3512fe9c))
+* **列表视图：** 修复列表模式的 hover 样式 ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
 
+
+### 📝 文档
+
+* **持续集成:** 尝试提交时自动添加commit进changelog ([73fbb82](https://github.com/Moyf/yearly-glance/commit/73fbb82397c0dbff6d16cf59e27a8b4fe76ecd28))
+* **规范:** 修复changelog中不规范的提交 ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054) [e838743](https://github.com/Moyf/yearly-glance/commit/e8387439f63d96566a83bae4eb071271fe956b4e))
+
+
+## 2.0.0 超大更新
+
+### 💥 破坏性变更：数据结构重写
+
+* **事件ID:** 给所有事件增加了 UUID，可能会导致系统内置节日重复创建（可以去 data.json 手动删除，或者删除 data.json 文件并重置插件）
+
+### ♻️ 重构
+
+* **删除确认:** 将onCancel重命名为onClose以保持一致性 ([b93750e](https://github.com/Moyf/yearly-glance/commit/b93750ebc9f664a3444f3903c22d17f412af546e))
+* **Event默认类型:** 更改事件类型的默认排序（自定义事件->生日->节日） ([f562d9e](https://github.com/Moyf/yearly-glance/commit/f562d9ecf95cd14cdad1ca8a616646bef1e75a95))
+
+### ✨ 新功能
+
+* **颜色选择:** 为事件自定义添加颜色选择器组件 ([cfbf6ca](https://github.com/Moyf/yearly-glance/commit/cfbf6ca5e76a04d544233534e3511d1c2a225576))
+* **删除前确认:** 实现用于事件删除确认的ConfirmDialog组件 ([24813f4](https://github.com/Moyf/yearly-glance/commit/24813f416a21fe695f2933fa7c1e48aa2330abdd))
+* **事件创建:** 增强事件创建功能，添加更多属性 ([c9b2943](https://github.com/Moyf/yearly-glance/commit/c9b2943e33e054679e85f07cb0f14c1b15fbe690))
+* **事件管理器:** 实现事件搜索功能并增强工具提示操作 ([93bc380](https://github.com/Moyf/yearly-glance/commit/93bc380db806cd0d2313e2ed071258a317090cd4))
+* **事件详情:** 为事件提示框添加日期显示功能 ([4d4e789](https://github.com/Moyf/yearly-glance/commit/4d4e789d6262717f5d6ce04a5e2986a65f68e9c5))
+* **UUID:** 集成UUID生成功能用于事件ID，并加强事件管理 ([17446e0](https://github.com/Moyf/yearly-glance/commit/17446e083d7883dc8d92f61b8621347dd48d9624))
+* **视图选项:** 添加视图预设选项及配置处理 ([ee19736](https://github.com/Moyf/yearly-glance/commit/ee19736dd352520459d6bc34a9e00ccfa7f538c1))
+
+### 🎨 样式
+
+* **样式调整**: 为添加事件设置指针光标样式 ([f1d3d0a](https://github.com/Moyf/yearly-glance/commit/f1d3d0a5a9b1d716909477a5075a020d75b8340e))
+    * 调整 flex 值 ([46beb47](https://github.com/Moyf/yearly-glance/commit/46beb47fa81a6d4e9ceb246bc778a193a560c944))
+    * 调整表单选项的样式 ([60edc3a](https://github.com/Moyf/yearly-glance/commit/60edc3ad755d8e68895ec27b2827c6296b83009d))
+    * 修改边框样式 ([fc9dd72](https://github.com/Moyf/yearly-glance/commit/fc9dd726d284fbbc4d9cd03e18a75a01265e4f8e))
+    * **EventTooltip:** 增大操作按钮间距以优化布局 ([08850c1](https://github.com/Moyf/yearly-glance/commit/08850c1b12c013fe55c1c755c7091bacf9b77e6a))
+    * **yearlyglancelist:** 修复列表模式的 hover 样式 ([1b7508e](https://github.com/Moyf/yearly-glance/commit/1b7508e7e39d6042fd3f568cd33c763a7278d152))
+* **概览视图:** 调整月份行间距以改善布局一致性 ([5de40e9](https://github.com/Moyf/yearly-glance/commit/5de40e9abca87d2552fa6a07e80ad2a873f66a06))
+    *  重构CSS以提高可读性和可维护性 ([caab2e8](https://github.com/Moyf/yearly-glance/commit/caab2e8d49cb0fb6b49b99f3e6b7cc0825baa212))
+    * 重构标签页组件并优化样式 ([972b091](https://github.com/Moyf/yearly-glance/commit/972b091b0950233b2bae1777cdd3db809027725b))
 
 ### 🐛 修复
 
@@ -47,11 +61,9 @@
 * 更新事件类型引用以保持一致 ([5efd7c0](https://github.com/Moyf/yearly-glance/commit/5efd7c0ba1b8d751c9266327ac3e59b51b62486e))
 * 更新发布工作流中用于检测重大变更的正则表达式 ([7462f0e](https://github.com/Moyf/yearly-glance/commit/7462f0ed2d6093bf1203b7a406eab5ae105a4148))
 
-
 ### 📝 文档
 
 * **changelog:** 增加2.0.0版本更新日志的中英文文档 ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
-
 
 ### 🔧 持续集成
 
@@ -61,17 +73,14 @@
 * 重构changelog的生成方式 ([343c0a1](https://github.com/Moyf/yearly-glance/commit/343c0a164f50cd306c54983f94e7de095bb7b047))
 * **scripts:** 更新version-bump脚本，beta版本改成修改manifest-beta.json文件 ([80b04a8](https://github.com/Moyf/yearly-glance/commit/80b04a8c901b982d9c454357f305056b2dfbeb8e))
 
-
 ### 🔨 杂项
 
-* **commit:** 使用 conventional 和 commitizen 工具 ([829f5a8](https://github.com/Moyf/yearly-glance/commit/829f5a81c379c4bee09d4cf82b5ba78b662e8168))
+* **提交流程:** 使用 conventional 和 commitizen 工具 ([829f5a8](https://github.com/Moyf/yearly-glance/commit/829f5a81c379c4bee09d4cf82b5ba78b662e8168))
 * 更新工具提示中的日期标签并增强国际化支持 ([6504060](https://github.com/Moyf/yearly-glance/commit/6504060a3f0bb9b7cc01c06fb95699aca3c3052c))
 
+### ⏪️ 回退
 
-### 💥 破坏性变更
-
-* **version:** 给所有事件增加了 UUID，可能会导致系统内置节日重复创建，可以去 data.json 手动删除，或者删除 data.json 文件并重置插件
-
+* ci: 尝试提交时自动添加commit进changelog ([73fbb82](https://github.com/Moyf/yearly-glance/commit/73fbb82397c0dbff6d16cf59e27a8b4fe76ecd28))
 
 
 # [1.0.0](https://github.com/Moyf/yearly-glance/compare/2f988aaf5ac4f8118626d9badd8897d900737d1a...1.0.0) (2025-04-10)
