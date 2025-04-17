@@ -34,6 +34,14 @@ module.exports = {
 				transformedCommit.scope = "";
 			}
 
+			// 确保 hash 作为链接文本
+			if (transformedCommit.hash) {
+				transformedCommit.shortHash = transformedCommit.hash.substring(
+					0,
+					7
+				);
+			}
+
 			// 处理 BREAKING CHANGE - 创建深层复制
 			if (commit.notes && commit.notes.length > 0) {
 				transformedCommit.notes = commit.notes.map((note) => {
