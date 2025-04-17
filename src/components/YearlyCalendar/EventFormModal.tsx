@@ -455,36 +455,20 @@ const EventForm: React.FC<EventFormProps> = ({
 						submitDefaultAsValue={false}
 					/>
 				</div>
-				{/* 节日字段：是否显示，节日起源时间 */}
+				{/* 节日字段：节日起源时间 */}
 				{eventType === "holiday" && (
-					<>
-						<div className="form-group checkbox">
-							<label>
-								{t("view.eventManager.form.eventHidden")}
-							</label>
-							<Toggle
-								checked={(formData as Holiday).isHidden ?? false}
-								onChange={(checked) =>
-									handleToggleChange("isHidden", checked)
-								}
-								aria-label={t(
-									"view.eventManager.form.eventHidden"
-								)}
-							/>
-						</div>
-						<div className="form-group">
-							<label>
-								{t("view.eventManager.holiday.foundDate")}
-							</label>
-							<input
-								type="text"
-								name="foundDate"
-								value={(formData as Holiday).foundDate ?? ""}
-								onChange={handleChange}
-								placeholder="YYYY or YYYY,MM or YYYY,MM,DD"
-							/>
-						</div>
-					</>
+					<div className="form-group">
+						<label>
+							{t("view.eventManager.holiday.foundDate")}
+						</label>
+						<input
+							type="text"
+							name="foundDate"
+							value={(formData as Holiday).foundDate ?? ""}
+							onChange={handleChange}
+							placeholder="YYYY or YYYY,MM or YYYY,MM,DD"
+						/>
+					</div>
 				)}
 				{/* 自定义事件字段：是否重复 */}
 				{eventType === "customEvent" && (
@@ -501,19 +485,17 @@ const EventForm: React.FC<EventFormProps> = ({
 						/>
 					</div>
 				)}
-				{/* 自定义事件字段：是否隐藏 */}
-				{eventType === "customEvent" && (
-					<div className="form-group checkbox">
-						<label>{t("view.eventManager.form.eventHidden")}</label>
-						<Toggle
-							checked={(formData as CustomEvent).isHidden ?? false}
-							onChange={(checked) =>
-								handleToggleChange("isHidden", checked)
-							}
-							aria-label={t("view.eventManager.form.eventHidden")}
-						/>
-					</div>
-				)}
+				{/* 是否隐藏 */}
+				<div className="form-group checkbox">
+					<label>{t("view.eventManager.form.eventHidden")}</label>
+					<Toggle
+						checked={(formData as BaseEvent).isHidden ?? false}
+						onChange={(checked) =>
+							handleToggleChange("isHidden", checked)
+						}
+						aria-label={t("view.eventManager.form.eventHidden")}
+					/>
+				</div>
 				{/* 事件备注 */}
 				<div className="form-group">
 					<label>{t("view.eventManager.form.eventRemark")}</label>
