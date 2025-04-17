@@ -42,6 +42,8 @@
 
 ### 📝 Documentation
 
+* 修复changelog中不规范的提交 ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054))
+
 * **changelog:** Add Chinese and English documentation for the 2.0.0 version changelog. ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
 
 

@@ -42,39 +42,7 @@
 
 ### 📝 文档
 
-* 修复changelog中不规范的提交 ([88e7019](https://github.com/Moyf/yearly-glance/commit/88e7019d27c50091796b49365c4aa5c97e8359fa))
-
-* 修复changelog中不规范的提交 ([49309d2](https://github.com/Moyf/yearly-glance/commit/49309d24fe51b641c66b7495bede6a0b40e6c9e1))
-
-* 修复changelog中不规范的提交 ([5c53173](https://github.com/Moyf/yearly-glance/commit/5c531739457bba7bec180e78d7866e12c0fda1ca))
-
-* 修复changelog中不规范的提交 ([a06e150](https://github.com/Moyf/yearly-glance/commit/a06e15015877712becafdadc202218804092e372))
-
-* 修复changelog中不规范的提交 ([f64c216](https://github.com/Moyf/yearly-glance/commit/f64c216fc60a330fa4add17b61168b5d3c38cc76))
-
-* 修复changelog中不规范的提交 ([e44ffe4](https://github.com/Moyf/yearly-glance/commit/e44ffe4ffe9b2dd9f8e30a6cf9d9e905f69dedbf))
-
-* 修复changelog中不规范的提交 ([831e612](https://github.com/Moyf/yearly-glance/commit/831e612912c493e1cc0ebc0c845b8445a560990b))
-
-* 修复changelog中不规范的提交 ([a39c2df](https://github.com/Moyf/yearly-glance/commit/a39c2df940e6e74b036d75c897f6e787201c7198))
-
-* 修复changelog中不规范的提交 ([f6cbbda](https://github.com/Moyf/yearly-glance/commit/f6cbbdac1c819f936d6956de4f56f458feb9f7cb))
-
-* 修复changelog中不规范的提交 ([6495799](https://github.com/Moyf/yearly-glance/commit/64957994503027138954f7c58464b442e4af96c1))
-
-* 修复changelog中不规范的提交 ([321af25](https://github.com/Moyf/yearly-glance/commit/321af250a5c3490381dcac63597db6882986d665))
-
-* 修复changelog中不规范的提交 ([0e5730a](https://github.com/Moyf/yearly-glance/commit/0e5730a8aef9b061fdcfcc09ccb59132817bb796))
-
-* 修复changelog中不规范的提交 ([d4cb975](https://github.com/Moyf/yearly-glance/commit/d4cb97582a27efdad0e5c6a0915109f0da486143))
-
-* 修复changelog中不规范的提交 ([18a0ab9](https://github.com/Moyf/yearly-glance/commit/18a0ab98e378665545f65162a2c44bbe2af92a4f))
-
-* 修复changelog中不规范的提交 ([22097fd](https://github.com/Moyf/yearly-glance/commit/22097fd90985948590f209f4cd0971bbfb7b7e42))
-
-* 修复changelog中不规范的提交 ([2d63073](https://github.com/Moyf/yearly-glance/commit/2d63073a6291ace2c20d58df2b8366eccb87f02c))
-
-* 修复changelog中不规范的提交 ([30800f1](https://github.com/Moyf/yearly-glance/commit/30800f11f393a59d11fc6d55eaf78cc4a99d01be))
+* 修复changelog中不规范的提交 ([ebe52a5](https://github.com/Moyf/yearly-glance/commit/ebe52a5f3859baeae677d48b0a9437e209771054))
 
 * **changelog:** 增加2.0.0版本更新日志的中英文文档 ([80c28c3](https://github.com/Moyf/yearly-glance/commit/80c28c32eeba6e3b591ca91e5fcf7f0827e0704c))
 
