@@ -47,36 +47,42 @@ jobs:
             - name: Generate Changelog
               id: changelog
               run: |
-                  # Define section names (without emojis)
+                  # 定义部分名称（不包含表情符号）
                   declare -A SECTION_MAP
-                  SECTION_MAP["Bug Fixes"]="Bug Fixes"
-                  SECTION_MAP["Features"]="Features"
                   SECTION_MAP["BREAKING CHANGES"]="BREAKING CHANGES"
-                  SECTION_MAP["Styles"]="Styles"
-                  SECTION_MAP["Chores"]="Chores"
+                  SECTION_MAP["Features"]="Features"
+                  SECTION_MAP["Bug Fixes"]="Bug Fixes"
                   SECTION_MAP["Documentation"]="Documentation"
+                  SECTION_MAP["Styles"]="Styles"
                   SECTION_MAP["Refactors"]="Refactors"
                   SECTION_MAP["Performance"]="Performance"
                   SECTION_MAP["Tests"]="Tests"
+                  SECTION_MAP["Build"]="Build"
+                  SECTION_MAP["CI"]="CI"
+                  SECTION_MAP["Chore"]="Chore"
+                  SECTION_MAP["Reverts"]="Reverts"
 
-                  # Define Chinese translations
+                  # 定义中文翻译
                   declare -A ZH_SECTION_MAP
-                  ZH_SECTION_MAP["Bug Fixes"]="修复"
-                  ZH_SECTION_MAP["Features"]="新功能"
                   ZH_SECTION_MAP["BREAKING CHANGES"]="破坏性变更"
-                  ZH_SECTION_MAP["Styles"]="样式"
-                  ZH_SECTION_MAP["Chores"]="杂项"
+                  ZH_SECTION_MAP["Features"]="新功能"
+                  ZH_SECTION_MAP["Bug Fixes"]="修复"
                   ZH_SECTION_MAP["Documentation"]="文档"
+                  ZH_SECTION_MAP["Styles"]="样式"
                   ZH_SECTION_MAP["Refactors"]="重构"
                   ZH_SECTION_MAP["Performance"]="性能优化"
                   ZH_SECTION_MAP["Tests"]="测试"
+                  ZH_SECTION_MAP["Build"]="构建"
+                  ZH_SECTION_MAP["CI"]="持续集成"
+                  ZH_SECTION_MAP["Chore"]="杂项"
+                  ZH_SECTION_MAP["Reverts"]="回退"
 
-                  # Initialize changelog files
+                  # 初始化 changelog 文件
                   CHANGELOG_EN="CHANGELOG.md"
                   CHANGELOG_ZH="CHANGELOG-zh.md"
                   TEMP_CHANGELOG="temp_changelog.md"
 
-                  # Function to extract and format changelog content
+                  # 提取并格式化 changelog 内容的函数
                   format_changelog() {
                     local changelog_file=$1
                     local output_file=$2
@@ -86,9 +92,9 @@ jobs:
                     local current_section=""
                     local found_breaking_changes=""
                     
-                    > "$output_file"  # Initialize empty file
+                    > "$output_file"  # 初始化空文件
                     
-                    # First pass to extract BREAKING CHANGES
+                    # 第一遍处理：提取破坏性变更
                     while IFS= read -r line; do
                       if [[ $line =~ ^#\ \[.*\].*$ ]] && ! $in_first_version; then
                         in_first_version=true
@@ -97,7 +103,7 @@ jobs:
                       
                       if $in_first_version; then
                         if [[ $line =~ ^#\ \[.*\].*$ ]]; then
-                          # We've reached the next version, stop processing
+                          # 已到达下一个版本，停止处理
                           break
                         fi
                         
@@ -113,7 +119,7 @@ jobs:
                         fi
                         
                         if $in_section && [[ $current_section == "BREAKING CHANGES" ]]; then
-                          # Collect breaking changes content
+                          # 收集破坏性变更内容
                           if [[ -n $line ]]; then
                             found_breaking_changes+="$line"$'\n'
                           fi
@@ -121,7 +127,7 @@ jobs:
                       fi
                     done < "$changelog_file"
                     
-                    # Print breaking changes if found
+                    # 如果找到破坏性变更，则打印
                     if [[ -n $found_breaking_changes ]]; then
                       if [ "$is_chinese" = true ]; then
                         echo -e "### ${ZH_SECTION_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
@@ -132,14 +138,14 @@ jobs:
                       echo -e "\n" >> "$output_file"
                     fi
                     
-                    # Second pass for other sections
+                    # 第二遍处理：处理其他部分
                     in_first_version=false
                     in_section=false
                     current_section=""
                     
                     while IFS= read -r line; do
                       if [[ $line =~ ^#\ \[.*\].*$ ]] && ! $in_first_version; then
-                        # Extract and write the version title
+                        # 提取并写入版本标题
                         echo -e "## Changes\n" >> "$output_file"
                         in_first_version=true
                         continue
@@ -147,20 +153,20 @@ jobs:
                       
                       if $in_first_version; then
                         if [[ $line =~ ^#\ \[.*\].*$ ]]; then
-                          # We've reached the next version, stop processing
+                          # 已到达下一个版本，停止处理
                           break
                         fi
                         
-                        # Detect section headers
+                        # 检测部分标题
                         if [[ $line =~ ^###\ (.*)$ ]]; then
                           section="${BASH_REMATCH[1]}"
-                          # Skip breaking changes as we've already processed them
+                          # 跳过破坏性变更，因为我们已经处理过它们
                           if [[ $section == "BREAKING CHANGES" ]] || [[ $section == "破坏性变更" ]]; then
                             in_section=false
                             continue
                           fi
                           
-                          # Keep section header as is (without emoji mapping)
+                          # 保持部分标题原样（不使用表情符号映射）
                           echo -e "### $section\n" >> "$output_file"
                           
                           in_section=true
@@ -168,7 +174,7 @@ jobs:
                           continue
                         fi
                         
-                        # Write content lines for current section
+                        # 为当前部分写入内容行
                         if $in_section && [[ $current_section != "BREAKING CHANGES" ]] && [[ $current_section != "破坏性变更" ]]; then
                           if [[ -n $line ]]; then
                             echo "$line" >> "$output_file"
@@ -176,31 +182,46 @@ jobs:
                         fi
                       fi
                     done < "$changelog_file"
+                    
+                    # 添加安装说明
+                    if [ "$is_chinese" = true ]; then
+                      echo -e "\n## 如何安装\n" >> "$output_file"
+                      echo -e "1. 下载 \`yearly-glance.zip\` 压缩文件" >> "$output_file"
+                      echo -e "2. 解压到你的 Obsidian 库的插件文件夹内: \`<vault>/.obsidian/plugins/yearly-glance/\`" >> "$output_file"
+                      echo -e "3. 重启 Obsidian" >> "$output_file"
+                      echo -e "4. 在设置中启用 Yearly Glance" >> "$output_file"
+                    else
+                      echo -e "\n## Installation\n" >> "$output_file"
+                      echo -e "1. Download the files from the Assets section below" >> "$output_file"
+                      echo -e "2. Copy them to your vault's plugins folder: \`<vault>/.obsidian/plugins/yearly-glance/\`" >> "$output_file"
+                      echo -e "3. Reload Obsidian" >> "$output_file"
+                      echo -e "4. Enable plugin in settings" >> "$output_file"
+                    fi
                   }
 
-                  # Process English changelog
+                  # 处理英文 changelog
                   if [ -f "$CHANGELOG_EN" ]; then
                     format_changelog "$CHANGELOG_EN" "en_$TEMP_CHANGELOG" false
                   else
-                    echo "English changelog file not found. Using fallback."
-                    echo -e "## Changes\n\nNo changelog available." > "en_$TEMP_CHANGELOG"
+                    echo "英文 changelog 文件未找到。使用备用方案。"
+                    echo -e "## Changes\n\nNo changelog available.\n\n## Installation\n\n1. Download the files from the Assets section below\n2. Copy them to your vault's plugins folder: \`<vault>/.obsidian/plugins/yearly-glance/\`\n3. Reload Obsidian\n4. Enable plugin in settings" > "en_$TEMP_CHANGELOG"
                   fi
 
-                  # Process Chinese changelog
+                  # 处理中文 changelog
                   if [ -f "$CHANGELOG_ZH" ]; then
                     format_changelog "$CHANGELOG_ZH" "zh_$TEMP_CHANGELOG" true
                     
-                    # Combine both changelogs
+                    # 合并两个 changelogs
                     echo -e "# English Changelog\n" > "$TEMP_CHANGELOG"
                     cat "en_$TEMP_CHANGELOG" >> "$TEMP_CHANGELOG"
                     echo -e "\n# 中文更新日志\n" >> "$TEMP_CHANGELOG"
                     cat "zh_$TEMP_CHANGELOG" >> "$TEMP_CHANGELOG"
                   else
-                    # If no Chinese changelog, just use the English one
+                    # 如果没有中文 changelog，只使用英文版本
                     cp "en_$TEMP_CHANGELOG" "$TEMP_CHANGELOG"
                   fi
 
-                  # Output the changelog for GitHub Actions
+                  # 输出 changelog 给 GitHub Actions
                   echo "changelog<<EOF" >> $GITHUB_OUTPUT
                   cat "$TEMP_CHANGELOG" >> $GITHUB_OUTPUT
                   echo "EOF" >> $GITHUB_OUTPUT
@@ -223,12 +244,6 @@ jobs:
                       [English Changelog](https://github.com/Moyf/yearly-glance/blob/master/CHANGELOG.md) | [中文更新日志](https://github.com/Moyf/yearly-glance/blob/master/CHANGELOG-zh.md)
 
                       ${{ steps.changelog.outputs.changelog }}
-
-                      # Installation
-                      1. Download the files from the Assets section below
-                      2. Copy them to your vault's plugins folder: `<vault>/.obsidian/plugins/yearly-glance/`
-                      3. Reload Obsidian
-                      4. Enable plugin in settings
 
             - name: Upload zip file
               id: upload-zip
