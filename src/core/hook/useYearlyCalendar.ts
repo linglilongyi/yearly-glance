@@ -126,7 +126,7 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 		// 处理节假日
 		if (showHolidays) {
 			holidays.forEach((holiday) => {
-				if (holiday.isShow) {
+				if (!holiday.isHidden) {
 					events.push({
 						...holiday,
 						eventType: "holiday",
@@ -138,20 +138,24 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 		// 处理生日
 		if (showBirthdays) {
 			birthdays.forEach((birthday) => {
-				events.push({
-					...birthday,
-					eventType: "birthday",
-				});
+				if (!birthday.isHidden) {
+					events.push({
+						...birthday,
+						eventType: "birthday",
+					});
+				}
 			});
 		}
 
 		// 处理自定义事件
 		if (showCustomEvents) {
 			customEvents.forEach((customEvent) => {
-				events.push({
-					...customEvent,
-					eventType: "customEvent",
-				});
+				if (!customEvent.isHidden) {
+					events.push({
+						...customEvent,
+						eventType: "customEvent",
+					});
+				}
 			});
 		}
 

@@ -166,6 +166,7 @@ export type BaseMessage = {
 				eventDateType: string;
 				optional: string;
 				eventRepeat: string;
+				eventHidden: string;
 				eventEmoji: string;
 				eventColor: string;
 				eventRemark: string;
@@ -177,7 +178,6 @@ export type BaseMessage = {
 			holiday: {
 				name: string;
 				type: string;
-				isShow: string;
 				foundDate: string;
 				internat: string;
 				custom: string;

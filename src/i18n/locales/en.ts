@@ -159,6 +159,7 @@ const translations: BaseMessage = {
 				eventDateType: "Event Date Type",
 				optional: "Optional",
 				eventRepeat: "Repeat",
+				eventHidden: "Hidden",
 				eventEmoji: "Event Emoji",
 				eventColor: "Event Color",
 				eventRemark: "Event Remark",
@@ -177,7 +178,6 @@ const translations: BaseMessage = {
 			holiday: {
 				name: "Holiday",
 				type: "Type",
-				isShow: "Is Show",
 				foundDate: "Found Date",
 				internat: "Internat",
 				custom: "Custom",
