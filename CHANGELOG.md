@@ -1,3 +1,23 @@
+## [2.1.1](https://github.com/Moyf/yearly-glance/compare/2.1.0...2.1.1) (2025-04-18)
+
+
+### 🐛 Bug Fixes
+
+* **eventform:** Fixed the issue where event hiding was not displayed correctly in the birthday form ([273e0b4](https://github.com/Moyf/yearly-glance/commit/273e0b4f1b61b2018d954c40ca0e027caba0fe61))
+
+
+### 📝 Documentation
+
+* **CHANGELOG:** Fixed the changelog ([4605228](https://github.com/Moyf/yearly-glance/commit/4605228a9f25e5402b0be9896ef4d371f9542008))
+* **manifest:** Updated the plugin description ([57ca2d4](https://github.com/Moyf/yearly-glance/commit/57ca2d40427d42cdcab1956f3ff530a8947c8749))
+
+
+### 🔧 CI
+
+* **scripts:** Removed the changelog:append command and some leftover husky commands ([bbf76d1](https://github.com/Moyf/yearly-glance/commit/bbf76d1e8bf8ab55c12b638482b33ba24b2aa7d6))
+* **workflow:** Updated the changelog generation to include Chinese installation instructions ([b94f686](https://github.com/Moyf/yearly-glance/commit/b94f6860d70c67a337ebd47674c8122ce1729dc9))
+
+
 # [2.1.0](https://github.com/Moyf/yearly-glance/compare/1.0.0...2.1.0) (2025-04-17)
 
 ## 2.1.0 Changes
