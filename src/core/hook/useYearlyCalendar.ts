@@ -189,10 +189,12 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 					(date.getDay() === 0 || date.getDay() === 6);
 
 				// 查找当天的事件
-				const dayEvents = allEvents.filter(
-					(event) =>
-						new Date(event.dateObj).getMonth() === monthIndex &&
-						new Date(event.dateObj).getDate() === i
+				const dayEvents = allEvents.filter((event) =>
+					event.dateObj?.some((dateStr:string) =>{
+						const eventDate = new Date(dateStr);
+						return eventDate.getMonth() === monthIndex &&
+						eventDate.getDate() === i
+					})
 				);
 
 				days.push({
