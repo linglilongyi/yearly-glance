@@ -24,7 +24,11 @@ export function calculateDateObj(
 			return [solar.toString()];
 		} else if (dateType === "LUNAR") {
 			const lunar = Lunar.fromYmd(year!, monthAbs, day);
-			return [lunar.getSolar().toString()];
+			if (lunar.getSolar().getYear() === yearSelected) {
+			    return [lunar.getSolar().toString()];
+			} else { 
+				return []
+			}
 		} else {
 			return [];
 		}
