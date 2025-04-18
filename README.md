@@ -1,6 +1,7 @@
-English | [中文](./README-zh.md)
 
 # Yearly Glance - All the moments, at a glance
+
+English | [中文文档](./README-zh.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/Moyf/yearly-glance?style=flat&label=Stars)](https://github.com/Moyf/yearly-glance/stargazers)
 [![Total Downloads](https://img.shields.io/github/downloads/Moyf/yearly-glance/total?style=flat&label=Total%20Downloads)](https://github.com/Moyf/yearly-glance/releases)
@@ -8,27 +9,11 @@ English | [中文](./README-zh.md)
 [![GitHub Issues](https://img.shields.io/github/issues/Moyf/yearly-glance?style=flat&label=Issues)](https://github.com/Moyf/yearly-glance/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Moyf/yearly-glance?style=flat&label=Last%20Commit)](https://github.com/Moyf/yearly-glance/commits/master)
 
+
+
 Yearly Glance is an [Obsidian](https://obsidian.md/) plugin, provides Overview of Annual Events with Customizable Management Options.
 
-
 ![preview](./doc/glance.webp)
-
-Besides the yearly overview view, it also provides a very convenient event view and editing function.
-
-## Screenshots
-
-More details:
-
-![details](./doc/details.png)
-
-View event:
-
-![view](./doc/view.webp)
-
-Edit details:
-
-![edit](./doc/edit.webp)
-
 
 
 ## Features
@@ -37,73 +22,102 @@ Yearly Glance is an Obsidian plugin that provides a visual overview of yearly ev
 
 - **Yearly Calendar View**: Visually displays all months of the year in one view
 - **Multiple Event Types**: Support for holidays, birthdays, and custom events
-- **Highly Customizable**: Multiple layout options and display styles
-- **Event Reminders**: Highlight important dates
-- **Interactive Interface**: Hover to view detailed information
+- **Highly Customizable**: Multiple layout options and display styles, including custom colors and emojis
+- **Interactive Interface**: Click on an event to view detailed information or quick edit
+- **Birthday Management**: View important people's birthdays, including age, zodiac, and other attributes
+- **Lunar Calendar Support**: Supports traditional Chinese lunar calendar as date format
+
+
+## Screenshots
+
+Customizable List view:
+
+![details](./doc/details.png)
+
+Also supports classic view:
+
+![calendar](./doc/calendar.png)
+
+
+
+Filter by event type and hide the empty dates:
+
+![filter](./doc/filter.png)
+
+
+View event details, and edit it:
+
+![view-and-edit](./doc/view-and-edit.png)
+
 
 ## Usage Guide
 
 ### Basic Operations
 
 1. **Opening Yearly Glance**:
-   - Click the calendar icon in the left sidebar
-   - Use the command palette (Ctrl+P) and search for "Open Yearly Glance"
-   - Use keyboard shortcuts (if configured)
+
+   - Click the 🔭 telescope icon in the left sidebar
+   - Or, Use the command palette (Ctrl+P) and search for "Open Yearly Glance"
+   - Or, Use keyboard shortcuts (if configured)
+
 
 2. **Viewing Events**:
+
    - Different colors represent different types of events on the calendar
-   - Hover over dates with events to see detailed information
-   - The list area below the calendar displays complete information for all events
+   - Click on an event to see detailed information
+   - Click the 🗂️ Manage button to open events manager and view all events together
+
+
+3. **Adding Events**:
+
+   1. Select "Open Events Manager" in the command palette, and click the ➕ Add button
+   2. Or, hover on a date and click the `+` button that appears
+   3. Or, select "Add Event" in the command palette
 
 ### Managing Events
 
-1. **Adding New Events**:
-   - Select "Manage Holidays", "Manage Birthdays", or "Manage Custom Events" in the command palette
-   - Click the "Add" button in the modal that appears
-   - Fill in the event information and save
+![Event Management](./doc/manager.png)
+
+1. **Events Manager**:
+
+   - Select "Open Events Manager" in the command palette to open the Events Manager
+   - You can also click the 📍 Pin button in Event's detail modal to locate it in the Events Manager
 
 2. **Editing Events**:
-   - Open the appropriate event manager through the command palette
-   - Click the "Edit" button next to the event in the list
+   - On the Events Manager, click the ✏️ Edit button on an event to edit it
+   - Or, click the ✏️ Edit button in Event's detail modal to edit it
    - Modify the information and save
 
 3. **Deleting Events**:
    - Find the event you want to delete in the event manager
-   - Click the "Delete" button
+   - Click the 🗑️ Trash button on an event to delete it
 
 ### Customization Settings
 
-Find the "Yearly Glance" tab in Obsidian settings to adjust the following:
+![display](./doc/display-options.png)
 
-- **Basic Settings**:
-  - Year selection
-  - Custom title
-  - Calendar layout (grid, list, etc.)
-  - View type (month, quarter, etc.)
+On top of the overview, there are many display options:
 
-- **Display Options**:
-  - Show/hide weekdays
-  - Highlight today
-  - Highlight weekends
-  - Show legend
+**Display Options**:
+
+- Show/hide holidays, birthdays and custom events
+- The layout of view: Yearly Overview (recommended!), Classic Calendar or Customize View!
+
+- Two options for List View only:
   - Limit list height
-  - Event font size
-  - Show tooltips
-  - Colorful mode
+  - Hide empty dates
 
-- **Event Display**:
-  - Show/hide holidays
-  - Show/hide birthdays
-  - Show/hide custom events
-  - Monday as first day of week
+You can find more settings in Obsidian settings' plugin settings!
+
+![settings](./doc/settings.png)
 
 ## Installation
 ### Manual Installation
 
-1. Download the latest release
-2. Copy `main.js`, `styles.css`, and `manifest.json` to your vault's plugins folder: `<vault>/.obsidian/plugins/yearly-glance/`
+1. Download the `yearly-glance.zip` from [latest release](https://github.com/Moyf/yearly-glance/releases/latest)
+2. Unzip it to your vault's plugins folder: `<vault>/.obsidian/plugins/yearly-glance/`
 3. Reload Obsidian
-4. Enable the plugin in Settings → Community Plugins
+4. Enable the **Yearly Glance** plugin in Settings → Community Plugins
 
 ### BRAT (Recommended for Beta Users)
 
