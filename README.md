@@ -42,21 +42,25 @@ English | [中文文档](./README-zh.md)
 **Customizable List View**
 
 ![details](./doc/details.png)
+
 *Display and manage events in a flexible list format.*
 
 **Classic Calendar View**
 
 ![calendar](./doc/calendar.png)
+
 *Traditional calendar layout for intuitive navigation.*
 
 **Event Filtering**
 
 ![filter](./doc/filter.png)
+
 *Filter by event type and hide dates with no events.*
 
 **View & Edit Event Details**
 
 ![view-and-edit](./doc/view-and-edit.png)
+
 *Quickly view and edit event details in a modal.*
 
 ## Getting Started

@@ -38,21 +38,25 @@
 **列表视图**
 
 ![details](./doc/details.png)
+
 *灵活的事件列表管理界面*
 
 **日历视图**
 
 ![calendar](./doc/calendar.png)
+
 *经典日历布局，直观查看全年事件*
 
 **事件过滤**
 
 ![filter](./doc/filter.png)
+
 *按类型筛选，隐藏空日期，支持高亮显示重要事件*
 
 **查看和编辑事件**
 
 ![edit](./doc/view-and-edit.png)
+
 *便捷的事件编辑窗口*
 
 
