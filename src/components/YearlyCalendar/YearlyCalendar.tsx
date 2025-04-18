@@ -147,7 +147,9 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 				}}
 				onClick={(e) => handleEventTooltip(event)}
 			>
-				<span className="event-emoji">{event.emoji}</span>
+				<span className="event-emoji">
+					{event.emoji ?? EVENT_TYPE_DEFAULT[event.eventType].emoji}
+				</span>
 				<span className="event-text">{event.text}</span>
 			</div>
 		);
@@ -245,7 +247,12 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 							!limitListHeight ? " no-height-limit" : ""
 						}`}
 					>
-						{(hideEmptyDates ? monthData.days.filter(day => day.events.length > 0) : monthData.days).map((day) => (
+						{(hideEmptyDates
+							? monthData.days.filter(
+									(day) => day.events.length > 0
+							  )
+							: monthData.days
+						).map((day) => (
 							<div
 								key={day.dayOfMonth}
 								className={`day-row${
@@ -399,9 +406,13 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 						<button
 							className="actions-button limit-list-height-button"
 							onClick={() =>
-								updateConfig({ limitListHeight: !limitListHeight })
+								updateConfig({
+									limitListHeight: !limitListHeight,
+								})
 							}
-							title={t("view.yearlyGlance.actions.limitListHeight")}
+							title={t(
+								"view.yearlyGlance.actions.limitListHeight"
+							)}
 						>
 							<span className="button-icon">
 								{limitListHeight ? "🚧" : "♾️"}
@@ -409,8 +420,14 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 						</button>
 						<button
 							className="actions-button hide-empty-dates-button"
-							onClick={() => updateConfig({ hideEmptyDates: !hideEmptyDates })}
-							title={t("view.yearlyGlance.actions.hideEmptyDates")}
+							onClick={() =>
+								updateConfig({
+									hideEmptyDates: !hideEmptyDates,
+								})
+							}
+							title={t(
+								"view.yearlyGlance.actions.hideEmptyDates"
+							)}
 						>
 							<span className="button-icon">
 								{hideEmptyDates ? "🙈" : "👀"}
