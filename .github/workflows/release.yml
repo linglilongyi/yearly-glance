@@ -189,13 +189,13 @@ jobs:
                       echo -e "1. 下载 \`yearly-glance.zip\` 压缩文件" >> "$output_file"
                       echo -e "2. 解压到你的 Obsidian 库的插件文件夹内: \`<vault>/.obsidian/plugins/yearly-glance/\`" >> "$output_file"
                       echo -e "3. 重启 Obsidian" >> "$output_file"
-                      echo -e "4. 在设置中启用 Yearly Glance" >> "$output_file"
+                      echo -e "4. 在设置中启用 **Yearly Glance**" >> "$output_file"
                     else
                       echo -e "\n## Installation\n" >> "$output_file"
                       echo -e "1. Download the files from the Assets section below" >> "$output_file"
                       echo -e "2. Copy them to your vault's plugins folder: \`<vault>/.obsidian/plugins/yearly-glance/\`" >> "$output_file"
                       echo -e "3. Reload Obsidian" >> "$output_file"
-                      echo -e "4. Enable plugin in settings" >> "$output_file"
+                      echo -e "4. Enable **Yearly Glance** plugin in settings" >> "$output_file"
                     fi
                   }
 
@@ -214,7 +214,7 @@ jobs:
                     # 合并两个 changelogs
                     echo -e "# English Changelog\n" > "$TEMP_CHANGELOG"
                     cat "en_$TEMP_CHANGELOG" >> "$TEMP_CHANGELOG"
-                    echo -e "\n# 中文更新日志\n" >> "$TEMP_CHANGELOG"
+                    echo -e "\n\n___\n\n# 中文更新日志\n" >> "$TEMP_CHANGELOG"
                     cat "zh_$TEMP_CHANGELOG" >> "$TEMP_CHANGELOG"
                   else
                     # 如果没有中文 changelog，只使用英文版本
