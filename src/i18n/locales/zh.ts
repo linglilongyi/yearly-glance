@@ -103,9 +103,7 @@ const translations: BaseMessage = {
 				manager: "打开事件管理器",
 				limitListHeight: "是否限制列表高度",
 				hideEmptyDates: "是否隐藏空日期",
-			// 其他 action
-
-				
+				// 其他 action
 			},
 			month: {
 				jan: "一月",
@@ -121,8 +119,8 @@ const translations: BaseMessage = {
 				nov: "十一月",
 				dec: "十二月",
 			},
-			
-				week: {
+
+			week: {
 				sun: "周日",
 				mon: "周一",
 				tue: "周二",
@@ -189,6 +187,7 @@ const translations: BaseMessage = {
 				nextBirthday: "下一次生日",
 				animal: "生肖",
 				zodiac: "星座",
+				noYear: "需补全年份数据",
 			},
 			customEvent: {
 				name: "自定义事件",
@@ -204,6 +203,62 @@ const translations: BaseMessage = {
 	common: {
 		confirm: "确认",
 		cancel: "取消",
+	},
+	data: {
+		animal: {
+			rat: "鼠",
+			ox: "牛",
+			tiger: "虎",
+			rabbit: "兔",
+			dragon: "龙",
+			snake: "蛇",
+			horse: "马",
+			sheep: "羊",
+			monkey: "猴",
+			rooster: "鸡",
+			dog: "狗",
+			pig: "猪",
+		},
+		zodiac: {
+			aries: "白羊座",
+			taurus: "金牛座",
+			gemini: "双子座",
+			cancer: "巨蟹座",
+			leo: "狮子座",
+			virgo: "处女座",
+			libra: "天秤座",
+			scorpio: "天蝎座",
+			sagittarius: "射手座",
+			capricorn: "摩羯座",
+			aquarius: "水瓶座",
+			pi: "双鱼座",
+		},
+		gan: {
+			jia: "甲",
+			yi: "乙",
+			bing: "丙",
+			ding: "丁",
+			wu: "戊",
+			ji: "己",
+			geng: "庚",
+			xin: "辛",
+			ren: "壬",
+			gui: "癸",
+		},
+		zhi: {
+			zi: "子",
+			chou: "丑",
+			yin: "寅",
+			mao: "卯",
+			chen: "辰",
+			si: "巳",
+			wu: "午",
+			wei: "未",
+			shen: "申",
+			you: "酉",
+			xu: "戌",
+			hai: "亥",
+		},
 	},
 };
 

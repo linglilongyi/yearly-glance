@@ -103,8 +103,7 @@ const translations: BaseMessage = {
 				manager: "Open Event Manager",
 				limitListHeight: "Limit List Height",
 				hideEmptyDates: "Hide Empty Dates",
-			// other actions
-				
+				// other actions
 			},
 			month: {
 				jan: "January",
@@ -120,8 +119,8 @@ const translations: BaseMessage = {
 				nov: "November",
 				dec: "December",
 			},
-			
-				week: {
+
+			week: {
 				sun: "Sun.",
 				mon: "Mon.",
 				tue: "Tue.",
@@ -186,8 +185,9 @@ const translations: BaseMessage = {
 				name: "Birthday",
 				age: "Age",
 				nextBirthday: "Next Birthday",
-				animal: "Animal",
+				animal: "Chinese Zodiac",
 				zodiac: "Zodiac",
+				noYear: "Need to fill in the full year data",
 			},
 			customEvent: {
 				name: "Custom Event",
@@ -203,6 +203,62 @@ const translations: BaseMessage = {
 	common: {
 		confirm: "Confirm",
 		cancel: "Cancel",
+	},
+	data: {
+		animal: {
+			rat: "Rat",
+			ox: "Ox",
+			tiger: "Tiger",
+			rabbit: "Rabbit",
+			dragon: "Dragon",
+			snake: "Snake",
+			horse: "Horse",
+			sheep: "Sheep",
+			monkey: "Monkey",
+			rooster: "Rooster",
+			dog: "Dog",
+			pig: "Pig",
+		},
+		zodiac: {
+			aries: "Aries",
+			taurus: "Taurus",
+			gemini: "Gemini",
+			cancer: "Cancer",
+			leo: "Leo",
+			virgo: "Virgo",
+			libra: "Libra",
+			scorpio: "Scorpio",
+			sagittarius: "Sagittarius",
+			capricorn: "Capricorn",
+			aquarius: "Aquarius",
+			pi: "Pisces",
+		},
+		gan: {
+			jia: "Jiǎ ",
+			yi: "Yǐ ",
+			bing: "Bǐng ",
+			ding: "Dīng ",
+			wu: "Wù ",
+			ji: "Jǐ ",
+			geng: "Gēng ",
+			xin: "Xīn ",
+			ren: "Rén ",
+			gui: "Guǐ ",
+		},
+		zhi: {
+			zi: "Zǐ ",
+			chou: "Chǒu ",
+			yin: "Yīn ",
+			mao: "Mǎo ",
+			chen: "Chén ",
+			si: "Sì ",
+			wu: "Wǔ ",
+			wei: "Wèi ",
+			shen: "Shēn ",
+			you: "Yǒu ",
+			xu: "Xū ",
+			hai: "Hài ",
+		},
 	},
 };
 

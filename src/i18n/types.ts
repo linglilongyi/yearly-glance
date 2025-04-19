@@ -188,6 +188,7 @@ export type BaseMessage = {
 				nextBirthday: string;
 				animal: string;
 				zodiac: string;
+				noYear: string;
 			};
 			customEvent: {
 				name: string;
@@ -203,6 +204,62 @@ export type BaseMessage = {
 	common: {
 		confirm: string;
 		cancel: string;
+	};
+	data: {
+		animal: {
+			rat: string; // 鼠
+			ox: string; // 牛
+			tiger: string; // 虎
+			rabbit: string; // 兔
+			dragon: string; // 龙
+			snake: string; // 蛇
+			horse: string; // 马
+			sheep: string; // 羊
+			monkey: string; // 猴
+			rooster: string; // 鸡
+			dog: string; // 狗
+			pig: string; // 猪
+		};
+		zodiac: {
+			aries: string; // 白羊座
+			taurus: string; // 金牛座
+			gemini: string; // 双子座
+			cancer: string; // 巨蟹座
+			leo: string; // 狮子座
+			virgo: string; // 处女座
+			libra: string; // 天秤座
+			scorpio: string; // 天蝎座
+			sagittarius: string; // 射手座
+			capricorn: string; // 摩羯座
+			aquarius: string; // 水瓶座
+			pi: string; // 双鱼座
+		};
+		gan: {
+			jia: string; // 甲
+			yi: string; // 乙
+			bing: string; // 丙
+			ding: string; // 丁
+			wu: string; // 戊
+			ji: string; // 己
+			geng: string; // 庚
+			xin: string; // 辛
+			ren: string; // 壬
+			gui: string; // 癸
+		};
+		zhi: {
+			zi: string; // 子
+			chou: string; // 丑
+			yin: string; // 寅
+			mao: string; // 卯
+			chen: string; // 辰
+			si: string; // 巳
+			wu: string; // 午
+			wei: string; // 未
+			shen: string; // 申
+			you: string; // 酉
+			xu: string; // 戌
+			hai: string; // 亥
+		};
 	};
 };
 

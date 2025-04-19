@@ -1,6 +1,7 @@
-import { Lunar, Solar, SolarYear } from "lunar-typescript";
+import { Lunar, Solar } from "lunar-typescript";
 import { Birthday, CustomEvent, Holiday } from "@/src/core/interfaces/Events";
 import { isValidLunarDate, parseDateValue } from "./dateParser";
+import { getBirthdayTranslation } from "../data/birthday";
 
 // 计算当前选择年份下时间的的公历日期
 export function calculateDateObj(
@@ -25,9 +26,9 @@ export function calculateDateObj(
 		} else if (dateType === "LUNAR") {
 			const lunar = Lunar.fromYmd(year!, monthAbs, day);
 			if (lunar.getSolar().getYear() === yearSelected) {
-			    return [lunar.getSolar().toString()];
-			} else { 
-				return []
+				return [lunar.getSolar().toString()];
+			} else {
+				return [];
 			}
 		} else {
 			return [];
@@ -39,9 +40,9 @@ export function calculateDateObj(
 		const solar = Solar.fromYmd(yearSelected, month, day);
 		return [solar.toString()];
 	} else if (dateType === "LUNAR") {
-		let lunarArr: string[] = [];
+		const lunarArr: string[] = [];
 		const lunar = Lunar.fromYmd(yearSelected, monthAbs, day);
-		const lastLunar = Lunar.fromYmd(yearSelected-1, monthAbs, day);
+		const lastLunar = Lunar.fromYmd(yearSelected - 1, monthAbs, day);
 		if (lunar.getSolar().getYear() === yearSelected) {
 			lunarArr.push(lunar.getSolar().toString());
 		}
@@ -110,29 +111,59 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 
 	let nextBirthday;
 	if (dateType === "SOLAR") {
-		nextBirthday = Solar.fromYmd(
-			todaySolar.getYear() + 1,
-			month,
-			day
-		).toString();
+		// 计算下一次阳历生日
+		const thisBirthday = Solar.fromYmd(todaySolar.getYear(), month, day);
+		if (todaySolar.isBefore(thisBirthday)) {
+			// 今年的生日还没到
+			nextBirthday = thisBirthday.toString();
+		} else {
+			// 今年的生日已过，计算明年的生日
+			nextBirthday = Solar.fromYmd(
+				todaySolar.getYear() + 1,
+				month,
+				day
+			).toString();
+		}
 	} else if (dateType === "LUNAR") {
-		// 计算当前或下一次农历生日不考虑闰月的情况，以及有时候没有农历三十
+		// 计算当前阴历年对应的生日
+		let thisBirthday;
+		if (isValidLunarDate(todaySolar.getYear(), Math.abs(month), day)) {
+			thisBirthday = Lunar.fromYmd(
+				todaySolar.getYear(),
+				Math.abs(month),
+				day
+			).getSolar();
+		} else {
+			thisBirthday = Lunar.fromYmd(
+				todaySolar.getYear(),
+				Math.abs(month),
+				day - 1
+			).getSolar();
+		}
+
+		// 计算下一个阴历年对应的生日
+		let nextYearBirthday;
 		if (isValidLunarDate(todaySolar.getYear() + 1, Math.abs(month), day)) {
-			nextBirthday = Lunar.fromYmd(
+			nextYearBirthday = Lunar.fromYmd(
 				todaySolar.getYear() + 1,
 				Math.abs(month),
 				day
-			)
-				.getSolar()
-				.toString();
+			).getSolar();
 		} else {
-			nextBirthday = Lunar.fromYmd(
+			nextYearBirthday = Lunar.fromYmd(
 				todaySolar.getYear() + 1,
 				Math.abs(month),
 				day - 1
-			)
-				.getSolar()
-				.toString();
+			).getSolar();
+		}
+
+		// 判断应该使用哪一个
+		if (todaySolar.isBefore(thisBirthday)) {
+			// 如果今年的农历生日还没到，使用今年的
+			nextBirthday = thisBirthday.toString();
+		} else {
+			// 如果今年的农历生日已过，使用明年的
+			nextBirthday = nextYearBirthday.toString();
 		}
 	}
 
@@ -165,12 +196,18 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 			? todaySolar.getYear() - year! - 1
 			: todaySolar.getYear() - year!;
 
-		animal = Ld?.getYearShengXiao();
-		zodiac = Sd?.getXingZuo();
+		// 获取干支纪年（新年以正月初一起算）
+		const ganzhi = Ld?.getYearInGanZhi();
+
+		// 使用新的翻译函数，简化代码
+		animal =
+			getBirthdayTranslation(ganzhi, "ganzhi") +
+			getBirthdayTranslation(Ld?.getYearShengXiao(), "animal");
+		zodiac = getBirthdayTranslation(Sd?.getXingZuo(), "zodiac");
 	} else {
-		age = "_需补全年份数据_";
-		animal = "_需补全年份数据_";
-		zodiac = "_需补全年份数据_";
+		age = getBirthdayTranslation(undefined, "age");
+		animal = getBirthdayTranslation(undefined, "animal");
+		zodiac = getBirthdayTranslation(undefined, "zodiac");
 	}
 
 	return {
