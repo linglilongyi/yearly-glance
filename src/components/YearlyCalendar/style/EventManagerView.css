@@ -76,6 +76,7 @@
 	display: flex;
 	align-items: center;
 	gap: 12px;
+	justify-content: flex-end;
 
 	/* 搜索框 */
 	.search-container {
@@ -281,6 +282,7 @@
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		position: relative;
 		border: 1px solid var(--background-modifier-border);
+		min-width: max-content;
 
 		&:hover {
 			transform: translateY(-2px);
@@ -430,18 +432,26 @@
 
 /* 响应式调整 */
 @media (max-width: 768px) {
-	.yg-event-manager-container .event-items-grid {
-		grid-template-columns: 1fr;
-	}
+	.yg-event-manager-container {
+		.event-items-grid {
+			grid-template-columns: 1fr;
+		}
 
-	.yg-event-manager-container .event-manager-header {
-		flex-direction: column;
-		gap: 16px;
-		align-items: stretch;
-	}
+		.event-manager-header {
+			flex-direction: column;
+			gap: 16px;
+			align-items: stretch;
+		}
 
-	.yg-event-manager-container .search-container.expanded {
-		width: 100%;
+		/* .search-container.expanded {
+			width: 100%;
+		} */
+
+		.yg-event-manager-header {
+			flex-direction: column;
+			gap: 16px;
+			align-items: stretch;
+		}
 	}
 
 	/* 移动设备上的标签样式 */

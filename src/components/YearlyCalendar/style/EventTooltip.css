@@ -82,6 +82,7 @@
 	.tooltip-row {
 		display: flex;
 		align-items: flex-start;
+		justify-content: space-between;
 		padding: 3px 0;
 		transition: transform 0.15s ease;
 	}
@@ -98,9 +99,7 @@
 	}
 
 	.tooltip-value {
-		flex: 1;
 		color: var(--text-normal);
-		padding-left: 4px;
 	}
 
 	.tooltip-remark {
@@ -144,7 +143,7 @@
 }
 
 /* 响应式调整 */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 	.yg-event-tooltip-content {
 		.tooltip-row {
 			flex-direction: column;

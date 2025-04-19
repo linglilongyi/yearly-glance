@@ -207,7 +207,10 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 	} else {
 		age = getBirthdayTranslation(undefined, "age");
 		animal = getBirthdayTranslation(undefined, "animal");
-		zodiac = getBirthdayTranslation(undefined, "zodiac");
+		zodiac = getBirthdayTranslation(
+			Solar.fromYmd(yearSelected, month, day).getXingZuo(),
+			"zodiac"
+		);
 	}
 
 	return {
