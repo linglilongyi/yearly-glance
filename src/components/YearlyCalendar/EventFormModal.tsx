@@ -29,6 +29,7 @@ import { Tooltip } from "../Base/Tooltip";
 import { DatePicker } from "@/src/components/DatePicker/DatePicker";
 import { ColorSelector } from "../Base/ColorSelector";
 import { t } from "@/src/i18n/i18n";
+import { TranslationKeys } from "@/src/i18n/types";
 import "./style/EventFormModal.css";
 
 interface EventFormProps {
@@ -42,7 +43,7 @@ interface EventFormProps {
 
 export const EVENT_TYPE_OPTIONS = EVENT_TYPE_LIST.map((type) => ({
 	value: type,
-	label: t(`view.eventManager.${type}.name` as any),
+	label: t(`view.eventManager.${type}.name` as TranslationKeys),
 }));
 
 const EventForm: React.FC<EventFormProps> = ({
@@ -259,7 +260,7 @@ const EventForm: React.FC<EventFormProps> = ({
 				{isEditing
 					? t("view.eventManager.form.edit")
 					: t("view.eventManager.form.add")}
-				{t(`view.eventManager.${eventType}.name` as any)}
+				{t(`view.eventManager.${eventType}.name` as TranslationKeys)}
 			</h3>
 
 			{/* 必填字段 */}

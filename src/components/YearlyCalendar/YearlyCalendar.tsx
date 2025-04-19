@@ -17,6 +17,7 @@ import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
 import { EventTooltip } from "./EventTooltip";
 import { Select } from "../Base/Select";
 import { t } from "@/src/i18n/i18n";
+import { TranslationKeys } from "@/src/i18n/types";
 import "./style/YearlyCalendarView.css";
 
 interface YearlyCalendarViewProps {
@@ -343,12 +344,12 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 											? `${t(
 													"view.yearlyGlance.actions.clickToHide"
 											  )}${t(
-													`view.yearlyGlance.legend.${eventType}` as any
+													`view.yearlyGlance.legend.${eventType}` as TranslationKeys
 											  )}`
 											: `${t(
 													"view.yearlyGlance.actions.clickToShow"
 											  )}${t(
-													`view.yearlyGlance.legend.${eventType}` as any
+													`view.yearlyGlance.legend.${eventType}` as TranslationKeys
 											  )}`
 									}
 								>
@@ -364,7 +365,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 									</span>
 									<span className="legend-text">
 										{t(
-											`view.yearlyGlance.legend.${eventType}` as any
+											`view.yearlyGlance.legend.${eventType}` as TranslationKeys
 										)}
 									</span>
 								</div>

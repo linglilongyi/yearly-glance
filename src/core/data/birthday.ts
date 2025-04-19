@@ -1,4 +1,5 @@
 import { t } from "@/src/i18n/i18n";
+import { TranslationKeys } from "@/src/i18n/types";
 
 // Define interfaces for our data types
 interface birthdayTranslate {
@@ -203,12 +204,12 @@ const ZHI: birthdayTranslate[] = [
 ];
 function getTranslatedAnimal(name: string): string {
 	const animal = ANIMAL.find((item) => item.name === name);
-	return t(animal?.i18nKey as any);
+	return t(animal?.i18nKey as TranslationKeys);
 }
 
 function getTranslatedZodiac(name: string): string {
 	const zodiac = ZODIAC.find((item) => item.name === name);
-	return t(zodiac?.i18nKey as any);
+	return t(zodiac?.i18nKey as TranslationKeys);
 }
 
 function getTranslatedGanzhi(name: string): string {
@@ -217,8 +218,8 @@ function getTranslatedGanzhi(name: string): string {
 	const translatedGan = GAN.find((item) => item.name === gan);
 	const translatedZhi = ZHI.find((item) => item.name === zhi);
 
-	return `${t(translatedGan?.i18nKey as any)}${t(
-		translatedZhi?.i18nKey as any
+	return `${t(translatedGan?.i18nKey as TranslationKeys)}${t(
+		translatedZhi?.i18nKey as TranslationKeys
 	)}`;
 }
 

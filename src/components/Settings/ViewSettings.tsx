@@ -8,6 +8,7 @@ import {
 	VIEW_TYPE_OPTIONS,
 } from "@/src/core/interfaces/Settings";
 import { t } from "@/src/i18n/i18n";
+import { TranslationKeys } from "@/src/i18n/types";
 import { SettingsBlock } from "@/src/components/Settings/SettingsBlock";
 import { SettingsItem } from "@/src/components/Settings/SettingsItem";
 import { Toggle } from "../Base/Toggle";
@@ -24,13 +25,13 @@ export const layoutOptions = LAYOUT_OPTIONS.map((layout) => ({
 }));
 export const viewTypeOptions = VIEW_TYPE_OPTIONS.map((viewType) => ({
 	value: viewType,
-	label: t(`setting.general.viewType.options.${viewType}` as any),
+	label: t(`setting.general.viewType.options.${viewType}` as TranslationKeys),
 }));
 export const eventFontSizeOptions = EVENT_FONT_SIZE_OPTIONS.map(
 	(eventFontSize) => ({
 		value: eventFontSize,
 		label: t(
-			`setting.general.eventFontSize.options.${eventFontSize}` as any
+			`setting.general.eventFontSize.options.${eventFontSize}` as TranslationKeys
 		),
 	})
 );
