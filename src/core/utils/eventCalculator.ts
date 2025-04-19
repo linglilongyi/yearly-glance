@@ -197,16 +197,16 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 			: todaySolar.getYear() - year!;
 
 		// 获取干支纪年（新年以正月初一起算）
-		const ganzhi = Ld?.getYearInGanZhi();
+		const ganzhi = Ld!.getYearInGanZhi();
 
 		// 使用新的翻译函数，简化代码
 		animal =
 			getBirthdayTranslation(ganzhi, "ganzhi") +
-			getBirthdayTranslation(Ld?.getYearShengXiao(), "animal");
-		zodiac = getBirthdayTranslation(Sd?.getXingZuo(), "zodiac");
+			getBirthdayTranslation(Ld!.getYearShengXiao(), "animal");
+		zodiac = getBirthdayTranslation(Sd!.getXingZuo(), "zodiac");
 	} else {
-		age = getBirthdayTranslation(undefined, "age");
-		animal = getBirthdayTranslation(undefined, "animal");
+		age = null;
+		animal = null;
 		zodiac = getBirthdayTranslation(
 			Solar.fromYmd(yearSelected, month, day).getXingZuo(),
 			"zodiac"

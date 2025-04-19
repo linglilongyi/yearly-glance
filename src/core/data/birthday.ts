@@ -201,27 +201,17 @@ const ZHI: birthdayTranslate[] = [
 		i18nKey: "data.zhi.hai",
 	},
 ];
-function getTranslatedAnimal(name: string | undefined): string {
-	if (!name) return t("view.eventManager.birthday.noYear");
-
+function getTranslatedAnimal(name: string): string {
 	const animal = ANIMAL.find((item) => item.name === name);
-	return animal
-		? t(animal.i18nKey as any)
-		: t("view.eventManager.birthday.noYear");
+	return t(animal?.i18nKey as any);
 }
 
-function getTranslatedZodiac(name: string | undefined): string {
-	if (!name) return t("view.eventManager.birthday.noYear");
-
+function getTranslatedZodiac(name: string): string {
 	const zodiac = ZODIAC.find((item) => item.name === name);
-	return zodiac
-		? t(zodiac.i18nKey as any)
-		: t("view.eventManager.birthday.noYear");
+	return t(zodiac?.i18nKey as any);
 }
 
-function getTranslatedGanzhi(name: string | undefined): string {
-	if (!name) return t("view.eventManager.birthday.noYear");
-
+function getTranslatedGanzhi(name: string): string {
 	const [gan, zhi] = name.split("");
 
 	const translatedGan = GAN.find((item) => item.name === gan);
@@ -232,10 +222,7 @@ function getTranslatedGanzhi(name: string | undefined): string {
 	)}`;
 }
 
-export function getBirthdayTranslation(
-	name: string | undefined,
-	type: string
-): string {
+export function getBirthdayTranslation(name: string, type: string): string {
 	switch (type) {
 		case "animal":
 			return getTranslatedAnimal(name);
@@ -244,6 +231,6 @@ export function getBirthdayTranslation(
 		case "ganzhi":
 			return getTranslatedGanzhi(name);
 		default:
-			return t("view.eventManager.birthday.noYear");
+			return "null";
 	}
 }

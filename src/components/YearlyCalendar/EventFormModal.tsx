@@ -22,9 +22,10 @@ import {
 	parseDateValue,
 	parseExtendedISO,
 } from "@/src/core/utils/dateParser";
-import { ChevronDown, ChevronRight, HelpCircle } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { Select } from "../Base/Select";
 import { Toggle } from "../Base/Toggle";
+import { Tooltip } from "../Base/Tooltip";
 import { DatePicker } from "@/src/components/DatePicker/DatePicker";
 import { ColorSelector } from "../Base/ColorSelector";
 import { t } from "@/src/i18n/i18n";
@@ -43,33 +44,6 @@ export const EVENT_TYPE_OPTIONS = EVENT_TYPE_LIST.map((type) => ({
 	value: type,
 	label: t(`view.eventManager.${type}.name` as any),
 }));
-
-// 添加一个工具提示组件
-interface TooltipProps {
-	text: string;
-}
-
-const Tooltip: React.FC<TooltipProps> = ({ text }) => {
-	const [isVisible, setIsVisible] = React.useState(false);
-
-	return (
-		<div className="tooltip-container">
-			<HelpCircle
-				size={16}
-				className="tooltip-icon"
-				onMouseEnter={() => setIsVisible(true)}
-				onMouseLeave={() => setIsVisible(false)}
-				aria-label="Help"
-			/>
-			{isVisible && (
-				<div
-					className="tooltip-content"
-					dangerouslySetInnerHTML={{ __html: text }}
-				/>
-			)}
-		</div>
-	);
-};
 
 const EventForm: React.FC<EventFormProps> = ({
 	event,

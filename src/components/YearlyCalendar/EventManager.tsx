@@ -12,6 +12,7 @@ import { EVENT_TYPE_OPTIONS } from "./EventFormModal";
 import { useYearlyGlanceConfig } from "@/src/core/hook/useYearlyGlanceConfig";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Input } from "../Base/Input";
+import { Tooltip } from "../Base/Tooltip";
 import { ConfirmDialog } from "../Base/ConfirmDialog";
 import { t } from "@/src/i18n/i18n";
 import { parseDateValue } from "@/src/core/utils/dateParser";
@@ -91,7 +92,18 @@ const EventItem: React.FC<EventItemProps> = ({
 							<span className="info-label">
 								{t("view.eventManager.birthday.age")}:
 							</span>
-							<span className="info-value">{birthday.age}</span>
+							<span className="info-value">
+								{birthday.age}
+								{birthday.age ? (
+									<></>
+								) : (
+									<Tooltip
+										text={t(
+											"view.eventManager.birthday.noYear"
+										)}
+									/>
+								)}
+							</span>
 						</div>
 					)}
 					<div
@@ -112,6 +124,15 @@ const EventItem: React.FC<EventItemProps> = ({
 							</span>
 							<span className="info-value">
 								{birthday.animal}
+								{birthday.animal ? (
+									<></>
+								) : (
+									<Tooltip
+										text={t(
+											"view.eventManager.birthday.noYear"
+										)}
+									/>
+								)}
 							</span>
 						</div>
 					)}
@@ -143,30 +164,30 @@ const EventItem: React.FC<EventItemProps> = ({
 			const customEvent = event as CustomEvent;
 			return (
 				<>
-				<div className="event-info-row" data-property="isHidden">
-					<span className="info-label">
-						{t("view.eventManager.form.eventHidden")}:
-					</span>
-					<span
-						className={`info-value ${
-							customEvent.isHidden ? "active" : "inactive"
-						}`}
-					>
-						{customEvent.isHidden ? "✔" : "✘"}
-					</span>
-				</div>
-				<div className="event-info-row" data-property="isRepeat">
-					<span className="info-label">
-						{t("view.eventManager.customEvent.repeat")}:
-					</span>
-					<span
-						className={`info-value ${
-							customEvent.isRepeat ? "active" : "inactive"
-						}`}
-					>
-						{customEvent.isRepeat ? "✔" : "✘"}
-					</span>
-				</div>
+					<div className="event-info-row" data-property="isHidden">
+						<span className="info-label">
+							{t("view.eventManager.form.eventHidden")}:
+						</span>
+						<span
+							className={`info-value ${
+								customEvent.isHidden ? "active" : "inactive"
+							}`}
+						>
+							{customEvent.isHidden ? "✔" : "✘"}
+						</span>
+					</div>
+					<div className="event-info-row" data-property="isRepeat">
+						<span className="info-label">
+							{t("view.eventManager.customEvent.repeat")}:
+						</span>
+						<span
+							className={`info-value ${
+								customEvent.isRepeat ? "active" : "inactive"
+							}`}
+						>
+							{customEvent.isRepeat ? "✔" : "✘"}
+						</span>
+					</div>
 				</>
 			);
 		}
