@@ -94,7 +94,7 @@ const EventItem: React.FC<EventItemProps> = ({
 							</span>
 							<span className="info-value">
 								{birthday.age}
-								{birthday.age ? (
+								{birthday.age !== null ? (
 									<></>
 								) : (
 									<Tooltip
@@ -124,7 +124,7 @@ const EventItem: React.FC<EventItemProps> = ({
 							</span>
 							<span className="info-value">
 								{birthday.animal}
-								{birthday.animal ? (
+								{birthday.animal !== null ? (
 									<></>
 								) : (
 									<Tooltip
@@ -287,6 +287,13 @@ const EventList: React.FC<EventListProps> = ({
 	eventType,
 }) => {
 	const [internatCollapsed, setInternatCollapsed] = React.useState(true);
+	const isSearchMode = events.some((event) =>
+		(event as any).type === "INTERNAT" || (event as any).type === "CUSTOM"
+			? "holiday" !== eventType
+			: (event as any).age !== undefined
+			? "birthday" !== eventType
+			: "customEvent" !== eventType
+	);
 
 	if (events.length === 0) {
 		return (
@@ -298,6 +305,105 @@ const EventList: React.FC<EventListProps> = ({
 				<div className="empty-subtext">
 					{t("view.eventManager.empty.subtext")}
 				</div>
+			</div>
+		);
+	}
+
+	// 搜索模式下，按事件类型分组显示结果
+	if (isSearchMode) {
+		// 将事件按类型分组
+		const holidayEvents = events.filter(
+			(event) =>
+				(event as any).type === "INTERNAT" ||
+				(event as any).type === "CUSTOM"
+		);
+		const birthdayEvents = events.filter(
+			(event) => (event as any).age !== undefined && !(event as any).type
+		);
+		const customEvents = events.filter(
+			(event) => !(event as any).type && (event as any).age === undefined
+		);
+
+		return (
+			<div className="event-list search-results">
+				{holidayEvents.length > 0 && (
+					<div className="event-group">
+						<div className="event-group-header">
+							<div className="header-left">
+								<h4>{t("view.eventManager.holiday.name")}</h4>
+							</div>
+							<span className="event-count">
+								{holidayEvents.length}
+							</span>
+						</div>
+						<div className="event-items-grid">
+							{holidayEvents.map((event, index) => (
+								<EventItem
+									key={`holiday-${index}`}
+									event={event}
+									onEdit={() => onEdit(event)}
+									onDelete={() => onDelete(event)}
+									canDelete={
+										(event as any).type !== "INTERNAT"
+									}
+									eventType="holiday"
+								/>
+							))}
+						</div>
+					</div>
+				)}
+
+				{birthdayEvents.length > 0 && (
+					<div className="event-group">
+						<div className="event-group-header">
+							<div className="header-left">
+								<h4>{t("view.eventManager.birthday.name")}</h4>
+							</div>
+							<span className="event-count">
+								{birthdayEvents.length}
+							</span>
+						</div>
+						<div className="event-items-grid">
+							{birthdayEvents.map((event, index) => (
+								<EventItem
+									key={`birthday-${index}`}
+									event={event}
+									onEdit={() => onEdit(event)}
+									onDelete={() => onDelete(event)}
+									canDelete={true}
+									eventType="birthday"
+								/>
+							))}
+						</div>
+					</div>
+				)}
+
+				{customEvents.length > 0 && (
+					<div className="event-group">
+						<div className="event-group-header">
+							<div className="header-left">
+								<h4>
+									{t("view.eventManager.customEvent.name")}
+								</h4>
+							</div>
+							<span className="event-count">
+								{customEvents.length}
+							</span>
+						</div>
+						<div className="event-items-grid">
+							{customEvents.map((event, index) => (
+								<EventItem
+									key={`custom-${index}`}
+									event={event}
+									onEdit={() => onEdit(event)}
+									onDelete={() => onDelete(event)}
+									canDelete={true}
+									eventType="customEvent"
+								/>
+							))}
+						</div>
+					</div>
+				)}
 			</div>
 		);
 	}
@@ -445,15 +551,43 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 
 	// 编辑事件
 	const handleEditEvent = (event: Holiday | Birthday | CustomEvent) => {
-		plugin.openEventForm(activeTab, event, true, false);
+		// 在搜索模式下，需要根据事件类型确定要打开的编辑表单类型
+		let eventType = activeTab;
+
+		// 根据事件特性判断其实际类型
+		if (
+			(event as Holiday).type === "INTERNAT" ||
+			(event as Holiday).type === "CUSTOM"
+		) {
+			eventType = "holiday";
+		} else if ((event as Birthday).nextBirthday !== undefined) {
+			eventType = "birthday";
+		} else {
+			eventType = "customEvent";
+		}
+
+		plugin.openEventForm(eventType, event, true, false);
 	};
 
 	// 删除事件
 	const handleDeleteEvent = async (
 		event: Holiday | Birthday | CustomEvent
 	) => {
+		// 判断事件实际类型
+		let eventType = activeTab;
+		if (
+			(event as Holiday).type === "INTERNAT" ||
+			(event as Holiday).type === "CUSTOM"
+		) {
+			eventType = "holiday";
+		} else if ((event as Birthday).nextBirthday !== undefined) {
+			eventType = "birthday";
+		} else {
+			eventType = "customEvent";
+		}
+
 		// 内置节日不能删除
-		if (activeTab === "holiday" && (event as Holiday).type === "INTERNAT") {
+		if (eventType === "holiday" && (event as Holiday).type === "INTERNAT") {
 			return;
 		}
 
@@ -466,11 +600,11 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 				const newEvents = { ...events };
 				const eventId = event.id;
 
-				if (activeTab === "holiday") {
+				if (eventType === "holiday") {
 					newEvents.holidays = events.holidays.filter(
 						(h) => h.id !== eventId
 					);
-				} else if (activeTab === "birthday") {
+				} else if (eventType === "birthday") {
 					newEvents.birthdays = events.birthdays.filter(
 						(b) => b.id !== eventId
 					);
