@@ -1,3 +1,21 @@
+# [2.1.3](https://github.com/Moyf/yearly-glance/compare/2.1.2...2.1.3) (2025-04-19)
+
+
+### ✨ 新功能
+
+* 生肖增加干支前缀，增加对应i18n ([229b2b6](https://github.com/Moyf/yearly-glance/commit/229b2b6c725b631af83579443899895549092f8a))
+
+
+### 🐛 修复
+
+* 农历日期计算与展示问题 [@linglilongyi](https://github.com/linglilongyi) (#30) ([d16512b](https://github.com/Moyf/yearly-glance/commit/d16512b608a589b51b83560e421cdbe34d1f2d76)), closes [#30](https://github.com/Moyf/yearly-glance/issues/30)
+* 修复农历下一次生日的显示错误 ([fe2a144](https://github.com/Moyf/yearly-glance/commit/fe2a144619378ead54466bbdfa6ac40c2311dafb))
+
+### 👨‍💻 新贡献者
+
+* [@linglilongyi](https://github.com/linglilongyi)
+
+
 ## [2.1.2](https://github.com/Moyf/yearly-glance/compare/2.1.1...2.1.2) (2025-04-18)
 
 

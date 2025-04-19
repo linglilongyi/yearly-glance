@@ -1,18 +1,35 @@
+# [2.1.3](https://github.com/Moyf/yearly-glance/compare/2.1.2...2.1.3) (2025-04-19)
+
+
+### ✨ Features
+
+* Add the celestial stem and earthly branch prefix to the zodiac signs, and include corresponding i18n support ([229b2b6](https://github.com/Moyf/yearly-glance/commit/229b2b6c725b631af83579443899895549092f8a))
+
+
+### 🐛 Bug Fixes
+
+* Lunar Calendar Date Calculation and Display Issues [@linglilongyi](https://github.com/linglilongyi) (#30) ([d16512b](https://github.com/Moyf/yearly-glance/commit/d16512b608a589b51b83560e421cdbe34d1f2d76)), closes [#30](https://github.com/Moyf/yearly-glance/issues/30)
+* Fix the display error for the next lunar birthday ([fe2a144](https://github.com/Moyf/yearly-glance/commit/fe2a144619378ead54466bbdfa6ac40c2311dafb))
+
+### 👨‍💻 New Contributors
+
+* [@linglilongyi](https://github.com/linglilongyi)
+
 ## [2.1.2](https://github.com/Moyf/yearly-glance/compare/2.1.1...2.1.2) (2025-04-18)
 
 
-    ### Bug Fixes
+### 🐛 Bug Fixes
 
 * Fixed the issue where the default icon for events was not displayed correctly in the overview view ([375cb38](https://github.com/Moyf/yearly-glance/commit/375cb3883ee12762ecfc556bdfb0cbfd17fce4ae))
 
 
-### Documentation
+### 📝 Documentation
 
 * Added CONTRIBUTING.md (#29) ([91509a0](https://github.com/Moyf/yearly-glance/commit/91509a0b01b8a6c850f3f5099f08d8ce500bdb0d)), closes [#29](https://github.com/Moyf/yearly-glance/issues/29)
 * **readme:** Updated and optimized README documentation ([d7c1d45](https://github.com/Moyf/yearly-glance/commit/d7c1d45200bcf0214f85a79b037d6e51e2fa2df4))
 
 
-### CI
+### 🔧 CI
 
 * Adjusted the text format of the Release generated ([6e42481](https://github.com/Moyf/yearly-glance/commit/6e4248123905fa291be80f59423efe4514407955))
 
