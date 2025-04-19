@@ -1,4 +1,4 @@
-import { Lunar, Solar } from "lunar-typescript";
+import { Lunar, Solar, SolarYear } from "lunar-typescript";
 import { Birthday, CustomEvent, Holiday } from "@/src/core/interfaces/Events";
 import { isValidLunarDate, parseDateValue } from "./dateParser";
 
@@ -8,9 +8,9 @@ export function calculateDateObj(
 	dateType: "SOLAR" | "LUNAR",
 	yearSelected: number,
 	isRepeat?: boolean
-): string {
+): string[] {
 	if (!date) {
-		return "";
+		return [];
 	}
 
 	const { hasYear, year, month, day } = parseDateValue(date, dateType);
@@ -21,24 +21,36 @@ export function calculateDateObj(
 	if (isRepeat === false && hasYear) {
 		if (dateType === "SOLAR") {
 			const solar = Solar.fromYmd(year!, month, day);
-			return solar.toString();
+			return [solar.toString()];
 		} else if (dateType === "LUNAR") {
 			const lunar = Lunar.fromYmd(year!, monthAbs, day);
-			return lunar.getSolar().toString();
+			if (lunar.getSolar().getYear() === yearSelected) {
+			    return [lunar.getSolar().toString()];
+			} else { 
+				return []
+			}
 		} else {
-			return "";
+			return [];
 		}
 	}
 
 	// 对于节日和生日，均忽略date本身的year，而使用yearSelected
 	if (dateType === "SOLAR") {
 		const solar = Solar.fromYmd(yearSelected, month, day);
-		return solar.toString();
+		return [solar.toString()];
 	} else if (dateType === "LUNAR") {
+		let lunarArr: string[] = [];
 		const lunar = Lunar.fromYmd(yearSelected, monthAbs, day);
-		return lunar.getSolar().toString();
+		const lastLunar = Lunar.fromYmd(yearSelected-1, monthAbs, day);
+		if (lunar.getSolar().getYear() === yearSelected) {
+			lunarArr.push(lunar.getSolar().toString());
+		}
+		if (lastLunar.getSolar().getYear() === yearSelected) {
+			lunarArr.push(lastLunar.getSolar().toString());
+		}
+		return lunarArr;
 	} else {
-		return "";
+		return [];
 	}
 }
 

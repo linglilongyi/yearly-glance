@@ -23,7 +23,7 @@ export interface BaseEvent {
 	text: string;
 	date: string;
 	dateType: "SOLAR" | "LUNAR";
-	dateObj?: string;
+	dateObj?: string[];
 	emoji?: string;
 	color?: string;
 	remark?: string;
