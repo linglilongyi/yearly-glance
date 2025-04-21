@@ -14,6 +14,7 @@ import {
 } from "@/src/components/Settings/ViewSettings";
 import { LayoutConfigMap } from "@/src/core/interfaces/Settings";
 import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
+import { CalendarDay } from "@/src/core/interfaces/CalendarEvent";
 import { EventTooltip } from "./EventTooltip";
 import { Select } from "../Base/Select";
 import { t } from "@/src/i18n/i18n";
@@ -250,10 +251,10 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 					>
 						{(hideEmptyDates
 							? monthData.days.filter(
-									(day) => day.events.length > 0
+									(day: CalendarDay) => day.events.length > 0 || day.isToday
 							  )
 							: monthData.days
-						).map((day) => (
+						).map((day: CalendarDay) => (
 							<div
 								key={day.dayOfMonth}
 								className={`day-row${
