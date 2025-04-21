@@ -232,7 +232,7 @@ export type BaseMessage = {
 			sagittarius: string; // 射手座
 			capricorn: string; // 摩羯座
 			aquarius: string; // 水瓶座
-			pi: string; // 双鱼座
+			pisces: string; // 双鱼座
 		};
 		gan: {
 			jia: string; // 甲

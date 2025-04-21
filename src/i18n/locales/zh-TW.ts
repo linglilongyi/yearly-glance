@@ -229,7 +229,7 @@ const translations: BaseMessage = {
 			sagittarius: "射手座",
 			capricorn: "摩羯座",
 			aquarius: "水瓶座",
-			pi: "雙魚座",
+			pisces: "雙魚座",
 		},
 		gan: {
 			jia: "甲",
