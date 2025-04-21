@@ -1,3 +1,12 @@
+## [2.1.5](https://github.com/Moyf/yearly-glance/compare/2.1.4...2.1.5) (2025-04-21)
+
+
+### 🐛 Bug Fixes
+
+* **event:** Fix the incorrect translation of Pisces in the birthday section ([d01e3bb](https://github.com/Moyf/yearly-glance/commit/d01e3bb107b4a7d5c5e87f988d45f41a0200660e))
+
+
+
 ## [2.1.4](https://github.com/Moyf/yearly-glance/compare/2.1.3...2.1.4) (2025-04-21)
 
 
