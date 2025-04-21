@@ -47,7 +47,7 @@ jobs:
             - name: Generate Changelog
               id: changelog
               run: |
-                  # 定义部分名称（不包含表情符号）
+                  # 定义部分名称
                   declare -A SECTION_MAP
                   SECTION_MAP["BREAKING CHANGES"]="BREAKING CHANGES"
                   SECTION_MAP["Features"]="Features"
@@ -82,106 +82,70 @@ jobs:
                   CHANGELOG_ZH="CHANGELOG-zh.md"
                   TEMP_CHANGELOG="temp_changelog.md"
 
-                  # 提取并格式化 changelog 内容的函数
-                  format_changelog() {
+                  # 获取当前版本号（从 git tag）
+                  CURRENT_VERSION=$(git tag --sort version:refname | tail -n 1)
+                  echo "Current version: $CURRENT_VERSION"
+
+                  # 使用 awk 提取特定版本的 changelog 内容
+                  extract_changelog() {
                     local changelog_file=$1
                     local output_file=$2
                     local is_chinese=$3
-                    local in_first_version=false
-                    local in_section=false
-                    local current_section=""
-                    local found_breaking_changes=""
+                    local target_version=$4
                     
                     > "$output_file"  # 初始化空文件
                     
-                    # 第一遍处理：提取破坏性变更
-                    while IFS= read -r line; do
-                      if [[ $line =~ ^#\ \[.*\].*$ ]] && ! $in_first_version; then
-                        in_first_version=true
-                        continue
-                      fi
-                      
-                      if $in_first_version; then
-                        if [[ $line =~ ^#\ \[.*\].*$ ]]; then
-                          # 已到达下一个版本，停止处理
-                          break
-                        fi
-                        
-                        if [[ $line =~ ^###\ BREAKING\ CHANGES ]] || [[ $line =~ ^###\ 破坏性变更 ]]; then
-                          in_section=true
-                          current_section="BREAKING CHANGES"
-                          continue
-                        fi
-                        
-                        if [[ $line =~ ^###\  ]]; then
-                          in_section=false
-                          continue
-                        fi
-                        
-                        if $in_section && [[ $current_section == "BREAKING CHANGES" ]]; then
-                          # 收集破坏性变更内容
-                          if [[ -n $line ]]; then
-                            found_breaking_changes+="$line"$'\n'
-                          fi
-                        fi
-                      fi
-                    done < "$changelog_file"
-                    
-                    # 如果找到破坏性变更，则打印
-                    if [[ -n $found_breaking_changes ]]; then
-                      if [ "$is_chinese" = true ]; then
-                        echo -e "### ${ZH_SECTION_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
-                      else
-                        echo -e "### ${SECTION_MAP["BREAKING CHANGES"]}\n" >> "$output_file"
-                      fi
-                      echo -e "$found_breaking_changes" >> "$output_file"
-                      echo -e "\n" >> "$output_file"
+                    # 确定版本的标题级别 (# 或 ##)
+                    # 分解版本号，检查是否为小版本
+                    IFS='.' read -r major minor patch <<< "$target_version"
+                    # 如果patch不是0，那么是小版本，使用二级标题 (##)
+                    if [[ -n "$patch" && "$patch" != "0" ]]; then
+                      local title_level="##"
+                    else
+                      # 大版本或次版本，使用一级标题 (#)
+                      local title_level="#"
                     fi
                     
-                    # 第二遍处理：处理其他部分
-                    in_first_version=false
-                    in_section=false
-                    current_section=""
+                    echo "Looking for version $target_version with title level: $title_level"
                     
-                    while IFS= read -r line; do
-                      if [[ $line =~ ^#\ \[.*\].*$ ]] && ! $in_first_version; then
-                        # 提取并写入版本标题
-                        echo -e "## Changes\n" >> "$output_file"
-                        in_first_version=true
-                        continue
-                      fi
-                      
-                      if $in_first_version; then
-                        if [[ $line =~ ^#\ \[.*\].*$ ]]; then
-                          # 已到达下一个版本，停止处理
-                          break
-                        fi
-                        
-                        # 检测部分标题
-                        if [[ $line =~ ^###\ (.*)$ ]]; then
-                          section="${BASH_REMATCH[1]}"
-                          # 跳过破坏性变更，因为我们已经处理过它们
-                          if [[ $section == "BREAKING CHANGES" ]] || [[ $section == "破坏性变更" ]]; then
-                            in_section=false
-                            continue
-                          fi
-                          
-                          # 保持部分标题原样（不使用表情符号映射）
-                          echo -e "### $section\n" >> "$output_file"
-                          
-                          in_section=true
-                          current_section="$section"
-                          continue
-                        fi
-                        
-                        # 为当前部分写入内容行
-                        if $in_section && [[ $current_section != "BREAKING CHANGES" ]] && [[ $current_section != "破坏性变更" ]]; then
-                          if [[ -n $line ]]; then
-                            echo "$line" >> "$output_file"
-                          fi
-                        fi
-                      fi
-                    done < "$changelog_file"
+                    # 使用 awk 提取目标版本的内容到临时文件
+                    awk -v version="$target_version" -v level="$title_level" '
+                    BEGIN { found = 0; printing = 0; }
+                    
+                    # 当找到目标版本标题时
+                    $0 ~ "^" level " +\\[" version "\\]" { 
+                      found = 1; 
+                      printing = 1; 
+                      next;  # 跳过版本标题行
+                    }
+                    
+                    # 当找到下一个版本标题时停止打印
+                    printing && $0 ~ "^#+ +\\[" { 
+                      printing = 0; 
+                    }
+                    
+                    # 打印匹配到的内容
+                    printing { 
+                      print; 
+                    }
+                    
+                    # 文件结束时，如果没有找到目标版本，输出警告
+                    END { 
+                      if (!found) {
+                        print "Warning: Version " version " not found with title level " level > "/dev/stderr";
+                        exit 1;
+                      }
+                    }' "$changelog_file" > "temp_version_content.md"
+                    
+                    # 检查提取内容
+                    if [ ! -s "temp_version_content.md" ]; then
+                      echo "Warning: No content found for version $target_version in $changelog_file" >&2
+                      echo -e "## Changes\n\nNo changelog found for version $target_version.\n" >> "$output_file"
+                    else
+                      echo "Successfully extracted changelog for version $target_version"
+                      echo -e "## Changes\n" >> "$output_file"
+                      cat "temp_version_content.md" >> "$output_file"
+                    fi
                     
                     # 添加安装说明
                     if [ "$is_chinese" = true ]; then
@@ -201,7 +165,7 @@ jobs:
 
                   # 处理英文 changelog
                   if [ -f "$CHANGELOG_EN" ]; then
-                    format_changelog "$CHANGELOG_EN" "en_$TEMP_CHANGELOG" false
+                    extract_changelog "$CHANGELOG_EN" "en_$TEMP_CHANGELOG" false "$CURRENT_VERSION"
                   else
                     echo "英文 changelog 文件未找到。使用备用方案。"
                     echo -e "## Changes\n\nNo changelog available.\n\n## Installation\n\n1. Download the files from the Assets section below\n2. Copy them to your vault's plugins folder: \`<vault>/.obsidian/plugins/yearly-glance/\`\n3. Reload Obsidian\n4. Enable plugin in settings" > "en_$TEMP_CHANGELOG"
@@ -209,7 +173,7 @@ jobs:
 
                   # 处理中文 changelog
                   if [ -f "$CHANGELOG_ZH" ]; then
-                    format_changelog "$CHANGELOG_ZH" "zh_$TEMP_CHANGELOG" true
+                    extract_changelog "$CHANGELOG_ZH" "zh_$TEMP_CHANGELOG" true "$CURRENT_VERSION"
                     
                     # 合并两个 changelogs
                     echo -e "# English Changelog\n" > "$TEMP_CHANGELOG"
