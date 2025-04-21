@@ -1,3 +1,23 @@
+## [2.1.4](https://github.com/Moyf/yearly-glance/compare/2.1.3...2.1.4) (2025-04-21)
+
+
+### ✨ Features
+
+* 隐藏空日期时保留今天的显示 ([4a6adac](https://github.com/Moyf/yearly-glance/commit/4a6adacc757f3943390bc8d2297f03568cf5dc17))
+
+
+### 🎨 Styles
+
+* 对于没有年份的生日，年龄和生肖显示成空，并将原有提示信息放在tooltip中 ([274dbc1](https://github.com/Moyf/yearly-glance/commit/274dbc14659ec88f74cd5b7555f0695aaf50d011))
+* **tooltip:** eventTooltip中null值显示为- ([24e5d13](https://github.com/Moyf/yearly-glance/commit/24e5d13972cdd10d8e98ba74a609cd46c5b69498))
+
+
+### 🐛 Bug Fixes
+
+* **eventmanager:** 修复搜索时事件类型未正确传递 ([7d4c6d4](https://github.com/Moyf/yearly-glance/commit/7d4c6d4bfce62186abc9927912e97c5c9c957f19))
+
+
+
 # [2.1.3](https://github.com/Moyf/yearly-glance/compare/2.1.2...2.1.3) (2025-04-19)
 
 
