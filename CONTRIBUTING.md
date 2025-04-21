@@ -86,7 +86,7 @@ By participating in this project, you are expected to uphold our Code of Conduct
    ```bash
    git push origin feature/your-feature-name
    ```
-5. **Create a Pull Request** against the `main` branch of the original repository
+5. **Create a Pull Request** against the `master` branch of the original repository
 6. **Describe your changes** in detail, referencing any related issues
 
 ## Coding Standards
@@ -225,7 +225,7 @@ Feature requests are welcome. Please provide:
    ```bash
    git push origin feature/您的功能名称
    ```
-5. **对原始仓库的 `main` 分支创建拉取请求**
+5. **对原始仓库的 `master` 分支创建拉取请求**
 6. **详细描述您的更改**，引用任何相关问题
 
 ## 编码标准
