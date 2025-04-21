@@ -165,7 +165,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 									{t("view.eventManager.birthday.age")}:
 								</span>
 								<span className="tooltip-value">
-									{event.age}
+									{event.age ?? "-"}
 								</span>
 							</div>
 						)}
@@ -188,7 +188,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 									{t("view.eventManager.birthday.animal")}:
 								</span>
 								<span className="tooltip-value">
-									{event.animal}
+									{event.animal ?? "-"}
 								</span>
 							</div>
 						)}

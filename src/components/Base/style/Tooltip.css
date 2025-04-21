@@ -28,7 +28,7 @@
 	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 	white-space: normal;
 	word-wrap: break-word;
-	transform: translateX(-50%);
+	transform: translateX(-25%);
 	margin-top: 8px;
 	line-height: 1.2;
 }
