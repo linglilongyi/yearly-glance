@@ -144,6 +144,7 @@ const translations: BaseMessage = {
 				yearlyCalendar: "Open Yearly Calendar",
 				deleteConfirm: "Are you sure you want to delete this event?",
 				location: "Open in Event Manager",
+				toggleBuiltinEventHidden: "Toggle Builtin Event Hidden",
 			},
 			empty: {
 				text: "No Events",
@@ -178,8 +179,8 @@ const translations: BaseMessage = {
 				name: "Holiday",
 				type: "Type",
 				foundDate: "Found Date",
-				internat: "Internat",
-				custom: "Custom",
+				builtin: "Builtin Holiday",
+				custom: "Custom Holiday",
 			},
 			birthday: {
 				name: "Birthday",

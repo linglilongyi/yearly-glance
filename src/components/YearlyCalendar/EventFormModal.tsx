@@ -357,7 +357,7 @@ const EventForm: React.FC<EventFormProps> = ({
 					<label>{t("view.eventManager.holiday.type")}</label>
 					{renderReadOnlyValue(
 						(formData as Holiday).type === "BUILTIN"
-							? t("view.eventManager.holiday.internat")
+							? t("view.eventManager.holiday.builtin")
 							: t("view.eventManager.holiday.custom")
 					)}
 				</div>

@@ -152,6 +152,7 @@ export type BaseMessage = {
 				yearlyCalendar: string;
 				deleteConfirm: string;
 				location: string;
+				toggleBuiltinEventHidden: string;
 			};
 			empty: {
 				text: string;
@@ -179,7 +180,7 @@ export type BaseMessage = {
 				name: string;
 				type: string;
 				foundDate: string;
-				internat: string;
+				builtin: string;
 				custom: string;
 			};
 			birthday: {

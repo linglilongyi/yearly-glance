@@ -144,6 +144,7 @@ const translations: BaseMessage = {
 				yearlyCalendar: "打开年度概览",
 				deleteConfirm: "确认删除事件",
 				location: "在事件管理中打开",
+				toggleBuiltinEventHidden: "切换内置节日显示状态",
 			},
 			empty: {
 				text: "暂无事件",
@@ -178,7 +179,7 @@ const translations: BaseMessage = {
 				name: "节日",
 				type: "类型",
 				foundDate: "节日起源时间",
-				internat: "内置节日",
+				builtin: "内置节日",
 				custom: "自定义节日",
 			},
 			birthday: {
