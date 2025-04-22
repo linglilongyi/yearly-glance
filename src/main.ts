@@ -1,4 +1,4 @@
-import { Plugin } from "obsidian";
+import { Notice, Plugin } from "obsidian";
 import { DEFAULT_CONFIG, YearlyGlanceConfig } from "./core/interfaces/types";
 import YearlyGlanceSettingsTab from "./components/Settings/SettingsTab";
 import {
@@ -26,6 +26,7 @@ import { t } from "./i18n/i18n";
 import { BUILTIN_HOLIDAYS } from "./core/data/builtinHolidays";
 import { lunarTest } from "./test/date";
 import { generateUUID } from "./core/utils/uuid";
+import { migrateData } from "./core/utils/dataMerge";
 
 export default class YearlyGlancePlugin extends Plugin {
 	settings: YearlyGlanceConfig;
@@ -34,6 +35,10 @@ export default class YearlyGlancePlugin extends Plugin {
 		console.debug("[yearly-glance] 加载年度概览插件");
 		// 加载设置
 		await this.loadSettings();
+
+		// 数据迁移
+		this.settings = migrateData(this.settings);
+		await this.saveSettings();
 
 		// 验证并合并内置节日数据
 		await this.validateAndMergeBuiltinHolidays();
@@ -66,7 +71,7 @@ export default class YearlyGlancePlugin extends Plugin {
 		// 确保所有事件都有id
 		await this.ensureEventsHaveIds();
 
-		// 更新所有事件的dateObj字段
+		// 更新所有事件的dateArr字段
 		await this.updateAllEventsDateObj();
 	}
 
@@ -137,6 +142,12 @@ export default class YearlyGlancePlugin extends Plugin {
 				this.openEventForm("customEvent", {}, false, true);
 			},
 		});
+
+		this.addCommand({
+			id: "reload-plugin",
+			name: t("command.reloadPlugin"),
+			callback: () => this.reloadPlugin(),
+		});
 	}
 
 	private registerRibbonCommands() {
@@ -163,7 +174,7 @@ export default class YearlyGlancePlugin extends Plugin {
 			...newConfig,
 		};
 
-		// 检查年份是否变化，如果变化则更新所有事件的dateObj
+		// 检查年份是否变化，如果变化则更新所有事件的dateArr
 		if (newConfig.year && newConfig.year !== oldYear) {
 			await this.updateAllEventsDateObj();
 		}
@@ -188,17 +199,17 @@ export default class YearlyGlancePlugin extends Plugin {
 	}
 
 	/**
-	 * 更新所有事件的dateObj字段
+	 * 更新所有事件的dateArr字段
 	 */
 	public async updateAllEventsDateObj() {
 		const year = this.settings.config.year;
 		const events = this.settings.data;
 
-		// 更新节日和自定义事件的dateObj
+		// 更新节日和自定义事件的dateArr
 		events.holidays = updateHolidaysInfo(events.holidays, year);
 		events.customEvents = updateCustomEventsInfo(events.customEvents, year);
 
-		// 更新生日的完整信息（包含dateObj、nextBirthday、age、animal、zodiac等）
+		// 更新生日的完整信息（包含dateArr、nextBirthday、age、animal、zodiac等）
 		events.birthdays = updateBirthdaysInfo(events.birthdays, year);
 
 		// 不触发保存的通知，因为这是内部计算，不需要通知用户
@@ -242,16 +253,29 @@ export default class YearlyGlancePlugin extends Plugin {
 		).open();
 	}
 
+	// 重载插件
+	public async reloadPlugin() {
+		try {
+			// @ts-ignore
+			await this.app.plugins.disablePluginAndSave("yearly-glance");
+			// @ts-ignore
+			await this.app.plugins.enablePluginAndSave("yearly-glance");
+			new Notice("[yearly-glance] 插件已重载");
+		} catch (error) {
+			console.error("[yearly-glance] 插件重载失败", error);
+		}
+	}
+
 	/**
 	 * 验证并合并内置节日数据
-	 * 确保所有内置节日(type=INTERNAT)都存在于用户数据中
+	 * 确保所有内置节日(type=BUILTIN)都存在于用户数据中
 	 */
 	private async validateAndMergeBuiltinHolidays() {
 		try {
 			const currentHolidays = this.settings.data.holidays || [];
 			// 获取现有的内置节日
 			const existingBuiltinHolidays = currentHolidays.filter(
-				(holiday) => holiday.type === "INTERNAT"
+				(holiday) => holiday.type === "BUILTIN"
 			);
 
 			// 构建现有内置节日的ID索引
@@ -274,7 +298,7 @@ export default class YearlyGlancePlugin extends Plugin {
 					...holidaysToAdd,
 				];
 
-				// 更新节日的dateObj
+				// 更新节日的dateArr
 				this.settings.data.holidays = updateHolidaysInfo(
 					this.settings.data.holidays,
 					this.settings.config.year

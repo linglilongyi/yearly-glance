@@ -142,6 +142,7 @@ const translations: BaseMessage = {
 				yearlyCalendar: "打開年度概覽",
 				deleteConfirm: "確認刪除事件",
 				location: "在事件管理中打開",
+				toggleBuiltinEventHidden: "切換內置節日顯示狀態",
 			},
 			empty: {
 				text: "無事件",
@@ -176,8 +177,8 @@ const translations: BaseMessage = {
 				name: "節日",
 				type: "類型",
 				foundDate: "節日起源時間",
-				internat: "國際",
-				custom: "自定義",
+				builtin: "內置節日",
+				custom: "自定義節日",
 			},
 			birthday: {
 				name: "生日",
@@ -197,6 +198,7 @@ const translations: BaseMessage = {
 		openYearlyGlance: "打開年度概覽",
 		openEventManager: "打開事件管理",
 		addEvent: "添加事件",
+		reloadPlugin: "重載插件",
 	},
 	common: {
 		confirm: "確認",

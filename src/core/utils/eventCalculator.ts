@@ -61,11 +61,11 @@ export function updateHolidaysInfo(holidays: Holiday[], yearSelected: number) {
 
 function updateHolidayInfo(holiday: Holiday, yearSelected: number) {
 	const { date, dateType } = holiday;
-	const dateObj = calculateDateObj(date, dateType, yearSelected);
+	const dateArr = calculateDateObj(date, dateType, yearSelected);
 
 	return {
 		...holiday,
-		dateObj,
+		dateArr,
 	};
 }
 
@@ -80,11 +80,11 @@ export function updateCustomEventsInfo(
 
 function updateCustomEventInfo(customEvent: CustomEvent, yearSelected: number) {
 	const { date, dateType, isRepeat } = customEvent;
-	const dateObj = calculateDateObj(date, dateType, yearSelected, isRepeat);
+	const dateArr = calculateDateObj(date, dateType, yearSelected, isRepeat);
 
 	return {
 		...customEvent,
-		dateObj,
+		dateArr,
 	};
 }
 
@@ -105,7 +105,7 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 		dateType
 	);
 
-	const dateObj = calculateDateObj(date, dateType, yearSelected);
+	const dateArr = calculateDateObj(date, dateType, yearSelected);
 	// 当前时间
 	const todaySolar = Solar.fromDate(new Date());
 
@@ -170,21 +170,21 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 	let age;
 	let animal;
 	let zodiac;
-	let dateObjSolar;
+	let dateArrSolar;
 
 	if (hasYear) {
 		// 当前时间下生日的日期(无关yearSelected)
 		if (dateType === "SOLAR") {
-			dateObjSolar = Solar.fromYmd(todaySolar.getYear(), month, day);
+			dateArrSolar = Solar.fromYmd(todaySolar.getYear(), month, day);
 		} else if (dateType === "LUNAR") {
 			if (isValidLunarDate(todaySolar.getYear(), Math.abs(month), day)) {
-				dateObjSolar = Lunar.fromYmd(
+				dateArrSolar = Lunar.fromYmd(
 					todaySolar.getYear(),
 					Math.abs(month),
 					day
 				).getSolar();
 			} else {
-				dateObjSolar = Lunar.fromYmd(
+				dateArrSolar = Lunar.fromYmd(
 					todaySolar.getYear(),
 					Math.abs(month),
 					day - 1
@@ -192,7 +192,7 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 			}
 		}
 		// 当今天还未过生日时，年龄为当前年份减去出生年份再减1
-		age = todaySolar.isBefore(dateObjSolar)
+		age = todaySolar.isBefore(dateArrSolar)
 			? todaySolar.getYear() - year! - 1
 			: todaySolar.getYear() - year!;
 
@@ -215,7 +215,7 @@ export function updateBirthdayInfo(birthday: Birthday, yearSelected: number) {
 
 	return {
 		...birthday,
-		dateObj,
+		dateArr,
 		nextBirthday,
 		...(age !== undefined && { age }),
 		...(animal !== undefined && { animal }),
