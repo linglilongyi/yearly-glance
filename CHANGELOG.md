@@ -1,3 +1,12 @@
+## [2.1.6](https://github.com/Moyf/yearly-glance/compare/2.1.5...2.1.6) (2025-04-22)
+
+
+### ♻️ Refactor
+
+* **settings:** Change default settings to 2x6 list view ([040e716](https://github.com/Moyf/yearly-glance/commit/040e716dc25ea2ad827c3f91258e9f4d11ab811b))
+
+
+
 ## [2.1.5](https://github.com/Moyf/yearly-glance/compare/2.1.4...2.1.5) (2025-04-21)
 
 
