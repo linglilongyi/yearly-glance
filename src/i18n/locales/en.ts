@@ -199,6 +199,7 @@ const translations: BaseMessage = {
 		openYearlyGlance: "Open Yearly Glance",
 		openEventManager: "Open Events Manager",
 		addEvent: "Add Event",
+		reloadPlugin: "Reload Plugin",
 	},
 	common: {
 		confirm: "Confirm",

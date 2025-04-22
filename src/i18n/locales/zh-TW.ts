@@ -197,6 +197,7 @@ const translations: BaseMessage = {
 		openYearlyGlance: "打開年度概覽",
 		openEventManager: "打開事件管理",
 		addEvent: "添加事件",
+		reloadPlugin: "重載插件",
 	},
 	common: {
 		confirm: "確認",

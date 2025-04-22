@@ -1,4 +1,4 @@
-import { Plugin } from "obsidian";
+import { Notice, Plugin } from "obsidian";
 import { DEFAULT_CONFIG, YearlyGlanceConfig } from "./core/interfaces/types";
 import YearlyGlanceSettingsTab from "./components/Settings/SettingsTab";
 import {
@@ -142,6 +142,12 @@ export default class YearlyGlancePlugin extends Plugin {
 				this.openEventForm("customEvent", {}, false, true);
 			},
 		});
+
+		this.addCommand({
+			id: "reload-plugin",
+			name: t("command.reloadPlugin"),
+			callback: () => this.reloadPlugin(),
+		});
 	}
 
 	private registerRibbonCommands() {
@@ -245,6 +251,19 @@ export default class YearlyGlancePlugin extends Plugin {
 			allowTypeChange,
 			props
 		).open();
+	}
+
+	// 重载插件
+	public async reloadPlugin() {
+		try {
+			// @ts-ignore
+			await this.app.plugins.disablePluginAndSave("yearly-glance");
+			// @ts-ignore
+			await this.app.plugins.enablePluginAndSave("yearly-glance");
+			new Notice("[yearly-glance] 插件已重载");
+		} catch (error) {
+			console.error("[yearly-glance] 插件重载失败", error);
+		}
 	}
 
 	/**

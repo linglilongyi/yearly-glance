@@ -200,6 +200,7 @@ export type BaseMessage = {
 		openYearlyGlance: string;
 		openEventManager: string;
 		addEvent: string;
+		reloadPlugin: string;
 	};
 	common: {
 		confirm: string;
