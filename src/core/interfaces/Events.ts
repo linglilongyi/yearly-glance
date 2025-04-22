@@ -12,7 +12,7 @@ export interface Events {
  * 对于公历类型，可能的格式为`2025,1,1`或`1,1`
  * 对于农历类型，可能的格式为`2025,-6,1`(二〇二五年闰六月初一)或`2,1`(二月初一)
  * dateType: 日期类型, 公历或农历
- * dateObj: 基于当前选择年份的公历日期，格式为YYYY-MM-DD，由系统根据date和dateType自动计算
+ * dateArr: 基于当前选择年份的公历日期，格式为YYYY-MM-DD，由系统根据date和dateType自动计算
  * emoji: 事件图标
  * color: 事件颜色
  * remark: 事件备注
@@ -23,7 +23,7 @@ export interface BaseEvent {
 	text: string;
 	date: string;
 	dateType: "SOLAR" | "LUNAR";
-	dateObj?: string[];
+	dateArr?: string[];
 	emoji?: string;
 	color?: string;
 	remark?: string;
@@ -36,7 +36,7 @@ export interface BaseEvent {
  * foundDate?: 节日起源日期, 年月日，年月，年，一般用于计算周年
  */
 export interface Holiday extends BaseEvent {
-	type: "INTERNAT" | "CUSTOM";
+	type: "BUILTIN" | "CUSTOM";
 	foundDate?: string;
 }
 

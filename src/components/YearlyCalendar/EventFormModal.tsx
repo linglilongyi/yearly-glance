@@ -267,11 +267,11 @@ const EventForm: React.FC<EventFormProps> = ({
 			{/* 事件名称 */}
 			<div
 				className={`form-group ${
-					(formData as Holiday).type === "INTERNAT" ? "read-only" : ""
+					(formData as Holiday).type === "BUILTIN" ? "read-only" : ""
 				}`}
 			>
 				<label>{t("view.eventManager.form.eventName")}</label>
-				{(formData as Holiday).type === "INTERNAT" ? (
+				{(formData as Holiday).type === "BUILTIN" ? (
 					renderReadOnlyValue(formData.text)
 				) : (
 					<input
@@ -286,14 +286,14 @@ const EventForm: React.FC<EventFormProps> = ({
 			{/* 事件日期 */}
 			<div
 				className={`form-group ${
-					(formData as Holiday).type === "INTERNAT" ? "read-only" : ""
+					(formData as Holiday).type === "BUILTIN" ? "read-only" : ""
 				}`}
 			>
 				<label>
 					{t("view.eventManager.form.eventDate")}
 					<Tooltip text={t("view.eventManager.form.eventDateHelp")} />
 				</label>
-				{(formData as Holiday).type === "INTERNAT" ? (
+				{(formData as Holiday).type === "BUILTIN" ? (
 					renderReadOnlyValue(
 						displayDate(formData.date, formData.dateType)
 					)
@@ -323,7 +323,7 @@ const EventForm: React.FC<EventFormProps> = ({
 			<div className="form-group read-only">
 				<label>{t("view.eventManager.form.eventDateType")}</label>
 				{/* TODO: 根据事件日期自动推断公历或农历的逻辑函数 */}
-				{(formData as Holiday).type === "INTERNAT" ? (
+				{(formData as Holiday).type === "BUILTIN" ? (
 					renderReadOnlyValue(
 						formData.dateType === "LUNAR"
 							? t("view.eventManager.lunar")
@@ -356,7 +356,7 @@ const EventForm: React.FC<EventFormProps> = ({
 				<div className="form-group read-only">
 					<label>{t("view.eventManager.holiday.type")}</label>
 					{renderReadOnlyValue(
-						(formData as Holiday).type === "INTERNAT"
+						(formData as Holiday).type === "BUILTIN"
 							? t("view.eventManager.holiday.internat")
 							: t("view.eventManager.holiday.custom")
 					)}
@@ -646,8 +646,8 @@ export class EventFormModal extends Modal {
 
 		// 根据事件类型进行不同的处理
 		if (eventType === "holiday" || eventType === "customEvent") {
-			// 计算并设置dateObj
-			event.dateObj = calculateDateObj(
+			// 计算并设置dateArr
+			event.dateArr = calculateDateObj(
 				event.date,
 				event.dateType,
 				currentYear
