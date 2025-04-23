@@ -166,6 +166,7 @@ const translations: BaseMessage = {
 				save: "保存",
 				cancel: "取消",
 				reset: "重置",
+				submit: "提交",
 				eventDateHelp:
 					"<b>格式：</b><br>" +
 					"YYYY-M-D 或 M-D<br>" +

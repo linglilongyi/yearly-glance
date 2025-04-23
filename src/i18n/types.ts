@@ -173,6 +173,7 @@ export type BaseMessage = {
 				eventRemark: string;
 				save: string;
 				cancel: string;
+				submit: string;
 				reset: string;
 				eventDateHelp: string;
 			};

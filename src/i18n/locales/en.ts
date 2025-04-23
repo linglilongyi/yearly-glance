@@ -166,6 +166,7 @@ const translations: BaseMessage = {
 				save: "Save",
 				cancel: "Cancel",
 				reset: "Reset",
+				submit: "Submit",
 				eventDateHelp:
 					"<b>Format:</b><br>" +
 					"YYYY-M-D or M-D<br>" +
