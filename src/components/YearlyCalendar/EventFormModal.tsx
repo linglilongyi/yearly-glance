@@ -26,6 +26,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { Select } from "../Base/Select";
 import { Toggle } from "../Base/Toggle";
 import { Tooltip } from "../Base/Tooltip";
+import { NavTabs } from "../Base/NavTabs";
 import { DatePicker } from "@/src/components/DatePicker/DatePicker";
 import { ColorSelector } from "../Base/ColorSelector";
 import { t } from "@/src/i18n/i18n";
@@ -306,17 +307,33 @@ const EventForm: React.FC<EventFormProps> = ({
 						placeholder="YYYY-MM-DD or MM-DD (加!表示闰月)"
 						required
 					/>
-					// <DatePicker
-					// 	value={formData.date || todayString}
-					// 	defaultLunar={formData.dateType === "LUNAR"}
-					// 	onChange={(value, dateType) => {
-					// 		setFormData((prev) => ({
-					// 			...prev,
-					// 			date: value,
-					// 			dateType: dateType,
-					// 		}));
-					// 	}}
-					// />
+				)}
+			</div>
+			<div
+				className={`form-group ${
+					(formData as Holiday).type === "BUILTIN" ? "read-only" : ""
+				}`}
+			>
+				<label>
+					{t("view.eventManager.form.eventDate")}
+					<Tooltip text={t("view.eventManager.form.eventDateHelp")} />
+				</label>
+				{(formData as Holiday).type === "BUILTIN" ? (
+					renderReadOnlyValue(
+						displayDate(formData.date, formData.dateType)
+					)
+				) : (
+					<DatePicker
+						value={formData.date || todayString}
+						type={formData.dateType}
+						onChange={(value, dateType) => {
+							setFormData((prev) => ({
+								...prev,
+								date: value,
+								dateType: dateType,
+							}));
+						}}
+					/>
 				)}
 			</div>
 			{/* 事件日期类型(只读，由事件日期自动推断) */}
@@ -512,31 +529,6 @@ interface EventFormWrapperProps {
 	onCancel: () => void;
 }
 
-// 添加TabNav组件
-interface TabNavProps {
-	value: string;
-	onChange: (value: string) => void;
-	tabs: { value: string; label: string }[];
-}
-
-const TabNav: React.FC<TabNavProps> = ({ value, onChange, tabs }) => {
-	return (
-		<div className="event-type-tabs" role="tablist">
-			{tabs.map((tab) => (
-				<div
-					key={tab.value}
-					className={`event-type-tab ${
-						value === tab.value ? "active" : ""
-					}`}
-					onClick={() => onChange(tab.value)}
-				>
-					<span className="tab-label">{tab.label}</span>
-				</div>
-			))}
-		</div>
-	);
-};
-
 const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 	plugin,
 	initialEventType,
@@ -551,11 +543,6 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 	const [eventType, setEventType] =
 		React.useState<EventType>(initialEventType);
 
-	// 处理事件类型变更
-	const handleEventTypeChange = (value: string) => {
-		setEventType(value as EventType);
-	};
-
 	// 处理保存事件
 	const handleSave = (event: CustomEvent | Birthday | Holiday) => {
 		onSave(event, eventType);
@@ -565,10 +552,10 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 		<div className="yearly-glance-event-modal">
 			{allowTypeChange && (
 				<div className="event-type-selector">
-					<TabNav
-						value={eventType}
-						onChange={handleEventTypeChange}
+					<NavTabs
 						tabs={EVENT_TYPE_OPTIONS}
+						activeTab={eventType}
+						onClick={(tab) => setEventType(tab as EventType)}
 					/>
 				</div>
 			)}

@@ -10,16 +10,11 @@ import {
 } from "@/src/core/interfaces/Events";
 import { EVENT_TYPE_OPTIONS } from "./EventFormModal";
 import { useYearlyGlanceConfig } from "@/src/core/hook/useYearlyGlanceConfig";
-import {
-	ChevronDown,
-	ChevronRight,
-	Eye,
-	EyeClosed,
-	EyeOff,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, Eye, EyeClosed } from "lucide-react";
 import { Input } from "../Base/Input";
 import { Tooltip } from "../Base/Tooltip";
 import { ConfirmDialog } from "../Base/ConfirmDialog";
+import { NavTabs } from "../Base/NavTabs";
 import { t } from "@/src/i18n/i18n";
 import { parseDateValue } from "@/src/core/utils/dateParser";
 import { VIEW_TYPE_YEARLY_GLANCE } from "@/src/views/YearlyGlanceView";
@@ -774,26 +769,17 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 	return (
 		<div className="yg-event-manager-container">
 			<div className="yg-event-manager-header">
-				<div className="yg-event-tabs">
-					{EVENT_TYPE_OPTIONS.map((option) => (
-						<div
-							key={option.value}
-							className={`yg-event-tab ${
-								activeTab === option.value && !isSearching
-									? "active"
-									: ""
-							} ${isSearching ? "search-mode" : ""}`}
-							onClick={() =>
-								setActiveTab(option.value as EventType)
-							}
-						>
-							<span className="tab-label">{option.label}</span>
-							<span className="tab-count">
-								{eventCounts[option.value as EventType]}
-							</span>
-						</div>
-					))}
-				</div>
+				<NavTabs
+					tabs={EVENT_TYPE_OPTIONS.map((option) => ({
+						...option,
+						count: eventCounts[option.value as EventType],
+					}))}
+					activeTab={activeTab}
+					onClick={(tab) => setActiveTab(tab as EventType)}
+					className="yg-event-tabs"
+					showCounts={true}
+					searchMode={isSearching}
+				/>
 
 				<div className="yg-event-actions-bar">
 					<div
