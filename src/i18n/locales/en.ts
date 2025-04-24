@@ -145,6 +145,12 @@ const translations: BaseMessage = {
 				deleteConfirm: "Are you sure you want to delete this event?",
 				location: "Open in Event Manager",
 				toggleBuiltinEventHidden: "Toggle Builtin Event Hidden",
+				sort: {
+					name: "Event Name",
+					date: "Event Date",
+					asc: "Ascending",
+					desc: "Descending",
+				},
 			},
 			empty: {
 				text: "No Events",

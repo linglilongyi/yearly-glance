@@ -153,6 +153,12 @@ export type BaseMessage = {
 				deleteConfirm: string;
 				location: string;
 				toggleBuiltinEventHidden: string;
+				sort: {
+					name: string;
+					date: string;
+					asc: string;
+					desc: string;
+				};
 			};
 			empty: {
 				text: string;
