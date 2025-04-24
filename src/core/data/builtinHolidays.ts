@@ -1,11 +1,12 @@
 import { Holiday } from "@/src/core/interfaces/Events";
 import { Lunar } from "lunar-typescript";
 
-const qingMing = Lunar.fromDate(new Date()).getJieQiTable()["清明"];
+const currentDate = new Date();
+const qingMing = Lunar.fromDate(currentDate).getJieQiTable()["清明"];
 const dongZhi = () => {
-	const temp1 = Lunar.fromDate(new Date()).getJieQiTable()["冬至"];
-	const temp2 = Lunar.fromDate(new Date()).getJieQiTable()["DONG_ZHI"];
-	if (temp1.getYear() === new Date().getFullYear()) {
+	const temp1 = Lunar.fromDate(currentDate).getJieQiTable()["冬至"];
+	const temp2 = Lunar.fromDate(currentDate).getJieQiTable()["DONG_ZHI"];
+	if (temp1.getYear() === currentDate.getFullYear()) {
 		return temp1;
 	}
 	return temp2;
