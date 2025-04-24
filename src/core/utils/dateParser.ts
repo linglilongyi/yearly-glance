@@ -1,10 +1,4 @@
-import {
-	Lunar,
-	LunarMonth,
-	LunarYear,
-	Solar,
-	SolarUtil,
-} from "lunar-typescript";
+import { Lunar, Solar } from "lunar-typescript";
 
 export const getMonthOptions = (type: "SOLAR" | "LUNAR") => {
 	const options = Array.from({ length: 12 }, (_, i) => i + 1).map(
@@ -95,8 +89,6 @@ export function parseDateValue(dateValue: string, dateType: "SOLAR" | "LUNAR") {
  * @returns
  * Ld: 农历日期对象, 或公历转换的农历
  * Sd: 公历日期对象，或农历转换的公历
- * LMonthsInYear: dateYear年份的农历月对象数组(LunarMonth[])，包含了月份以及天数信息(number)
- * SDaysInMonth: dateMonth月份的天数(number)
  * YearName: 农历则为年份中文名称，公历则为年份数字
  * MonthName: 农历则为月份中文名称，公历则为月份数字
  * DayName: 农历则为日期中文名称，公历则为日期数字
@@ -109,8 +101,6 @@ export function parseDateYMD(
 ): {
 	Ld: Lunar;
 	Sd: Solar;
-	LMonthsInYear: LunarMonth[];
-	SDaysInMonth: number;
 	yearName: string | undefined;
 	monthName: string;
 	dayName: string;
@@ -118,12 +108,6 @@ export function parseDateYMD(
 	if (dateType === "LUNAR") {
 		const Ld = Lunar.fromYmd(dateYear, dateMonth, dateDay);
 		const Sd = Ld.getSolar();
-		const lunarYear = LunarYear.fromYear(dateYear);
-		const LMonthsInYear = lunarYear.getMonthsInYear();
-		const SDaysInMonth = SolarUtil.getDaysOfMonth(
-			Sd.getYear(),
-			Sd.getMonth()
-		);
 		const yearName = Ld.getYearInChinese();
 		const monthName = Ld.getMonthInChinese();
 		const dayName = Ld.getDayInChinese();
@@ -131,8 +115,6 @@ export function parseDateYMD(
 		return {
 			Ld,
 			Sd,
-			LMonthsInYear,
-			SDaysInMonth,
 			yearName,
 			monthName,
 			dayName,
@@ -140,12 +122,7 @@ export function parseDateYMD(
 	} else {
 		const Sd = Solar.fromYmd(dateYear, dateMonth, dateDay);
 		const Ld = Sd.getLunar();
-		const lunarYear = LunarYear.fromYear(Ld.getYear());
-		const LMonthsInYear = lunarYear.getMonthsInYear();
-		const SDaysInMonth = SolarUtil.getDaysOfMonth(
-			Sd.getYear(),
-			Sd.getMonth()
-		);
+
 		const yearName = Sd.getYear().toString();
 		const monthName = Sd.getMonth().toString();
 		const dayName = Sd.getDay().toString();
@@ -153,8 +130,6 @@ export function parseDateYMD(
 		return {
 			Ld,
 			Sd,
-			LMonthsInYear,
-			SDaysInMonth,
 			yearName,
 			monthName,
 			dayName,
@@ -178,8 +153,6 @@ export function parseDateMD(
 ): {
 	Ld: Lunar | undefined;
 	Sd: Solar | undefined;
-	LMonthsInYear: number[];
-	SDaysInMonth: number;
 	yearName: string | undefined;
 	monthName: string;
 	dayName: string;
@@ -188,22 +161,12 @@ export function parseDateMD(
 	const Sd = undefined;
 	const yearName = undefined;
 
-	const LMonthsInYear = Array.from({ length: 12 }, (_, i) => {
-		return i + 1;
-	}).filter((month) => month <= 12);
-
-	const SDaysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][
-		dateMonth - 1
-	];
-
 	const monthName = displayDateValue(dateMonth, dateType, "month");
 	const dayName = displayDateValue(dateDay, dateType, "day");
 
 	return {
 		Ld,
 		Sd,
-		LMonthsInYear,
-		SDaysInMonth,
 		yearName,
 		monthName,
 		dayName,
