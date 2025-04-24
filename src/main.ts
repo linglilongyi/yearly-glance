@@ -40,9 +40,6 @@ export default class YearlyGlancePlugin extends Plugin {
 		this.settings = migrateData(this.settings);
 		await this.saveSettings();
 
-		// 验证并合并内置节日数据
-		await this.validateAndMergeBuiltinHolidays();
-
 		// 注册视图
 		this.registerLeafViews();
 
@@ -263,52 +260,6 @@ export default class YearlyGlancePlugin extends Plugin {
 			new Notice("[yearly-glance] 插件已重载");
 		} catch (error) {
 			console.error("[yearly-glance] 插件重载失败", error);
-		}
-	}
-
-	/**
-	 * 验证并合并内置节日数据
-	 * 确保所有内置节日(type=BUILTIN)都存在于用户数据中
-	 */
-	private async validateAndMergeBuiltinHolidays() {
-		try {
-			const currentHolidays = this.settings.data.holidays || [];
-			// 获取现有的内置节日
-			const existingBuiltinHolidays = currentHolidays.filter(
-				(holiday) => holiday.type === "BUILTIN"
-			);
-
-			// 构建现有内置节日的ID索引
-			const existingIds = new Set(
-				existingBuiltinHolidays.map((h) => h.id)
-			);
-
-			// 查找需要添加的内置节日
-			const holidaysToAdd = BUILTIN_HOLIDAYS.filter((builtinHoliday) => {
-				return !existingIds.has(builtinHoliday.id);
-			});
-
-			if (holidaysToAdd.length > 0) {
-				console.debug(
-					`[yearly-glance] 添加 ${holidaysToAdd.length} 个内置节日`
-				);
-				// 合并节日数据
-				this.settings.data.holidays = [
-					...currentHolidays,
-					...holidaysToAdd,
-				];
-
-				// 更新节日的dateArr
-				this.settings.data.holidays = updateHolidaysInfo(
-					this.settings.data.holidays,
-					this.settings.config.year
-				);
-
-				// 保存更新后的数据
-				await this.saveData(this.settings);
-			}
-		} catch (error) {
-			console.error("[yearly-glance] 验证内置节日数据失败", error);
 		}
 	}
 
