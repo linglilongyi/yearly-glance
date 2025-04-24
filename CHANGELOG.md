@@ -1,3 +1,36 @@
+# [2.2.0](https://github.com/Moyf/yearly-glance/compare/2.1.6...2.2.0) (2025-04-24)
+
+
+### ♻️ Refactor
+
+* Add date display and year option generation tools ([5d5db8c](https://github.com/Moyf/yearly-glance/commit/5d5db8cc9da65ba406f040535204918d4fb3aa47))
+* Remove redundant fields and dependencies related to parseDate ([aacd258](https://github.com/Moyf/yearly-glance/commit/aacd2582d6ee2fac2190a92574a46f6623fc7eb9))
+* Refactor event management interface and event form date selection logic ([41fd713](https://github.com/Moyf/yearly-glance/commit/41fd71313b1726f6e98efc5f9aa81550479c3c05))
+
+
+### ✨ Features
+
+* Merge built-in holiday data, support automatic addition of new holidays ([e37a2d6](https://github.com/Moyf/yearly-glance/commit/e37a2d69656b3b3116d0518b6c859430b86c60b7))
+* Add a unified toggle in event management for displaying built-in holidays ([637576d](https://github.com/Moyf/yearly-glance/commit/637576d88fa0cda3610ba4857eacd10f333ad0ab))
+* Standardize built-in holiday ID prefixes and add new holidays ([6145049](https://github.com/Moyf/yearly-glance/commit/614504916d5f388dd5ce863569d0ec311c34acdb))
+* Optimize lunar date calculation logic, support leap months and edge cases ([876a27e](https://github.com/Moyf/yearly-glance/commit/876a27ee96d9b31117ac5b2ae92f4e598382b2f3))
+* Optimize Select component style and implement virtual scrolling ([0f3a835](https://github.com/Moyf/yearly-glance/commit/0f3a83506da4a7f41be4ab3d43471651f20e4df5))
+* Add command to reload plugin ([1c484ae](https://github.com/Moyf/yearly-glance/commit/1c484ae36956c2d6912897f61f117f1b68defb15))
+* Refactor date selector and optimize event form functionality ([82c11cf](https://github.com/Moyf/yearly-glance/commit/82c11cfab8a631451ba63ae3f526860ac7ebb73d))
+
+
+### 🎨 Styles
+
+* **DateSelector:** Add date selector component and styles ([aa0b56b](https://github.com/Moyf/yearly-glance/commit/aa0b56bc38967e9e3c4c4fd5001ada2c88611cd5))
+
+
+### 🐛 Bug Fixes
+
+* Optimize solar term date calculation to avoid repeated date object creation ([ab06468](https://github.com/Moyf/yearly-glance/commit/ab064689709f2bdc09ff0736db7145ed95ce7f1e))
+* **data:** Fix incorrect words in original built-in holidays and migrate data ([a49688f](https://github.com/Moyf/yearly-glance/commit/a49688facdf34a8a107830bdb4171d9c9e9e29f9))
+
+
+
 ## [2.1.6](https://github.com/Moyf/yearly-glance/compare/2.1.5...2.1.6) (2025-04-22)
 
 

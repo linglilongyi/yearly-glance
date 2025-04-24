@@ -1,3 +1,36 @@
+# [2.2.0](https://github.com/Moyf/yearly-glance/compare/2.1.6...2.2.0) (2025-04-24)
+
+
+### ♻️ 重构
+
+* 新增日期显示及年份选项生成工具 ([5d5db8c](https://github.com/Moyf/yearly-glance/commit/5d5db8cc9da65ba406f040535204918d4fb3aa47))
+* 移除 parseDate 相关冗余字段和依赖 ([aacd258](https://github.com/Moyf/yearly-glance/commit/aacd2582d6ee2fac2190a92574a46f6623fc7eb9))
+* 重构事件管理界面及事件表单日期选择逻辑 ([41fd713](https://github.com/Moyf/yearly-glance/commit/41fd71313b1726f6e98efc5f9aa81550479c3c05))
+
+
+### ✨ 新功能
+
+* 合并内置节日数据，支持自动添加新节日 ([e37a2d6](https://github.com/Moyf/yearly-glance/commit/e37a2d69656b3b3116d0518b6c859430b86c60b7))
+* 事件管理中为内置节日增加统一设置是否显示的开关 ([637576d](https://github.com/Moyf/yearly-glance/commit/637576d88fa0cda3610ba4857eacd10f333ad0ab))
+* 统一内置节假日ID前缀并新增部分节日 ([6145049](https://github.com/Moyf/yearly-glance/commit/614504916d5f388dd5ce863569d0ec311c34acdb))
+* 优化农历日期计算逻辑，支持闰月及边界情况处理 ([876a27e](https://github.com/Moyf/yearly-glance/commit/876a27ee96d9b31117ac5b2ae92f4e598382b2f3))
+* 优化Select组件样式及实现虚拟滚动功能 ([0f3a835](https://github.com/Moyf/yearly-glance/commit/0f3a83506da4a7f41be4ab3d43471651f20e4df5))
+* 增加重载插件的command命令 ([1c484ae](https://github.com/Moyf/yearly-glance/commit/1c484ae36956c2d6912897f61f117f1b68defb15))
+* 重构日期选择器并优化事件表单功能 ([82c11cf](https://github.com/Moyf/yearly-glance/commit/82c11cfab8a631451ba63ae3f526860ac7ebb73d))
+
+
+### 🎨 样式
+
+* **DateSelector:** 新增日期选择器组件及样式 ([aa0b56b](https://github.com/Moyf/yearly-glance/commit/aa0b56bc38967e9e3c4c4fd5001ada2c88611cd5))
+
+
+### 🐛 修复
+
+* 优化节气日期计算，避免重复创建日期对象 ([ab06468](https://github.com/Moyf/yearly-glance/commit/ab064689709f2bdc09ff0736db7145ed95ce7f1e))
+* **data:** 修复原有内置节日错误单词，进行数据迁移 ([a49688f](https://github.com/Moyf/yearly-glance/commit/a49688facdf34a8a107830bdb4171d9c9e9e29f9))
+
+
+
 ## [2.1.6](https://github.com/Moyf/yearly-glance/compare/2.1.5...2.1.6) (2025-04-22)
 
 
