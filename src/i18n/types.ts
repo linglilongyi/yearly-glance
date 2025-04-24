@@ -173,8 +173,15 @@ export type BaseMessage = {
 				eventRemark: string;
 				save: string;
 				cancel: string;
+				submit: string;
 				reset: string;
 				eventDateHelp: string;
+				selectDateType: string;
+				previousDate: string;
+				nextDate: string;
+				year: string;
+				month: string;
+				day: string;
 			};
 			holiday: {
 				name: string;

@@ -26,6 +26,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { Select } from "../Base/Select";
 import { Toggle } from "../Base/Toggle";
 import { Tooltip } from "../Base/Tooltip";
+import { NavTabs } from "../Base/NavTabs";
 import { DatePicker } from "@/src/components/DatePicker/DatePicker";
 import { ColorSelector } from "../Base/ColorSelector";
 import { t } from "@/src/i18n/i18n";
@@ -298,57 +299,26 @@ const EventForm: React.FC<EventFormProps> = ({
 						displayDate(formData.date, formData.dateType)
 					)
 				) : (
-					<input
-						type="text"
-						name="date"
-						value={displayDateValue}
-						onChange={handleChange}
-						placeholder="YYYY-MM-DD or MM-DD (加!表示闰月)"
-						required
+					<DatePicker
+						value={formData.date || todayString}
+						type={formData.dateType}
+						onChange={(value, dateType) => {
+							setFormData((prev) => ({
+								...prev,
+								date: value,
+								dateType: dateType,
+							}));
+						}}
 					/>
-					// <DatePicker
-					// 	value={formData.date || todayString}
-					// 	defaultLunar={formData.dateType === "LUNAR"}
-					// 	onChange={(value, dateType) => {
-					// 		setFormData((prev) => ({
-					// 			...prev,
-					// 			date: value,
-					// 			dateType: dateType,
-					// 		}));
-					// 	}}
-					// />
 				)}
 			</div>
 			{/* 事件日期类型(只读，由事件日期自动推断) */}
 			<div className="form-group read-only">
 				<label>{t("view.eventManager.form.eventDateType")}</label>
-				{/* TODO: 根据事件日期自动推断公历或农历的逻辑函数 */}
-				{(formData as Holiday).type === "BUILTIN" ? (
-					renderReadOnlyValue(
-						formData.dateType === "LUNAR"
-							? t("view.eventManager.lunar")
-							: t("view.eventManager.solar")
-					)
-				) : (
-					<Select
-						value={formData.dateType || "SOLAR"}
-						onValueChange={(value) => {
-							setFormData((prev) => ({
-								...prev,
-								dateType: value as "SOLAR" | "LUNAR",
-							}));
-						}}
-						options={[
-							{
-								value: "SOLAR",
-								label: t("view.eventManager.solar"),
-							},
-							{
-								value: "LUNAR",
-								label: t("view.eventManager.lunar"),
-							},
-						]}
-					/>
+				{renderReadOnlyValue(
+					formData.dateType === "LUNAR"
+						? t("view.eventManager.lunar")
+						: t("view.eventManager.solar")
 				)}
 			</div>
 			{/* 节日字段(只读)：类型 */}
@@ -367,26 +337,22 @@ const EventForm: React.FC<EventFormProps> = ({
 				<>
 					<div className="form-group read-only">
 						<label>{t("view.eventManager.birthday.age")}</label>
-						{/* TODO: 计算当前年龄 */}
 						{renderReadOnlyValue((formData as Birthday).age)}
 					</div>
 					<div className="form-group read-only">
 						<label>
 							{t("view.eventManager.birthday.nextBirthday")}
 						</label>
-						{/* TODO: 基于当前日期，计算下一次生日时间 */}
 						{renderReadOnlyValue(
 							(formData as Birthday).nextBirthday
 						)}
 					</div>
 					<div className="form-group read-only">
 						<label>{t("view.eventManager.birthday.animal")}</label>
-						{/* TODO: 在年月日信息完整前提下，计算生肖 */}
 						{renderReadOnlyValue((formData as Birthday).animal)}
 					</div>
 					<div className="form-group read-only">
 						<label>{t("view.eventManager.birthday.zodiac")}</label>
-						{/* TODO: 在年月日信息完整前提下，计算星座 */}
 						{renderReadOnlyValue((formData as Birthday).zodiac)}
 					</div>
 				</>
@@ -430,6 +396,17 @@ const EventForm: React.FC<EventFormProps> = ({
 						submitDefaultAsValue={false}
 					/>
 				</div>
+				{/* 是否隐藏 */}
+				<div className="form-group checkbox">
+					<label>{t("view.eventManager.form.eventHidden")}</label>
+					<Toggle
+						checked={(formData as BaseEvent).isHidden ?? false}
+						onChange={(checked) =>
+							handleToggleChange("isHidden", checked)
+						}
+						aria-label={t("view.eventManager.form.eventHidden")}
+					/>
+				</div>
 				{/* 节日字段：节日起源时间 */}
 				{eventType === "holiday" && (
 					<div className="form-group">
@@ -460,17 +437,6 @@ const EventForm: React.FC<EventFormProps> = ({
 						/>
 					</div>
 				)}
-				{/* 是否隐藏 */}
-				<div className="form-group checkbox">
-					<label>{t("view.eventManager.form.eventHidden")}</label>
-					<Toggle
-						checked={(formData as BaseEvent).isHidden ?? false}
-						onChange={(checked) =>
-							handleToggleChange("isHidden", checked)
-						}
-						aria-label={t("view.eventManager.form.eventHidden")}
-					/>
-				</div>
 				{/* 事件备注 */}
 				<div className="form-group">
 					<label>{t("view.eventManager.form.eventRemark")}</label>
@@ -512,31 +478,6 @@ interface EventFormWrapperProps {
 	onCancel: () => void;
 }
 
-// 添加TabNav组件
-interface TabNavProps {
-	value: string;
-	onChange: (value: string) => void;
-	tabs: { value: string; label: string }[];
-}
-
-const TabNav: React.FC<TabNavProps> = ({ value, onChange, tabs }) => {
-	return (
-		<div className="event-type-tabs" role="tablist">
-			{tabs.map((tab) => (
-				<div
-					key={tab.value}
-					className={`event-type-tab ${
-						value === tab.value ? "active" : ""
-					}`}
-					onClick={() => onChange(tab.value)}
-				>
-					<span className="tab-label">{tab.label}</span>
-				</div>
-			))}
-		</div>
-	);
-};
-
 const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 	plugin,
 	initialEventType,
@@ -551,11 +492,6 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 	const [eventType, setEventType] =
 		React.useState<EventType>(initialEventType);
 
-	// 处理事件类型变更
-	const handleEventTypeChange = (value: string) => {
-		setEventType(value as EventType);
-	};
-
 	// 处理保存事件
 	const handleSave = (event: CustomEvent | Birthday | Holiday) => {
 		onSave(event, eventType);
@@ -565,10 +501,10 @@ const EventFormWrapper: React.FC<EventFormWrapperProps> = ({
 		<div className="yearly-glance-event-modal">
 			{allowTypeChange && (
 				<div className="event-type-selector">
-					<TabNav
-						value={eventType}
-						onChange={handleEventTypeChange}
+					<NavTabs
 						tabs={EVENT_TYPE_OPTIONS}
+						activeTab={eventType}
+						onClick={(tab) => setEventType(tab as EventType)}
 					/>
 				</div>
 			)}

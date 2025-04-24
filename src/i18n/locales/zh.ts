@@ -166,6 +166,7 @@ const translations: BaseMessage = {
 				save: "保存",
 				cancel: "取消",
 				reset: "重置",
+				submit: "提交",
 				eventDateHelp:
 					"<b>格式：</b><br>" +
 					"YYYY-M-D 或 M-D<br>" +
@@ -174,6 +175,12 @@ const translations: BaseMessage = {
 					"<b>农历：</b><br>" +
 					"• 2025-01-01 = 二〇二五年正月初一<br>" +
 					"• 2025-06-01! = 二〇二五年闰六月初一",
+				selectDateType: "选择",
+				previousDate: "上一",
+				nextDate: "下一",
+				year: "年",
+				month: "月",
+				day: "日",
 			},
 			holiday: {
 				name: "节日",

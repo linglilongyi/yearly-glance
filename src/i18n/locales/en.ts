@@ -166,6 +166,7 @@ const translations: BaseMessage = {
 				save: "Save",
 				cancel: "Cancel",
 				reset: "Reset",
+				submit: "Submit",
 				eventDateHelp:
 					"<b>Format:</b><br>" +
 					"YYYY-M-D or M-D<br>" +
@@ -174,6 +175,12 @@ const translations: BaseMessage = {
 					"<b>Lunar Calendar:</b><br>" +
 					"• 2025-01-01 = The 1st day of the 1st month, 2025<br>" +
 					"• 2025-06-01! = The 1st day of the intercalary (leap) 6th month, 2025",
+				selectDateType: "Select",
+				previousDate: "Previous ",
+				nextDate: "Next ",
+				year: "Year",
+				month: "Month",
+				day: "Day",
 			},
 			holiday: {
 				name: "Holiday",
