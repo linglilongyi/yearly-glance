@@ -1,7 +1,7 @@
 import { IconName, ItemView, WorkspaceLeaf } from "obsidian";
 import YearlyGlancePlugin from "@/src/main";
 import { t } from "@/src/i18n/i18n";
-import { EventManager } from "@/src/components/YearlyCalendar/EventManager";
+import { EventManager } from "@/src/components/EventManager/EventManager";
 
 // 定义视图类型
 export const VIEW_TYPE_EVENT_MANAGER = "yearly-glance-event-view";

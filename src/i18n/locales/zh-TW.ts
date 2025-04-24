@@ -143,6 +143,12 @@ const translations: BaseMessage = {
 				deleteConfirm: "確認刪除事件",
 				location: "在事件管理中打開",
 				toggleBuiltinEventHidden: "切換內置節日顯示狀態",
+				sort: {
+					name: "事件名稱",
+					date: "事件日期",
+					asc: "升序",
+					desc: "降序",
+				},
 			},
 			empty: {
 				text: "無事件",
