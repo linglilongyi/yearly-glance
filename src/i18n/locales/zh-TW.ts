@@ -173,6 +173,12 @@ const translations: BaseMessage = {
 					"<b>農曆：</b><br>" +
 					"• 2025-01-01 = 二〇二五年正月初一<br>" +
 					"• 2025-06-01! = 二〇二五年閏六月初一<br>",
+				selectDateType: "選擇",
+				previousDate: "上一",
+				nextDate: "下一",
+				year: "年",
+				month: "月",
+				day: "日",
 			},
 			holiday: {
 				name: "節日",

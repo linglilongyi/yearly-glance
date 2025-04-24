@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Select, SelectOption } from "../Base/Select";
+import { t } from "@/src/i18n/i18n";
 import "./style/DateSelector.css";
 
 interface DateSelectorProps {
@@ -42,6 +43,13 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
 		onChange(newValue);
 	};
 
+	const getDateTypeText = React.useCallback(() => {
+		if (type === "year") return t("view.eventManager.form.year");
+		if (type === "month") return t("view.eventManager.form.month");
+		if (type === "day") return t("view.eventManager.form.day");
+		return "";
+	}, [type]);
+
 	return (
 		<div className={`yg-date-selector ${className}`}>
 			<div className="yg-date-selector-select">
@@ -49,7 +57,9 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
 					value={value}
 					onValueChange={handleSelectChange}
 					options={options}
-					placeholder={`Select ${type}`}
+					placeholder={`${t(
+						"view.eventManager.form.selectDateType"
+					)}${getDateTypeText()}`}
 				/>
 			</div>
 
@@ -57,14 +67,18 @@ export const DateSelector: React.FC<DateSelectorProps> = ({
 				<span
 					className="yg-date-selector-arrow yg-date-selector-prev"
 					onClick={handleDecrease}
-					aria-label={`Previous ${type}`}
+					title={`${t(
+						"view.eventManager.form.previousDate"
+					)}${getDateTypeText()}`}
 				>
 					<ChevronUp size={18} />
 				</span>
 				<span
 					className="yg-date-selector-arrow yg-date-selector-next"
 					onClick={handleIncrease}
-					aria-label={`Next ${type}`}
+					title={`${t(
+						"view.eventManager.form.nextDate"
+					)}${getDateTypeText()}`}
 				>
 					<ChevronDown size={18} />
 				</span>
