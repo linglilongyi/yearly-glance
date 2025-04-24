@@ -9,6 +9,7 @@ import {
 } from "@/src/core/interfaces/Events";
 import { EVENT_TYPE_OPTIONS } from "../YearlyCalendar/EventFormModal";
 import { useYearlyGlanceConfig } from "@/src/core/hook/useYearlyGlanceConfig";
+import { SortControls, SortDirection, SortField } from "./SortControls";
 import { EventList } from "./EventList";
 import { Input } from "../Base/Input";
 import { ConfirmDialog } from "../Base/ConfirmDialog";
@@ -33,6 +34,11 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 	const [searchExpanded, setSearchExpanded] = React.useState(false);
 	const searchContainerRef = React.useRef<HTMLDivElement>(null);
 
+	// 添加排序状态
+	const [sortField, setSortField] = React.useState<SortField>("date");
+	const [sortDirection, setSortDirection] =
+		React.useState<SortDirection>("asc");
+
 	// 订阅事件总线，处理搜索请求
 	React.useEffect(() => {
 		// 订阅搜索请求事件
@@ -56,6 +62,12 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 
 	const handleYearlyCalendar = () => {
 		plugin.openPluginView(VIEW_TYPE_YEARLY_GLANCE);
+	};
+
+	// 处理排序变更
+	const handleSortChange = (field: SortField, direction: SortDirection) => {
+		setSortField(field);
+		setSortDirection(direction);
 	};
 
 	// 添加新事件
@@ -301,6 +313,11 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 						)}
 					</div>
 
+					<SortControls
+						sortField={sortField}
+						sortDirection={sortDirection}
+						onSortChange={handleSortChange}
+					/>
 					<button
 						className="yearly-calendar-button"
 						onClick={handleYearlyCalendar}
@@ -326,6 +343,8 @@ const EventManagerView: React.FC<EventManagerViewProps> = ({ plugin }) => {
 					onDelete={handleDeleteEvent}
 					eventType={activeTab}
 					updateEvents={updateEvents}
+					sortField={sortField}
+					sortDirection={sortDirection}
 				/>
 			</div>
 		</div>
