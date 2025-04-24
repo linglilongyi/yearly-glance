@@ -193,6 +193,41 @@ export function isValidLunarDate(
 	}
 }
 
+/**
+ * 构造有效的农历日期Lunar对象
+ * @param year 年份
+ * @param month 月份
+ * @param day 日
+ * @returns Lunar对象
+ */
+export function constructLunar(
+	year: number,
+	month: number,
+	day: number
+): Lunar {
+	if (month < 0) {
+		// 农历闰月情况
+		if (isValidLunarDate(year, month, day)) {
+			// 构造正常，直接返回
+			return Lunar.fromYmd(year, month, day);
+		} else if (isValidLunarDate(year, Math.abs(month), day)) {
+			// 如果因为当前年份没有该农历闰月，导致构造失败，则使用正常月份
+			return Lunar.fromYmd(year, Math.abs(month), day);
+		} else {
+			// 其他情况是当前月份没有该农历日，一般出现在该月份没有三十，则使用前一天
+			return Lunar.fromYmd(year, month, day - 1);
+		}
+	} else {
+		// 农历正常月份情况
+		if (isValidLunarDate(year, month, day)) {
+			return Lunar.fromYmd(year, month, day);
+		} else {
+			// 其他情况是当前月份没有该农历日，一般出现在该月份没有三十，则使用前一天
+			return Lunar.fromYmd(year, month, day - 1);
+		}
+	}
+}
+
 // (y-m-d) -> (y,m,d)
 export function parseExtendedISO(dateValue: string) {
 	// 如果输入为空或undefined，返回空字符串

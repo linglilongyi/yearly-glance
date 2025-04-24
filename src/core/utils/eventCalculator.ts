@@ -1,6 +1,6 @@
 import { Lunar, Solar } from "lunar-typescript";
 import { Birthday, CustomEvent, Holiday } from "@/src/core/interfaces/Events";
-import { isValidLunarDate, parseDateValue } from "./dateParser";
+import { constructLunar, isValidLunarDate, parseDateValue } from "./dateParser";
 import { getBirthdayTranslation } from "../data/birthday";
 
 // 计算当前选择年份下时间的的公历日期
@@ -14,22 +14,17 @@ export function calculateDateObj(
 		return [];
 	}
 
-	const { hasYear, year, month, day } = parseDateValue(date, dateType);
+	const { Sd, Ld, hasYear, month, day } = parseDateValue(date, dateType);
 
-	const monthAbs = Math.abs(month);
-
-	// 自定义事件一般ymd齐全，在事件不重复的情况下，使用date本身的year
-	if (isRepeat === false && hasYear) {
+	// 自定义事件一般ymd齐全，在事件不重复，且有年份的情况下，只需要计算出公历日期
+	if (
+		(isRepeat === false && hasYear) ||
+		(isRepeat === undefined && hasYear)
+	) {
 		if (dateType === "SOLAR") {
-			const solar = Solar.fromYmd(year!, month, day);
-			return [solar.toString()];
+			return [Sd!.toString()];
 		} else if (dateType === "LUNAR") {
-			const lunar = Lunar.fromYmd(year!, monthAbs, day);
-			if (lunar.getSolar().getYear() === yearSelected) {
-				return [lunar.getSolar().toString()];
-			} else {
-				return [];
-			}
+			return [Ld!.getSolar().toString()];
 		} else {
 			return [];
 		}
@@ -40,16 +35,21 @@ export function calculateDateObj(
 		const solar = Solar.fromYmd(yearSelected, month, day);
 		return [solar.toString()];
 	} else if (dateType === "LUNAR") {
-		const lunarArr: string[] = [];
-		const lunar = Lunar.fromYmd(yearSelected, monthAbs, day);
-		const lastLunar = Lunar.fromYmd(yearSelected - 1, monthAbs, day);
+		const dateArr: string[] = [];
+		// 农历的处理会复杂一点
+		// 1. 首先构造出yearSelected和yearSelected - 1的农历日期
+		const lunar = constructLunar(yearSelected, month, day);
+		const lunarLastYear = constructLunar(yearSelected - 1, month, day);
+
 		if (lunar.getSolar().getYear() === yearSelected) {
-			lunarArr.push(lunar.getSolar().toString());
+			dateArr.push(lunar.getSolar().toString());
 		}
-		if (lastLunar.getSolar().getYear() === yearSelected) {
-			lunarArr.push(lastLunar.getSolar().toString());
+
+		if (lunarLastYear.getSolar().getYear() === yearSelected) {
+			dateArr.push(lunarLastYear.getSolar().toString());
 		}
-		return lunarArr;
+
+		return dateArr;
 	} else {
 		return [];
 	}
