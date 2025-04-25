@@ -1,3 +1,18 @@
+## [2.2.1](https://github.com/Moyf/yearly-glance/compare/2.2.0...2.2.1) (2025-04-25)
+
+
+### ♻️ Refactor
+
+* Split EventManager component from YearlyCalendar ([64223fb](https://github.com/Moyf/yearly-glance/commit/64223fb4822c37bffd4d351981bfc09192431a18))
+
+
+### ✨ Features
+
+* Add event list sorting functionality, supporting sorting by name and date ([43e5fc2](https://github.com/Moyf/yearly-glance/commit/43e5fc2beda63328a00d253953655e88503ae86e))
+* **event-manager:** Add event sorting controls and related internationalization support ([42670a4](https://github.com/Moyf/yearly-glance/commit/42670a4fa43edf07bdba2a9286c936bb8eab98df))
+
+
+
 # [2.2.0](https://github.com/Moyf/yearly-glance/compare/2.1.6...2.2.0) (2025-04-24)
 
 

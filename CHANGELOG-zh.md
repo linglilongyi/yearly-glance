@@ -1,3 +1,18 @@
+## [2.2.1](https://github.com/Moyf/yearly-glance/compare/2.2.0...2.2.1) (2025-04-25)
+
+
+### ♻️ 重构
+
+* 拆分 YearlyCalendar 中的 EventManager 组件 ([64223fb](https://github.com/Moyf/yearly-glance/commit/64223fb4822c37bffd4d351981bfc09192431a18))
+
+
+### ✨ 新功能
+
+* 添加事件列表排序功能，支持按名称和日期排序 ([43e5fc2](https://github.com/Moyf/yearly-glance/commit/43e5fc2beda63328a00d253953655e88503ae86e))
+* **event-manager:** 新增事件排序控件及相关国际化支持 ([42670a4](https://github.com/Moyf/yearly-glance/commit/42670a4fa43edf07bdba2a9286c936bb8eab98df))
+
+
+
 # [2.2.0](https://github.com/Moyf/yearly-glance/compare/2.1.6...2.2.0) (2025-04-24)
 
 
