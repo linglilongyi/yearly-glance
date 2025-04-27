@@ -1,3 +1,18 @@
+## [2.2.2](https://github.com/Moyf/yearly-glance/compare/2.2.1...2.2.2) (2025-04-27)
+
+
+### ✨ Features
+
+* Add year control button functionality ([f02f83c](https://github.com/Moyf/yearly-glance/commit/f02f83cb97241a6a9e965d5c616f18b55ca2c497))
+* Optimize solar term date calculation and data migration logic ([27b86dc](https://github.com/Moyf/yearly-glance/commit/27b86dc2c74412188b4d8a3c7c9bfb308e8c72ea))
+
+
+### 🐛 Bug Fixes
+
+* Optimize date handling and event icon display logic ([af83473](https://github.com/Moyf/yearly-glance/commit/af834737eec620a1cd7b8e702a5dd522010d30a0))
+
+
+
 ## [2.2.1](https://github.com/Moyf/yearly-glance/compare/2.2.0...2.2.1) (2025-04-25)
 
 

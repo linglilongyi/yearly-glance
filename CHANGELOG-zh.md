@@ -1,3 +1,18 @@
+## [2.2.2](https://github.com/Moyf/yearly-glance/compare/2.2.1...2.2.2) (2025-04-27)
+
+
+### ✨ 新功能
+
+* 新增年份控制按钮功能 ([f02f83c](https://github.com/Moyf/yearly-glance/commit/f02f83cb97241a6a9e965d5c616f18b55ca2c497))
+* 优节气日期计算及数据迁移逻辑 ([27b86dc](https://github.com/Moyf/yearly-glance/commit/27b86dc2c74412188b4d8a3c7c9bfb308e8c72ea))
+
+
+### 🐛 修复
+
+* 优化日期处理和事件图标显示逻辑 ([af83473](https://github.com/Moyf/yearly-glance/commit/af834737eec620a1cd7b8e702a5dd522010d30a0))
+
+
+
 ## [2.2.1](https://github.com/Moyf/yearly-glance/compare/2.2.0...2.2.1) (2025-04-25)
 
 
