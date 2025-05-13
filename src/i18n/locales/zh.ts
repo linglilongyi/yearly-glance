@@ -80,6 +80,10 @@ const translations: BaseMessage = {
 				name: "显示农历日",
 				desc: "在视图中显示农历日",
 			},
+			showDebugInfo: {
+				name: "显示调试信息",
+				desc: "在控制台中显示调试信息",
+			},
 		},
 		events: {
 			name: "事件",

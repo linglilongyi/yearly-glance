@@ -80,6 +80,10 @@ const translations: BaseMessage = {
 				name: "Show lunar day",
 				desc: "Show lunar day in view",
 			},
+			showDebugInfo: {
+				name: "Debug information",
+				desc: "Show debug information for development",
+			},
 		},
 		events: {
 			name: "Events",

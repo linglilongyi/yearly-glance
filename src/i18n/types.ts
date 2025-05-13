@@ -90,6 +90,10 @@ export type BaseMessage = {
 				name: string;
 				desc: string;
 			};
+			showDebugInfo: {
+				name: string;
+				desc: string;
+			};
 		};
 		events: {
 			name: string;
