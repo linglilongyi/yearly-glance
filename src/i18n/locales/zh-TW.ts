@@ -89,6 +89,16 @@ const translations: BaseMessage = {
 			name: "事件",
 			desc: "各事件的管理",
 		},
+		group: {
+			basic: "基本設定",
+			basicDesc: "年曆的基礎資訊配置。",
+			layout: "佈局相關",
+			layoutDesc: "年曆的整體佈局與視圖類型。",
+			displayContent: "樣式設定",
+			displayContentDesc: "年曆外觀相關的內容。",
+			eventDisplay: "事件顯示",
+			eventDisplayDesc: "事件、節假日、生日等相關顯示設定。"
+		},
 	},
 	view: {
 		yearlyGlance: {

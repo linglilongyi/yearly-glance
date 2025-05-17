@@ -218,7 +218,7 @@ export const EventItem: React.FC<EventItemProps> = ({
 
 				<div className="event-date">
 					<span className="date-icon">
-						{event.dateType === "LUNAR" ? "🌙" : "🌞"}
+						{event.dateType === "LUNAR" ? "🌙" : "📅"}
 					</span>
 					<span>{displayDate(event.date, event.dateType)}</span>
 				</div>
