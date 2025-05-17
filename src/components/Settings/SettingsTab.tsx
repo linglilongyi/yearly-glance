@@ -41,10 +41,6 @@ export default class YearlyGlanceSettingsTab extends PluginSettingTab {
 		this.root?.render(
 			<React.StrictMode>
 				<div className="yg-settings-container">
-					<div className="yg-settings-header">
-						<div class="yg-settings-item-name">{t("setting.title")}</div>
-						<div class="yg-settings-item-description">{t("setting.desc")}</div>
-					</div>
 					<ViewSettings plugin={this.plugin} />
 				</div>
 			</React.StrictMode>

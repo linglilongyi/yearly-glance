@@ -54,7 +54,7 @@ export default class YearlyGlancePlugin extends Plugin {
 	}
 
 	onunload() {
-		console.debug("[yearly-glance] Unloaded.");
+		// console.debug("[yearly-glance] Unloaded.");
 	}
 
 	async loadSettings() {
