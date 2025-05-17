@@ -18,6 +18,7 @@ export interface YearlyGlanceSettings {
 	showTooltips: boolean; // 是否显示提示
 	colorful: boolean; // 是否多彩
 	showLunarDay: boolean; // 是否显示农历日
+	showDebugInfo: boolean; // 是否显示调试信息
 }
 
 export const DEFAULT_SETTINGS: YearlyGlanceSettings = {
@@ -39,6 +40,7 @@ export const DEFAULT_SETTINGS: YearlyGlanceSettings = {
 	showTooltips: true,
 	colorful: false,
 	showLunarDay: false,
+	showDebugInfo: false,
 };
 
 export const LAYOUT_OPTIONS = ["12x1", "1x12", "6x2", "2x6", "3x4", "4x3"];

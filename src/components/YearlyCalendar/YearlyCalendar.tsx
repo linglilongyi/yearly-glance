@@ -65,6 +65,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 		mondayFirst,
 		hideEmptyDates,
 		showLunarDay,
+		showDebugInfo,
 	} = config;
 
 	// 添加状态来跟踪年份控制按钮是否显示

@@ -90,11 +90,25 @@ export type BaseMessage = {
 				name: string;
 				desc: string;
 			};
+			showDebugInfo: {
+				name: string;
+				desc: string;
+			};
 		};
 		events: {
 			name: string;
 			desc: string;
 		};
+		group: {
+			basic: string;
+			basicDesc: string;
+			layout: string;
+			layoutDesc: string;
+			displayContent: string;
+			displayContentDesc: string;
+			eventDisplay: string;
+			eventDisplayDesc: string;
+		},
 	};
 	view: {
 		yearlyGlance: {

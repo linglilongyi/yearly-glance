@@ -31,7 +31,7 @@ export default class YearlyGlancePlugin extends Plugin {
 	settings: YearlyGlanceConfig;
 
 	async onload() {
-		console.debug("[yearly-glance] 加载年度概览插件");
+		// console.debug("[yearly-glance] 加载年度概览插件");
 		// 加载设置
 		await this.loadSettings();
 
@@ -54,7 +54,7 @@ export default class YearlyGlancePlugin extends Plugin {
 	}
 
 	onunload() {
-		console.debug("[yearly-glance] 卸载年度概览插件");
+		// console.debug("[yearly-glance] Unloaded.");
 	}
 
 	async loadSettings() {
@@ -256,9 +256,9 @@ export default class YearlyGlancePlugin extends Plugin {
 			await this.app.plugins.disablePluginAndSave("yearly-glance");
 			// @ts-ignore
 			await this.app.plugins.enablePluginAndSave("yearly-glance");
-			new Notice("[yearly-glance] 插件已重载");
+			new Notice("[yearly-glance] Reloaded 插件已重载");
 		} catch (error) {
-			console.error("[yearly-glance] 插件重载失败", error);
+			console.error("[yearly-glance] Fail to reload 插件重载失败", error);
 		}
 	}
 
