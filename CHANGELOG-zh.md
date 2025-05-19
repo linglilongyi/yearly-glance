@@ -1,3 +1,19 @@
+# [2.3.0](https://github.com/Moyf/yearly-glance/compare/2.2.2...2.3.0) (2025-05-19)
+
+
+### ✨ 新功能
+
+* 新增农历日显示及调整多语言描述文本 ([5eb5e94](https://github.com/Moyf/yearly-glance/commit/5eb5e94c1f2cd15346e711084d3e94910f5f145d))
+* 优化构建配置及国际化语言获取逻辑 ([71a9d8f](https://github.com/Moyf/yearly-glance/commit/71a9d8ffbc1fce320e87210af645fcb1f5bd1ad6))
+* 重新调整设置界面，增加更多分组 ([6ae3457](https://github.com/Moyf/yearly-glance/commit/6ae3457fba7fd6b7c93aa1dacf43878a08538b75))
+
+
+### 🐛 修复
+
+* 优化事件日期计算逻辑，修正年份判断条件 ([8352455](https://github.com/Moyf/yearly-glance/commit/8352455b92ba70e8fc7b93303a919c492ddef868))
+
+
+
 ## [2.2.2](https://github.com/Moyf/yearly-glance/compare/2.2.1...2.2.2) (2025-04-27)
 
 

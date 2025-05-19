@@ -1,3 +1,18 @@
+# [2.3.0](https://github.com/Moyf/yearly-glance/compare/2.2.2...2.3.0) (2025-05-19)
+
+### Features
+
+* Add Chinese lunar date display and adjust multi-language description text ([5eb5e94](https://github.com/Moyf/yearly-glance/commit/5eb5e94c1f2cd15346e711084d3e94910f5f145d))
+* Optimize build configuration and internationalization language acquisition logic ([71a9d8f](https://github.com/Moyf/yearly-glance/commit/71a9d8ffbc1fce320e87210af645fcb1f5bd1ad6))
+* Reorganize the settings interface and add more groups ([6ae3457](https://github.com/Moyf/yearly-glance/commit/6ae3457fba7fd6b7c93aa1dacf43878a08538b75))
+
+
+### Bug Fixes
+
+* Optimize event date calculation logic and fix year judgment condition ([8352455](https://github.com/Moyf/yearly-glance/commit/8352455b92ba70e8fc7b93303a919c492ddef868))
+
+
+
 ## [2.2.2](https://github.com/Moyf/yearly-glance/compare/2.2.1...2.2.2) (2025-04-27)
 
 
