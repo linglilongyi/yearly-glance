@@ -49,12 +49,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({ plugin }) => {
 	return (
 		<>
 			{/* 基本设置分组 */}
-			<SettingsBlock
-				name={t("setting.group.basic.name")}
-				desc={t("setting.group.basic.desc")}
-				collapsible
-				defaultCollapsed={false}
-			>
+			<SettingsBlock>
 				{/* 年历标题 */}
 				<SettingsItem
 					name={t("setting.general.title.name")}
