@@ -17,10 +17,11 @@ import {
 } from "@/src/core/hook/useEventBus";
 import { t } from "@/src/i18n/i18n";
 import "./style/EventTooltip.css";
+import { CalendarEvent } from "@/src/core/interfaces/CalendarEvent";
 
 interface EventTooltipContentProps {
 	plugin: YearlyGlancePlugin;
-	event: any;
+	event: CalendarEvent;
 	onClose: () => void;
 }
 
@@ -41,46 +42,7 @@ const EventTooltipContent: React.FC<EventTooltipContentProps> = ({
 
 		// 使用延迟确保tooltip已完全关闭
 		setTimeout(() => {
-			plugin.openEventForm(
-				eventType,
-				{
-					// 只传递基础事件需要的属性，避免传入CalendarEvent特有属性导致匹配问题
-					date: event.date,
-					dateType: event.dateType,
-					text: event.text,
-					emoji: event.emoji,
-					color: event.color,
-					remark: event.remark,
-
-					// 根据事件类型添加特定属性
-					...(eventType === "holiday"
-						? {
-								type: (event as Holiday).type,
-								isHidden: (event as Holiday).isHidden,
-								foundDate: (event as Holiday).foundDate,
-						  }
-						: {}),
-
-					...(eventType === "birthday"
-						? {
-								nextBirthday: (event as Birthday).nextBirthday,
-								age: (event as Birthday).age,
-								animal: (event as Birthday).animal,
-								zodiac: (event as Birthday).zodiac,
-								isHidden: (event as Birthday).isHidden,
-						  }
-						: {}),
-
-					...(eventType === "customEvent"
-						? {
-								isRepeat: (event as CustomEvent).isRepeat,
-								isHidden: (event as CustomEvent).isHidden,
-						  }
-						: {}),
-				},
-				true,
-				false
-			);
+			plugin.openEventForm(eventType, event, true, false);
 		}, 100);
 	};
 
@@ -221,7 +183,7 @@ export class EventTooltip extends Modal {
 	private event: Partial<Holiday | Birthday | CustomEvent>;
 	private plugin: YearlyGlancePlugin;
 
-	constructor(plugin: YearlyGlancePlugin, event: any) {
+	constructor(plugin: YearlyGlancePlugin, event: CalendarEvent) {
 		super(plugin.app);
 		this.plugin = plugin;
 		this.event = event;

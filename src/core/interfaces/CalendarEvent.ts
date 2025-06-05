@@ -1,9 +1,9 @@
-import { BaseEvent, EventType } from "./Events";
+import { Birthday, CustomEvent, EventType, Holiday } from "./Events";
 
 // 日历事件接口
-export interface CalendarEvent extends BaseEvent {
+export type CalendarEvent = (Holiday | Birthday | CustomEvent) & {
 	eventType: EventType; // 事件类型
-}
+};
 
 // 日数据接口
 export interface CalendarDay {

@@ -15,7 +15,10 @@ import {
 } from "@/src/components/Settings/ViewSettings";
 import { LayoutConfigMap } from "@/src/core/interfaces/Settings";
 import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
-import { CalendarDay } from "@/src/core/interfaces/CalendarEvent";
+import {
+	CalendarDay,
+	CalendarEvent,
+} from "@/src/core/interfaces/CalendarEvent";
 import { EventTooltip } from "./EventTooltip";
 import { Select } from "../Base/Select";
 import { t } from "@/src/i18n/i18n";
@@ -65,7 +68,6 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 		mondayFirst,
 		hideEmptyDates,
 		showLunarDay,
-		showDebugInfo,
 	} = config;
 
 	// 添加状态来跟踪年份控制按钮是否显示
@@ -172,7 +174,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 	const handleEventForm = () => {
 		plugin.openEventForm("customEvent", {}, false, true);
 	};
-	const handleEventTooltip = (event: any) => {
+	const handleEventTooltip = (event: CalendarEvent) => {
 		if (showTooltips) {
 			new EventTooltip(plugin, event).open();
 		} else {
@@ -180,7 +182,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 		}
 	};
 
-	const handleAddEventInDay = (day: any) => {
+	const handleAddEventInDay = (day: CalendarDay) => {
 		const solar = Solar.fromDate(day.date);
 		plugin.openEventForm("customEvent", {}, false, true, {
 			date: `${solar.getYear()},${solar.getMonth()},${solar.getDay()}`,
@@ -207,7 +209,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 	};
 
 	// 渲染单个事件
-	const renderEvent = (event: any, dayView = true) => {
+	const renderEvent = (event: CalendarEvent, dayView = true) => {
 		return (
 			<div
 				key={`${event.text}-${event.date}`}
