@@ -1,10 +1,14 @@
-import { IPresetColor } from "@/src/core/interfaces/Settings";
+import {
+	DEFAULT_PRESET_COLORS,
+	IPresetColor,
+} from "@/src/core/interfaces/Settings";
 import * as React from "react";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, RotateCcw, Trash2 } from "lucide-react";
 import { Toggle } from "../Base/Toggle";
 import { t } from "@/src/i18n/i18n";
 import { TranslationKeys } from "@/src/i18n/types";
 import "./style/PresetColorSettings.css";
+import { Input } from "../Base/Input";
 
 interface PresetColorSettingsProps {
 	presetColors: IPresetColor[];
@@ -25,7 +29,7 @@ export const PresetColorSettings: React.FC<PresetColorSettingsProps> = ({
 		setColors(presetColors);
 	}, [presetColors]);
 
-	const handleDragStart = (index: number) => {
+	const handleDragStart = (e: React.DragEvent, index: number) => {
 		setDraggedIndex(index);
 	};
 
@@ -58,7 +62,6 @@ export const PresetColorSettings: React.FC<PresetColorSettingsProps> = ({
 	};
 
 	const handleColorChange = (index: number, value: string) => {
-		if (colors[index].id !== undefined) return;
 		const newColors = [...colors];
 		newColors[index] = { ...newColors[index], value };
 		setColors(newColors);
@@ -87,6 +90,22 @@ export const PresetColorSettings: React.FC<PresetColorSettingsProps> = ({
 		if (colors[index].id !== undefined) return;
 		const newColors = [...colors];
 		newColors.splice(index, 1);
+		setColors(newColors);
+		onChange(newColors);
+	};
+
+	const handleReset = (index: number) => {
+		if (colors[index].id === undefined) return;
+
+		// 查找默认颜色中对应的颜色
+		const defaultColor = DEFAULT_PRESET_COLORS.find(
+			(color) => color.id === colors[index].id
+		);
+		if (!defaultColor) return;
+
+		// 重置为默认值
+		const newColors = [...colors];
+		newColors[index] = { ...newColors[index], value: defaultColor.value };
 		setColors(newColors);
 		onChange(newColors);
 	};
@@ -124,25 +143,28 @@ export const PresetColorSettings: React.FC<PresetColorSettingsProps> = ({
 						className={`yg-color-item ${
 							draggedIndex === index ? "dragging" : ""
 						} ${dragOverIndex === index ? "drag-over" : ""}`}
-						draggable
-						onDragStart={() => handleDragStart(index)}
-						onDragOver={(e) => handleDragOver(e, index)}
-						onDrop={handleDrop}
-						onDragEnd={handleDragEnd}
 					>
 						<div className="yg-color-input-container">
-							<span className="yg-drag-handle">≡</span>
+							<span
+								className="yg-drag-handle"
+								draggable
+								onDragStart={(e) => handleDragStart(e, index)}
+								onDragOver={(e) => handleDragOver(e, index)}
+								onDrop={handleDrop}
+								onDragEnd={handleDragEnd}
+							>
+								≡
+							</span>
 							<div className="yg-color-preview">
-								<input
+								<Input
 									type="color"
 									value={color.value}
-									onChange={(e) =>
-										handleColorChange(index, e.target.value)
+									onChange={(value) =>
+										handleColorChange(index, value)
 									}
-									disabled={color.id !== undefined}
 								/>
 							</div>
-							<input
+							<Input
 								className="yg-color-input-label"
 								type="text"
 								value={
@@ -153,17 +175,16 @@ export const PresetColorSettings: React.FC<PresetColorSettingsProps> = ({
 										: color.label
 								}
 								disabled={color.id !== undefined}
-								onChange={(e) =>
-									handleLabelChange(index, e.target.value)
+								onChange={(value) =>
+									handleLabelChange(index, value)
 								}
 							/>
-							<input
+							<Input
 								className="yg-color-input-value"
 								type="text"
 								value={color.value}
-								disabled={color.id !== undefined}
-								onChange={(e) =>
-									handleColorChange(index, e.target.value)
+								onChange={(value) =>
+									handleColorChange(index, value)
 								}
 							/>
 						</div>
@@ -172,13 +193,21 @@ export const PresetColorSettings: React.FC<PresetColorSettingsProps> = ({
 								checked={color.enable}
 								onChange={() => handleEnableChange(index)}
 							/>
-							<button
-								className="yg-color-remove mod-cta"
-								onClick={() => handleRemove(index)}
-								disabled={color.id !== undefined}
-							>
-								<Trash2 size={18} />
-							</button>
+							{color.id !== undefined ? (
+								<button
+									className="yg-color-reset mod-cta"
+									onClick={() => handleReset(index)}
+								>
+									<RotateCcw size={18} />
+								</button>
+							) : (
+								<button
+									className="yg-color-remove mod-cta"
+									onClick={() => handleRemove(index)}
+								>
+									<Trash2 size={18} />
+								</button>
+							)}
 						</div>
 					</div>
 				))}

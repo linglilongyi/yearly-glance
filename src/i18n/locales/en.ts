@@ -5,8 +5,8 @@ const translations: BaseMessage = {
 		title: "Yearly glance",
 		desc: "Configure your yearly event overview",
 		general: {
-			name: "Calendar",
-			desc: "Basic of the calendar",
+			name: "General",
+			desc: "View configuration",
 			title: {
 				name: "Title",
 				desc: "Use {{year}} placeholder when customizing, otherwise use the default title",
@@ -95,10 +95,6 @@ const translations: BaseMessage = {
 			desc: "Event management",
 		},
 		group: {
-			calendar: {
-				name: "Calendar",
-				desc: "Basic of the calendar",
-			},
 			layout: {
 				name: "Layout",
 				desc: "Overall layout and view type of the calendar.",
@@ -311,13 +307,13 @@ const translations: BaseMessage = {
 			hai: "Hài ",
 		},
 		color: {
-			red: "System-Red",
-			orange: "System-Orange",
-			yellow: "System-Yellow",
-			green: "System-Green",
-			blue: "System-Blue",
-			purple: "System-Purple",
-			brown: "System-Brown",
+			red: "Red",
+			orange: "Orange",
+			yellow: "Yellow",
+			green: "Green",
+			blue: "Blue",
+			purple: "Purple",
+			brown: "Brown",
 		},
 	},
 };
