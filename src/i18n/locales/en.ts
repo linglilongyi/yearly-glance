@@ -5,8 +5,8 @@ const translations: BaseMessage = {
 		title: "Yearly glance",
 		desc: "Configure your yearly event overview",
 		general: {
-			name: "General",
-			desc: "View configuration",
+			name: "Calendar",
+			desc: "Basic of the calendar",
 			title: {
 				name: "Title",
 				desc: "Use {{year}} placeholder when customizing, otherwise use the default title",
@@ -95,6 +95,10 @@ const translations: BaseMessage = {
 			desc: "Event management",
 		},
 		group: {
+			calendar: {
+				name: "Calendar",
+				desc: "Basic of the calendar",
+			},
 			layout: {
 				name: "Layout",
 				desc: "Overall layout and view type of the calendar.",

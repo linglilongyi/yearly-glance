@@ -95,6 +95,10 @@ const translations: BaseMessage = {
 			desc: "各事件的管理",
 		},
 		group: {
+			calendar: {
+				name: "日曆",
+				desc: "日曆的基本設定",
+			},
 			layout: {
 				name: "佈局相關",
 				desc: "年曆的整體佈局與視圖類型",
