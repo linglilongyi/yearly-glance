@@ -95,10 +95,6 @@ const translations: BaseMessage = {
 			desc: "各事件的管理",
 		},
 		group: {
-			calendar: {
-				name: "日历",
-				desc: "日历的基本设置",
-			},
 			layout: {
 				name: "布局相关",
 				desc: "年历的整体布局与视图类型",
@@ -310,13 +306,13 @@ const translations: BaseMessage = {
 			hai: "亥",
 		},
 		color: {
-			red: "系统-红色",
-			orange: "系统-橙色",
-			yellow: "系统-黄色",
-			green: "系统-绿色",
-			blue: "系统-蓝色",
-			purple: "系统-紫色",
-			brown: "系统-棕色",
+			red: "红色",
+			orange: "橙色",
+			yellow: "黄色",
+			green: "绿色",
+			blue: "蓝色",
+			purple: "紫色",
+			brown: "棕色",
 		},
 	},
 };

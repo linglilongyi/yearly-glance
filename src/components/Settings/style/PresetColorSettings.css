@@ -45,7 +45,6 @@
 	transition: all 0.2s ease;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 	border: 1px solid var(--background-modifier-border);
-	cursor: grab;
 
 	&:hover {
 		background: var(--interactive-hover);
@@ -75,10 +74,27 @@
 		color: var(--text-muted);
 		cursor: grab;
 		font-size: 1.2em;
-		padding: 4px;
+		/* 增大响应区域 */
+		padding: 12px 8px;
+		margin: -8px -4px;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+		/* 确保有足够的最小点击区域 */
+		min-width: 32px;
+		min-height: 32px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
 		&:hover {
 			color: var(--text-normal);
+			background: var(--interactive-hover);
+		}
+
+		&:active {
+			cursor: grabbing;
+			background: var(--interactive-active);
+			transform: scale(0.95);
 		}
 	}
 
@@ -101,10 +117,11 @@
 		border-radius: 4px;
 		background: var(--background-secondary);
 		transition: all 0.2s ease;
+	}
 
-		&:disabled {
-			cursor: not-allowed;
-		}
+	.yg-color-input-label:disabled {
+		cursor: not-allowed;
+		color: var(--text-faint);
 	}
 }
 
@@ -114,6 +131,7 @@
 	align-items: center;
 	gap: 0.75rem;
 
+	.yg-color-reset,
 	.yg-color-remove {
 		padding: 8px;
 		border-radius: 6px;

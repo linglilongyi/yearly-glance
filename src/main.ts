@@ -242,6 +242,7 @@ export default class YearlyGlancePlugin extends Plugin {
 			isEditing,
 			allowTypeChange,
 			(props = {
+				...props,
 				plugin: this,
 			})
 		).open();
