@@ -1,3 +1,21 @@
+# [2.4.0](https://github.com/Moyf/yearly-glance/compare/2.3.0...2.4.0) (2025-06-06)
+
+
+### ✨ 新功能
+
+* 优化输入组件及界面交互体验 ([321631c](https://github.com/Moyf/yearly-glance/commit/321631c09caad59e68e72a272d38723d73a7ed6b))
+* 优化预设颜色设置及界面交互体验 ([f0a8150](https://github.com/Moyf/yearly-glance/commit/f0a81503639761cb663cf2ca62fe1bd42c70a83c))
+* 支持定义事件颜色预设 (#47) ([1dc13d3](https://github.com/Moyf/yearly-glance/commit/1dc13d3528353eac541416e123936dddd4e0874f)), closes [#47](https://github.com/Moyf/yearly-glance/issues/47)
+
+
+### 🐛 修复
+
+* 修复 props 传递时遗漏扩展导致的属性丢失 ([d86eaea](https://github.com/Moyf/yearly-glance/commit/d86eaea30d6c986cd3821de8cb69e12831a83bca))
+* 优化年度日历事件类型定义及事件处理逻辑 ([1d93fd2](https://github.com/Moyf/yearly-glance/commit/1d93fd25a0c59d22bb64ee9f3926ae593e2a2183))
+* **types:** 注释掉 group 中的 calendar 设置项 ([73e2721](https://github.com/Moyf/yearly-glance/commit/73e2721ebb852c5430d0d550e07949dcaa992a69))
+
+
+
 # [2.3.0](https://github.com/Moyf/yearly-glance/compare/2.2.2...2.3.0) (2025-05-19)
 
 
