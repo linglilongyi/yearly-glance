@@ -1,7 +1,7 @@
 
 # Yearly Glance - All the moments, at a glance
 
-English | [中文文档](./README-zh.md)
+English | [中文文档](https://github.com/Moyf/yearly-glance/blob/master/README-zh.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/Moyf/yearly-glance?style=flat&label=Stars)](https://github.com/Moyf/yearly-glance/stargazers)
 [![Total Downloads](https://img.shields.io/github/downloads/Moyf/yearly-glance/total?style=flat&label=Total%20Downloads)](https://github.com/Moyf/yearly-glance/releases)

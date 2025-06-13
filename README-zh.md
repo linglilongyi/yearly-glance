@@ -1,6 +1,6 @@
 # Yearly Glance：时光不漏，一眼尽览
 
-中文文档 | [English](./README.md)
+中文文档 | [English](https://github.com/Moyf/yearly-glance/blob/master/README.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/Moyf/yearly-glance?style=flat&label=星标)](https://github.com/Moyf/yearly-glance/stargazers)
 [![Total Downloads](https://img.shields.io/github/downloads/Moyf/yearly-glance/total?style=flat&label=总下载量)](https://github.com/Moyf/yearly-glance/releases)
