@@ -4,6 +4,8 @@ import YearlyGlancePlugin from "@/src/main";
 import { createRoot, Root } from "react-dom/client";
 import { YearlyGlanceConfig } from "@/src/core/interfaces/types";
 import { ViewSettings } from "./ViewSettings";
+import parse from "html-react-parser";
+import { t } from "@/src/i18n/i18n";
 import "./style/SettingsTab.css";
 
 export default class YearlyGlanceSettingsTab extends PluginSettingTab {
@@ -40,6 +42,14 @@ export default class YearlyGlanceSettingsTab extends PluginSettingTab {
 		this.root?.render(
 			<React.StrictMode>
 				<div className="yg-settings-container">
+					<div className="yg-settings-header">
+						<div class="yg-settings-item-name">
+							{t("setting.title")}
+						</div>
+						<div class="yg-settings-item-description">
+							{parse(t("setting.desc"))}
+						</div>
+					</div>
 					<ViewSettings plugin={this.plugin} />
 				</div>
 			</React.StrictMode>

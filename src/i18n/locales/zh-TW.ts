@@ -2,8 +2,8 @@ import { BaseMessage } from "../types";
 
 const translations: BaseMessage = {
 	setting: {
-		title: "年度概覽",
-		desc: "定制化管理年度事件",
+		title: "年度一覽",
+		desc: "查看<a href='https://docs.ravenhogwarts.top/obsidian-yearly-glance/' target='_blank'>wiki文檔</a>了解更多功能",
 		general: {
 			name: "設置",
 			desc: "視圖配置",

@@ -3,7 +3,7 @@ import { BaseMessage } from "../types";
 const translations: BaseMessage = {
 	setting: {
 		title: "Yearly glance",
-		desc: "Configure your yearly event overview",
+		desc: "View <a href='https://docs.ravenhogwarts.top/obsidian-yearly-glance/' target='_blank'>wiki documentation</a> to learn more features",
 		general: {
 			name: "Calendar",
 			desc: "Basic of the calendar",
