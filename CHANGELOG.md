@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/Moyf/yearly-glance/compare/2.4.0...2.4.1) (2025-06-13)
+
+
+### ✨ Features
+
+* Support mobile device usage, modify manifest configuration ([7ee52eb](https://github.com/Moyf/yearly-glance/commit/7ee52ebe21b5291435d23ad079dcb30be9e2cec1))
+
+
+
 # [2.4.0](https://github.com/Moyf/yearly-glance/compare/2.3.0...2.4.0) (2025-06-06)
 
 
