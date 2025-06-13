@@ -95,6 +95,10 @@ const translations: BaseMessage = {
 			desc: "Event management",
 		},
 		group: {
+			basic: {
+				name: "Basic",
+				desc: "Configure the basic information of the calendar.",
+			},
 			layout: {
 				name: "Layout",
 				desc: "Overall layout and view type of the calendar.",

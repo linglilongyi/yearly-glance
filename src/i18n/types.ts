@@ -55,7 +55,7 @@ export type BaseMessage = {
 		}>;
 		events: IBaseSettingsItem;
 		group: {
-			// calendar: IBaseSettingsItem;
+			basic: IBaseSettingsItem;
 			layout: IBaseSettingsItem;
 			displayContent: IBaseSettingsItem;
 			eventDisplay: IBaseSettingsItem;

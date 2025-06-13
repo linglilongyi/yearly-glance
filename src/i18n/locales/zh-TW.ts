@@ -95,6 +95,10 @@ const translations: BaseMessage = {
 			desc: "各事件的管理",
 		},
 		group: {
+			basic: {
+				name: "基本設定",
+				desc: "年曆的基礎資訊配置",
+			},
 			layout: {
 				name: "佈局相關",
 				desc: "年曆的整體佈局與視圖類型",
