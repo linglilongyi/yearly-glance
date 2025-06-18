@@ -2,13 +2,8 @@
 
 中文文档 | [English](https://github.com/Moyf/yearly-glance/blob/master/README.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/Moyf/yearly-glance?style=flat&label=星标)](https://github.com/Moyf/yearly-glance/stargazers)
-[![Total Downloads](https://img.shields.io/github/downloads/Moyf/yearly-glance/total?style=flat&label=总下载量)](https://github.com/Moyf/yearly-glance/releases)
-[![GitHub License](https://img.shields.io/github/license/Moyf/yearly-glance?style=flat&label=许可证)](https://github.com/Moyf/yearly-glance/blob/master/LICENSE)
-[![GitHub Issues](https://img.shields.io/github/issues/Moyf/yearly-glance?style=flat&label=问题)](https://github.com/Moyf/yearly-glance/issues)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/Moyf/yearly-glance?style=flat&label=最后提交)](https://github.com/Moyf/yearly-glance/commits/master)
+![GitHub stars](https://img.shields.io/github/stars/Moyf/yearly-glance?style=flat&label=星标) ![Total Downloads](https://img.shields.io/github/downloads/Moyf/yearly-glance/total?style=flat&label=总下载量) ![GitHub Issues](https://img.shields.io/github/issues/Moyf/yearly-glance?style=flat&label=问题) ![GitHub Last Commit](https://img.shields.io/github/last-commit/Moyf/yearly-glance?style=flat&label=最后提交)
 
----
 
 > **Yearly Glance** 是一款 [Obsidian](https://obsidian.md/) 年度事件一览插件，帮助你高效规划、回顾和管理全年的重要日期，支持高度自定义和多种事件类型。
 
