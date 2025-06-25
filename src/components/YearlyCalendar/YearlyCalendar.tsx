@@ -13,7 +13,6 @@ import {
 	layoutOptions,
 	viewTypeOptions,
 } from "@/src/components/Settings/ViewSettings";
-import { LayoutConfigMap } from "@/src/core/interfaces/Settings";
 import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
 import {
 	CalendarDay,
@@ -592,32 +591,17 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 			</div>
 			{/* 日历网格 */}
 			<div className={`calendar-grid layout-${layout}`}>
-				{Array.from(
-					{ length: LayoutConfigMap[layout].rows },
-					(_, row) => (
-						<div key={row} className="month-row">
-							{Array.from(
-								{ length: LayoutConfigMap[layout].cols },
-								(_, col) => {
-									const monthIndex =
-										row * LayoutConfigMap[layout].cols +
-										col;
-									return (
-										<>
-											{monthIndex < 12 && (
-												<React.Fragment
-													key={monthIndex}
-												>
-													{renderMonth(monthIndex)}
-												</React.Fragment>
-											)}
-										</>
-									);
-								}
+				{Array.from({ length: 12 }).map((_, monthIndex) => (
+						<>
+							{monthIndex < 12 && (
+								<React.Fragment
+									key={monthIndex}
+								>
+									{renderMonth(monthIndex)}
+								</React.Fragment>
 							)}
-						</div>
-					)
-				)}
+						</>
+				))}
 			</div>
 		</div>
 	);

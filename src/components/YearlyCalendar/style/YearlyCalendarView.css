@@ -256,23 +256,14 @@
 	/* ------- 日历网格样式 ------- */
 
 	.calendar-grid {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 16px;
-		width: 100%;
-		max-width: 100%;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 		overflow-x: hidden;
+		gap: 16px;
+		grid-auto-rows: max-content;
+		grid-row-gap: 16px;
 	}
 
-	.month-row {
-		display: flex;
-		gap: 16px;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		width: 100%;
-		margin-bottom: 16px;
-		max-width: 100%;
-	}
 
 	/* ------- 月份容器样式 ------- */
 
@@ -674,12 +665,12 @@
 
 	/* 12x1 布局 */
 	.layout-12x1 .month-container {
-		flex: 1 1 100%;
+		grid: 1 1 100%;
 		max-width: 100%;
 	}
 
-	.layout-12x1 .month-row {
-		flex-wrap: wrap;
+	.layout-12x1 .cakebdar-grid {
+		grid-template-columns: repeat(12, 1fr);
 	}
 
 	/* 1x12 布局 */
