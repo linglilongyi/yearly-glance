@@ -28,11 +28,11 @@ jobs:
                   echo "Event action: ${{ github.event.action }}"
                   echo "PR from: ${{ github.event.pull_request.head.repo.full_name }}"
                   echo "Target repo: ${{ github.repository }}"
-                  
+
                   # 检查是否应该构建
                   should_build="false"
                   is_safe="false"
-                  
+
                   # 如果是 labeled 事件，只处理 safe-to-build 标签
                   if [[ "${{ github.event.action }}" == "labeled" ]]; then
                     echo "Label added: ${{ github.event.label.name }}"
@@ -61,7 +61,7 @@ jobs:
                       should_build="false"
                     fi
                   fi
-                  
+
                   echo "is-safe=$is_safe" >> $GITHUB_OUTPUT
                   echo "should-build=$should_build" >> $GITHUB_OUTPUT
 
@@ -75,95 +75,95 @@ jobs:
               with:
                   # 重要：检出 PR 的代码而不是目标分支
                   ref: ${{ github.event.pull_request.head.sha }}
-                  
-              - name: Setup Node.js
-                uses: actions/setup-node@v4
-                with:
-                    node-version: '18.x'
-                    cache: 'npm'
-                
-              - name: Install dependencies
-                run: yarn install --frozen-lockfile
-                
-              - name: Build plugin
-                run: yarn build
-                
-              - name: Prepare artifacts
-                run: |
-                    mkdir -p build-artifacts
-                    cp main.js manifest.json styles.css build-artifacts/
-                    cd build-artifacts
-                    zip -r "${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}.zip" .
-                    
-              - name: Upload artifacts
-                uses: actions/upload-artifact@v4
-                with:
-                    name: plugin-pr-${{ github.event.number }}
-                    path: build-artifacts/
-                    retention-days: 7
-                    
-              - name: Comment on PR
-                uses: actions/github-script@v7
-                with:
-                    script: |
-                        const prNumber = context.payload.pull_request.number;
-                        const shortSha = context.payload.pull_request.head.sha.substring(0, 7);
-                        const runId = context.runId;
-                        const eventAction = context.payload.action;
-                        
-                        // 根据触发事件生成不同的消息
-                        let triggerInfo = '';
-                        if (eventAction === 'labeled') {
-                          triggerInfo = `\n**触发原因：** 添加了 \`safe-to-build\` 标签`;
-                        } else {
-                          triggerInfo = `\n**触发原因：** PR ${eventAction}`;
-                        }
-                        
-                        const commentBody = `## 🔧 PR 构建完成
-                        
-                        **构建信息：**
-                        - PR: #${prNumber}
-                        - Commit: ${shortSha}
-                        - 构建时间: ${new Date().toISOString()}${triggerInfo}
-                        
-                        **下载链接：**
-                        [下载插件构建产物](https://github.com/${{ github.repository }}/actions/runs/${runId})
-                        
-                        **安装说明：**
-                        1. 点击上方链接下载构建产物
-                        2. 解压 zip 文件
-                        3. 将解压后的文件夹复制到 Obsidian 插件目录：\`<vault>/.obsidian/plugins/${{ env.PLUGIN_ID }}/\`
-                        4. 在 Obsidian 设置中启用插件
-                        
-                        > ⚠️ 这是测试构建，仅用于预览和测试目的。`;
-                        
-                        // 查找现有的构建评论
-                        const comments = await github.rest.issues.listComments({
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "18.x"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Build plugin
+              run: yarn build
+
+            - name: Prepare artifacts
+              run: |
+                  mkdir -p build-artifacts
+                  cp main.js manifest.json styles.css build-artifacts/
+                  cd build-artifacts
+                  zip -r "${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}.zip" .
+
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: plugin-pr-${{ github.event.number }}
+                  path: build-artifacts/
+                  retention-days: 7
+
+            - name: Comment on PR
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const prNumber = context.payload.pull_request.number;
+                      const shortSha = context.payload.pull_request.head.sha.substring(0, 7);
+                      const runId = context.runId;
+                      const eventAction = context.payload.action;
+
+                      // 根据触发事件生成不同的消息
+                      let triggerInfo = '';
+                      if (eventAction === 'labeled') {
+                        triggerInfo = `\n**触发原因：** 添加了 \`safe-to-build\` 标签`;
+                      } else {
+                        triggerInfo = `\n**触发原因：** PR ${eventAction}`;
+                      }
+
+                      const commentBody = `## 🔧 PR 构建完成
+
+                      **构建信息：**
+                      - PR: #${prNumber}
+                      - Commit: ${shortSha}
+                      - 构建时间: ${new Date().toISOString()}${triggerInfo}
+
+                      **下载链接：**
+                      [下载插件构建产物](https://github.com/${{ github.repository }}/actions/runs/${runId})
+
+                      **安装说明：**
+                      1. 点击上方链接下载构建产物
+                      2. 解压 zip 文件
+                      3. 将解压后的文件夹复制到 Obsidian 插件目录：\`<vault>/.obsidian/plugins/${{ env.PLUGIN_ID }}/\`
+                      4. 在 Obsidian 设置中启用插件
+
+                      > ⚠️ 这是测试构建，仅用于预览和测试目的。`;
+
+                      // 查找现有的构建评论
+                      const comments = await github.rest.issues.listComments({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: prNumber
+                      });
+
+                      const existingComment = comments.data.find(comment => 
+                        comment.user.login === 'github-actions[bot]' && 
+                        comment.body.includes('🔧 PR 构建完成')
+                      );
+
+                      if (existingComment) {
+                        await github.rest.issues.updateComment({
                           owner: context.repo.owner,
                           repo: context.repo.repo,
-                          issue_number: prNumber
+                          comment_id: existingComment.id,
+                          body: commentBody
                         });
-                        
-                        const existingComment = comments.data.find(comment => 
-                          comment.user.login === 'github-actions[bot]' && 
-                          comment.body.includes('🔧 PR 构建完成')
-                        );
-                        
-                        if (existingComment) {
-                          await github.rest.issues.updateComment({
-                            owner: context.repo.owner,
-                            repo: context.repo.repo,
-                            comment_id: existingComment.id,
-                            body: commentBody
-                          });
-                        } else {
-                          await github.rest.issues.createComment({
-                            owner: context.repo.owner,
-                            repo: context.repo.repo,
-                            issue_number: prNumber,
-                            body: commentBody
-                          });
-                        }
+                      } else {
+                        await github.rest.issues.createComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number: prNumber,
+                          body: commentBody
+                        });
+                      }
 
     build-status:
         runs-on: ubuntu-latest
@@ -176,7 +176,7 @@ jobs:
                   script: |
                       const state = '${{ needs.build.result }}' === 'success' ? 'success' : 'failure';
                       const description = state === 'success' ? 'PR 构建成功' : 'PR 构建失败';
-                      
+
                       await github.rest.repos.createCommitStatus({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
@@ -201,28 +201,28 @@ jobs:
               with:
                   script: |
                       const prNumber = context.payload.pull_request.number;
-                      
+
                       const commentBody = `## 🔒 外部 PR 安全检查
-                      
+
                       感谢您的贡献！由于这是来自外部仓库的 PR，出于安全考虑，自动构建已被暂停。
-                      
+
                       **下一步：**
                       维护者将审查您的代码，如果安全无问题，会添加 \`safe-to-build\` 标签来触发构建。
-                      
+
                       **请耐心等待维护者审查。** 🙏`;
-                      
+
                       // 检查是否已经有类似评论
                       const comments = await github.rest.issues.listComments({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: prNumber
                       });
-                      
+
                       const existingComment = comments.data.find(comment => 
                         comment.user.login === 'github-actions[bot]' && 
                         comment.body.includes('🔒 外部 PR 安全检查')
                       );
-                      
+
                       if (!existingComment) {
                         await github.rest.issues.createComment({
                           owner: context.repo.owner,
