@@ -66,6 +66,7 @@ jobs:
                       const { owner, repo } = context.repo;
                       const prNumber = context.payload.pull_request.number;
                       const runId = context.runId;
+                      const shortSha = context.payload.pull_request.head.sha.substring(0, 7);
 
                       const comment = `## 🔨 构建完成
 
@@ -84,7 +85,7 @@ jobs:
 
                       ---
                       *构建时间：* ${new Date().toISOString()}
-                      *提交：* ${{ github.event.pull_request.head.sha.substring(0, 7) }}`;
+                      *提交：* ${shortSha}`;
 
                       // 查找是否已有构建评论
                       const comments = await github.rest.issues.listComments({
