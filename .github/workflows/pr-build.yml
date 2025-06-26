@@ -12,6 +12,7 @@ permissions:
     contents: read
     pull-requests: write
     checks: write
+    statuses: write  # 添加这个权限来创建 commit status
 
 env:
     PLUGIN_ID: yearly-glance
@@ -49,7 +50,7 @@ jobs:
                   zip -r ${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}.zip ${{ env.PLUGIN_ID }}
 
             - name: Upload build artifacts
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4  # 升级到 v4
               with:
                   name: ${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}
                   path: |
@@ -140,4 +141,3 @@ jobs:
                         target_url: `https://github.com/${owner}/${repo}/actions/runs/${context.runId}`,
                         description,
                         context: 'PR Build'
-                      });
