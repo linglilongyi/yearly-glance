@@ -1,143 +1,146 @@
 name: PR Build
 
 on:
-    pull_request:
-        types: [opened, synchronize, reopened]
-        branches: [master] # 根据你的主分支调整
     pull_request_target:
-        types: [opened, synchronize, reopened]
         branches: [master]
+        types: [opened, synchronize, reopened]
 
 permissions:
     contents: read
     pull-requests: write
     checks: write
-    statuses: write  # 添加这个权限来创建 commit status
+    statuses: write
 
 env:
     PLUGIN_ID: yearly-glance
 
 jobs:
-    build:
-        runs-on: ubuntu-22.04
+    # 安全检查作业 - 验证 PR 来源
+    security-check:
+        runs-on: ubuntu-latest
+        outputs:
+            is-safe: ${{ steps.check.outputs.is-safe }}
+        steps:
+            - name: Check PR safety
+              id: check
+              run: |
+                  # 检查是否来自同一仓库或具有安全标签
+                  if [[ "${{ github.event.pull_request.head.repo.full_name }}" == "${{ github.repository }}" ]] || \
+                     [[ "${{ contains(github.event.pull_request.labels.*.name, 'safe-to-build') }}" == "true" ]]; then
+                    echo "is-safe=true" >> $GITHUB_OUTPUT
+                  else
+                    echo "is-safe=false" >> $GITHUB_OUTPUT
+                  fi
 
+    build:
+        runs-on: ubuntu-latest
+        needs: security-check
+        if: needs.security-check.outputs.is-safe == 'true'
         steps:
             - name: Checkout PR code
               uses: actions/checkout@v4
               with:
+                  # 重要：检出 PR 的代码而不是目标分支
                   ref: ${{ github.event.pull_request.head.sha }}
-                  fetch-depth: 0
 
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: "18.x"
                   cache: "npm"
 
             - name: Install dependencies
-              run: |
-                  npm install -g yarn
-                  yarn install --frozen-lockfile
+              run: yarn install --frozen-lockfile
 
-            - name: Build project
-              run: |
-                  yarn run build --if-present
+            - name: Build plugin
+              run: yarn build
 
-            - name: Prepare build artifacts
+            - name: Prepare artifacts
               run: |
-                  mkdir -p ${{ env.PLUGIN_ID }}
-                  cp main.js manifest.json styles.css ${{ env.PLUGIN_ID }}/
-                  zip -r ${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}.zip ${{ env.PLUGIN_ID }}
+                  mkdir -p build-artifacts
+                  cp main.js manifest.json styles.css build-artifacts/
+                  cd build-artifacts
+                  zip -r "${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}.zip" .
 
-            - name: Upload build artifacts
-              uses: actions/upload-artifact@v4  # 升级到 v4
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v4
               with:
-                  name: ${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}
-                  path: |
-                      main.js
-                      manifest.json
-                      styles.css
-                      ${{ env.PLUGIN_ID }}-pr-${{ github.event.number }}.zip
-                  retention-days: 30
+                  name: plugin-pr-${{ github.event.number }}
+                  path: build-artifacts/
+                  retention-days: 7
 
-            - name: Comment PR with download link
-              uses: actions/github-script@v6
+            - name: Comment on PR
+              uses: actions/github-script@v7
               with:
                   script: |
-                      const { owner, repo } = context.repo;
                       const prNumber = context.payload.pull_request.number;
-                      const runId = context.runId;
                       const shortSha = context.payload.pull_request.head.sha.substring(0, 7);
+                      const runId = context.runId;
 
-                      const comment = `## 🔨 构建完成
+                      const commentBody = `## 🔧 PR 构建完成
 
-                      PR #${prNumber} 的构建产物已准备就绪！
+                      **构建信息：**
+                      - PR: #${prNumber}
+                      - Commit: ${shortSha}
+                      - 构建时间: ${new Date().toISOString()}
 
-                      📦 **下载构建产物：**
-                      - [点击这里下载 ${{ env.PLUGIN_ID }}-pr-${prNumber}.zip](https://github.com/${owner}/${repo}/actions/runs/${runId})
+                      **下载链接：**
+                      [下载插件构建产物](https://github.com/${{ github.repository }}/actions/runs/${runId})
 
-                      🔄 **安装说明：**
-                      1. 下载上面的 zip 文件
-                      2. 解压到 Obsidian 库的插件文件夹：\`<vault>/.obsidian/plugins/${{ env.PLUGIN_ID }}/\`
-                      3. 重启 Obsidian
-                      4. 在设置中启用插件
+                      **安装说明：**
+                      1. 点击上方链接下载构建产物
+                      2. 解压 zip 文件
+                      3. 将解压后的文件夹复制到 Obsidian 插件目录：\`<vault>/.obsidian/plugins/${{ env.PLUGIN_ID }}/\`
+                      4. 在 Obsidian 设置中启用插件
 
-                      ⚠️ **注意：** 这是 PR 构建版本，仅用于测试目的。
+                      > ⚠️ 这是测试构建，仅用于预览和测试目的。`;
 
-                      ---
-                      *构建时间：* ${new Date().toISOString()}
-                      *提交：* ${shortSha}`;
-
-                      // 查找是否已有构建评论
+                      // 查找现有的构建评论
                       const comments = await github.rest.issues.listComments({
-                        owner,
-                        repo,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
                         issue_number: prNumber
                       });
 
                       const existingComment = comments.data.find(comment => 
-                        comment.body.includes('🔨 构建完成') && comment.user.type === 'Bot'
+                        comment.user.login === 'github-actions[bot]' && 
+                        comment.body.includes('🔧 PR 构建完成')
                       );
 
                       if (existingComment) {
-                        // 更新现有评论
                         await github.rest.issues.updateComment({
-                          owner,
-                          repo,
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
                           comment_id: existingComment.id,
-                          body: comment
+                          body: commentBody
                         });
                       } else {
-                        // 创建新评论
                         await github.rest.issues.createComment({
-                          owner,
-                          repo,
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
                           issue_number: prNumber,
-                          body: comment
+                          body: commentBody
                         });
                       }
 
-    # 可选：添加构建状态检查
     build-status:
-        runs-on: ubuntu-22.04
-        needs: build
-        if: always()
-
+        runs-on: ubuntu-latest
+        needs: [security-check, build]
+        if: always() && needs.security-check.outputs.is-safe == 'true'
         steps:
-            - name: Set build status
-              uses: actions/github-script@v6
+            - name: Set commit status
+              uses: actions/github-script@v7
               with:
                   script: |
-                      const { owner, repo } = context.repo;
-                      const sha = context.payload.pull_request.head.sha;
                       const state = '${{ needs.build.result }}' === 'success' ? 'success' : 'failure';
-                      const description = state === 'success' ? '构建成功，产物已准备就绪' : '构建失败，请检查日志';
+                      const description = state === 'success' ? 'PR 构建成功' : 'PR 构建失败';
 
                       await github.rest.repos.createCommitStatus({
-                        owner,
-                        repo,
-                        sha,
-                        state,
-                        target_url: `https://github.com/${owner}/${repo}/actions/runs/${context.runId}`,
-                        description,
-                        context: 'PR Build'
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        sha: '${{ github.event.pull_request.head.sha }}',
+                        state: state,
+                        description: description,
+                        context: 'PR Build',
+                        target_url: `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}`
+                      });
