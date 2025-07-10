@@ -1,3 +1,17 @@
+## [2.4.2](https://github.com/Moyf/yearly-glance/compare/2.4.1...2.4.2) (2025-07-10)
+
+
+### ✨ 新功能
+
+* **yearly-calendar:** 用CSS网格视图重构年历视图 ([bbf5505](https://github.com/Moyf/yearly-glance/commit/bbf550532c3dac8b8a6d72910d110c9212f93acd))
+
+
+### 🐛 修复
+
+* **i18n:** 当语言不存在时默认使用英语 ([3aa293f](https://github.com/Moyf/yearly-glance/commit/3aa293f60c488017eb1b11c9586b8296fc628c37))
+
+
+
 ## [2.4.1](https://github.com/Moyf/yearly-glance/compare/2.4.0...2.4.1) (2025-06-13)
 
 

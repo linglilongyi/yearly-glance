@@ -1,3 +1,17 @@
+## [2.4.2](https://github.com/Moyf/yearly-glance/compare/2.4.1...2.4.2) (2025-07-10)
+
+
+### ✨ Features
+
+* **yearly-calendar:** Refactor yearly calendar view using CSS Grid ([bbf5505](https://github.com/Moyf/yearly-glance/commit/bbf550532c3dac8b8a6d72910d110c9212f93acd))
+
+
+### 🐛 Bug Fixes
+
+* **i18n:** Use English as default when language does not exist ([3aa293f](https://github.com/Moyf/yearly-glance/commit/3aa293f60c488017eb1b11c9586b8296fc628c37))
+
+
+
 ## [2.4.1](https://github.com/Moyf/yearly-glance/compare/2.4.0...2.4.1) (2025-06-13)
 
 
