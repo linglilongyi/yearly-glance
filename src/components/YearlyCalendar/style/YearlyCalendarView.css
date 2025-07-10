@@ -663,6 +663,29 @@
 
 	/* ------- 布局样式 ------- */
 
+	/* 网格布局 */
+	.calendar-grid.layout-4x3 {
+		/* 宽度不足时可以减少列数 */
+		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+		/* 宽度充足时，只显示4列 */
+		grid-template-columns: repeat(4, 1fr);
+	}
+	
+
+	.calendar-grid.layout-3x4 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.calendar-grid.layout-2x6 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.calendar-grid.layout-1x12 {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	/* -------- */
+
 	/* 12x1 布局 */
 	.layout-12x1 .month-container {
 		grid: 1 1 100%;
@@ -772,6 +795,11 @@
 		.layout-3x4 .month-container,
 		.layout-4x3 .month-container {
 			min-width: 220px;
+		}
+
+		.calendar-grid.layout-4x3 {
+			/* 宽度充足时，只显示4列 */
+			grid-template-columns: repeat(4, 1fr);
 		}
 	}
 }
