@@ -255,12 +255,18 @@
 
 	/* ------- 日历网格样式 ------- */
 
-    --min-calendar-width: 375px;
+	--min-calendar-width: 375px;
 	--gap-calendar: 16px;
 
 	.calendar-grid {
 		display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(max(var(--min-calendar-width), var(--max-calendar-width)), 1fr)) !important;
+		grid-template-columns: repeat(
+			auto-fit,
+			minmax(
+				max(var(--min-calendar-width), var(--max-calendar-width)),
+				1fr
+			)
+		) !important;
 		overflow-x: hidden;
 		gap: var(--gap-calendar);
 		grid-auto-rows: max-content;
@@ -668,25 +674,25 @@
 		--max-calendar-width: 500px;
 	}
 
-    .calendar-grid.layout-4x3 {
-        --max-calendar-width: calc(25% - 12px);
-    }
+	.calendar-grid.layout-2x6 {
+		--max-calendar-width: calc(16.66% - 30px);
+	}
 
-    .calendar-grid.layout-3x4 {
-        --max-calendar-width: calc(33.33% - 11px);
-    }
-    
-    .calendar-grid.layout-6x2 {
-        --max-calendar-width: calc(50% - 8px);
-    }
+	.calendar-grid.layout-3x4 {
+		--max-calendar-width: calc(25% - 12px);
+	}
 
-    .calendar-grid.layout-12x1 {
-        --max-calendar-width: 100%;
-    }
-    
-    .calendar-grid.layout-2x6 {
-        --max-calendar-width: calc(16.66% - 30px);
-    }
+	.calendar-grid.layout-4x3 {
+		--max-calendar-width: calc(33.33% - 11px);
+	}
+
+	.calendar-grid.layout-6x2 {
+		--max-calendar-width: calc(50% - 8px);
+	}
+
+	.calendar-grid.layout-12x1 {
+		--max-calendar-width: 100%;
+	}
 
 	/* -------- */
 
@@ -791,9 +797,13 @@
 			min-width: 220px;
 		}
 
-		.calendar-grid.layout-4x3 {
+		.calendar-grid.layout-3x4 {
 			/* 宽度充足时，只显示4列 */
 			grid-template-columns: repeat(4, 1fr);
+		}
+		.calendar-grid.layout-4x3 {
+			/* 宽度充足时，只显示3列 */
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 }
