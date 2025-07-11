@@ -120,7 +120,7 @@ const translations: BaseMessage = {
 	view: {
 		yearlyGlance: {
 			name: "年度概览",
-			yearlyCalendar: "年 年历",
+			yearlyCalendar: "年 概览",
 			legend: {
 				holiday: "节日",
 				birthday: "生日",
