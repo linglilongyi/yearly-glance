@@ -101,15 +101,15 @@
 		position: relative;
 		cursor: pointer;
 		border-radius: 4px;
+		padding: 0 4px;
+		margin: 0 4px;
 
 		&:hover {
 			background-color: var(--background-modifier-border);
-			padding: 0 4px;
 		}
 
 		&.expanded {
 			background-color: var(--background-modifier-border);
-			padding: 0 4px;
 		}
 
 		.year-control {
@@ -300,15 +300,35 @@
 
 	/* ------- 日历网格样式 ------- */
 
-	.calendar-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		overflow-x: hidden;
-		gap: 16px;
-		grid-auto-rows: max-content;
-		grid-row-gap: 16px;
+	/* VAR——之后留着放到 StyleSettings 里 */
+	/* 日历需要2400才能显示下6列！ */
+	--max-screen-width: 2400px; 
+
+	--min-calendar-width: 375px;
+	--min-list-width: 220px;
+	--gap-calendar: 16px;
+
+	.calendar-grid.list-view {
+		--min-view-width: var(--min-list-width, 220px);
+	}
+	.calendar-grid.calendar-view {
+		--min-view-width: var(--min-calendar-width, 375px);
 	}
 
+	.calendar-grid {
+		display: grid;
+		grid-template-columns: repeat(
+			auto-fit,
+			minmax(
+				max(var(--min-view-width), var(--max-view-width)),
+				1fr
+			)
+		) !important;
+		overflow-x: hidden;
+		gap: var(--gap-calendar);
+		grid-auto-rows: max-content;
+		grid-row-gap: var(--gap-calendar);
+	}
 
 	/* ------- 月份容器样式 ------- */
 
@@ -318,7 +338,7 @@
 		border-radius: 10px;
 		overflow: hidden;
 		box-shadow: 0 2px 10px var(--yg-shadow-color);
-		min-width: 0;
+		min-width: var(--min-view-width);
 		max-width: 100%;
 		background-color: var(--yg-day-bg-color);
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -709,16 +729,31 @@
 	}
 
 	/* ------- 布局样式 ------- */
-
-	/* 12x1 布局 */
-	.layout-12x1 .month-container {
-		grid: 1 1 100%;
-		max-width: 100%;
+	.calendar-grid.layout-1x12 {
+		--max-view-width: 500px;
 	}
 
-	.layout-12x1 .cakebdar-grid {
-		grid-template-columns: repeat(12, 1fr);
+	.calendar-grid.layout-2x6 {
+		--max-view-width: calc(16.66% - 30px);
 	}
+
+	.calendar-grid.layout-3x4 {
+		--max-view-width: calc(25% - 12px);
+	}
+
+	.calendar-grid.layout-4x3 {
+		--max-view-width: calc(33.33% - 11px);
+	}
+
+	.calendar-grid.layout-6x2 {
+		--max-view-width: calc(50% - 8px);
+	}
+
+	.calendar-grid.layout-12x1 {
+		--max-view-width: 100%;
+	}
+
+	/* -------- */
 
 	/* 1x12 布局 */
 	.layout-1x12 {
@@ -814,7 +849,7 @@
 /* 超大屏幕 (>2200px) */
 @media (min-width: 2201px) {
 	.yearly-calendar {
-		max-width: 2200px;
+		max-width: var(--max-screen-width);
 		padding: 30px;
 
 		.layout-3x4 .month-container,
@@ -840,6 +875,15 @@
 		.layout-3x4 .month-container,
 		.layout-4x3 .month-container {
 			min-width: 220px;
+		}
+
+		.calendar-grid.layout-3x4 {
+			/* 宽度充足时，只显示4列 */
+			grid-template-columns: repeat(4, 1fr);
+		}
+		.calendar-grid.layout-4x3 {
+			/* 宽度充足时，只显示3列 */
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 }

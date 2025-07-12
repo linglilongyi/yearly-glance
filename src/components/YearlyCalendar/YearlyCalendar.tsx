@@ -660,17 +660,17 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 			</div>
 
 			{/* 日历网格 */}
-			<div className={`calendar-grid layout-${layout}`}>
+			<div className={`calendar-grid ${viewType}-view layout-${layout}`}>
 				{Array.from({ length: 12 }).map((_, monthIndex) => (
-						<>
-							{monthIndex < 12 && (
-								<React.Fragment
-									key={monthIndex}
-								>
-									{renderMonth(monthIndex)}
-								</React.Fragment>
-							)}
-						</>
+					<>
+						{monthIndex < 12 && (
+							<React.Fragment
+								key={monthIndex}
+							>
+								{renderMonth(monthIndex)}
+							</React.Fragment>
+						)}
+					</>
 				))}
 			</div>
 		</div>
