@@ -20,10 +20,16 @@ interface ViewSettingsProps {
 	plugin: YearlyGlancePlugin;
 }
 
-export const layoutOptions = LAYOUT_OPTIONS.map((layout) => ({
-	value: layout,
-	label: layout,
-}));
+export const getLayoutOptions = (viewType: string) => {
+  const filteredLayouts = viewType === 'list' 
+    ? LAYOUT_OPTIONS 
+    : LAYOUT_OPTIONS.filter(layout => layout !== '1x12');
+    
+  return filteredLayouts.map((layout) => ({
+    value: layout,
+    label: layout,
+  }));
+};
 export const viewTypeOptions = VIEW_TYPE_OPTIONS.map((viewType) => ({
 	value: viewType,
 	label: t(`setting.general.viewType.options.${viewType}` as TranslationKeys),
@@ -107,7 +113,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({ plugin }) => {
 					desc={t("setting.general.layout.desc")}
 				>
 					<Select
-						options={layoutOptions}
+						options={getLayoutOptions(config.viewType)}
 						value={config.layout}
 						onValueChange={(value) =>
 							handleUpdateConfig({ layout: value })

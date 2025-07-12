@@ -138,7 +138,9 @@ const translations: BaseMessage = {
 				manager: "打开事件管理器",
 				limitListHeight: "是否限制列表高度",
 				hideEmptyDates: "是否隐藏空日期",
-				// 其他 action
+				emojiOnTop: "将 emoji 显示在上方",
+				wrapText: "切换文本换行",
+				showTooltips: "鼠标悬浮时显示完整事件名"
 			},
 		},
 		eventManager: {

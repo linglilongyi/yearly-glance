@@ -135,6 +135,7 @@
 	.yearly-calendar-actions-bar {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		flex-wrap: wrap;
 		gap: 12px;
 		margin-bottom: 24px;
@@ -144,7 +145,44 @@
 		box-shadow: 0 2px 8px var(--yg-shadow-color);
 	}
 
-	/* 操作按钮（统一样式） */
+	/* 主按钮容器，用来左右分布子按钮组 */
+	.yg-buttons {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	.yg-buttons-left {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.yg-buttons-right {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-wrap: wrap;
+	}
+
+	.yg-action-buttons {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.yg-select-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	/* 操作按钮样式 */
 	.actions-button {
 		display: flex;
 		align-items: center;
@@ -167,6 +205,13 @@
 
 	.button-icon {
 		font-size: 1.3em;
+	}
+
+	.show-tooltips-button.active {
+		background-color: var(--yg-button-hover-bg-color);
+		border-color: var(--yg-button-hover-border-color);
+		border-width: 2px;
+		box-shadow: 0 3px 8px var(--yg-shadow-color);
 	}
 
 	/* ------- 图例样式 ------- */
@@ -484,6 +529,8 @@
 		flex: 1;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		white-space: nowrap;
+		text-align: start;
 	}
 
 	/* ------- 列表视图样式 ------- */
@@ -706,8 +753,7 @@
 	}
 
 	.layout-1x12 .month-container {
-		min-width: 260px;
-		max-width: 400px;
+		width: 180px;
 		flex: 0 0 auto;
 		scroll-snap-align: start;
 	}
@@ -721,7 +767,7 @@
 	/* 2x6 布局 */
 	.layout-2x6 .month-container {
 		flex: 0 0 calc(16.66% - 14px);
-		min-width: 180px;
+		min-width: 100px;
 	}
 
 	/* 3x4 布局 */
@@ -734,6 +780,32 @@
 	.layout-4x3 .month-container {
 		flex: 0 0 calc(33.33% - 12px);
 		min-width: 0;
+	}
+
+	/* Emoji position styles */
+	.events .event.emoji-top {
+		flex-direction: column;
+	}
+
+	.events .event.emoji-top .event-emoji {
+		margin-right: 0;
+		margin-bottom: 2px;
+	}
+
+	/* Text wrapping styles */
+	.events .event.wrap-text {
+		white-space: normal;
+		overflow: visible;
+		text-overflow: clip;
+
+		.event-text {
+			text-wrap: wrap;
+		}
+	}
+
+	/* Tooltip styles */
+	.events .event.has-tooltip {
+		cursor: pointer;
 	}
 }
 
@@ -765,10 +837,6 @@
 			gap: 15px;
 		}
 
-		.layout-1x12 .month-container {
-			min-width: 240px;
-		}
-
 		.layout-3x4 .month-container,
 		.layout-4x3 .month-container {
 			min-width: 220px;
@@ -779,9 +847,6 @@
 /* 中大屏幕 (1501px-1800px) */
 @media (max-width: 1800px) {
 	.yearly-calendar {
-		.layout-1x12 .month-container {
-			min-width: 220px;
-		}
 
 		.layout-2x6 .month-container {
 			flex: 0 0 calc(16.67% - 16px);
@@ -808,10 +873,6 @@
 @media (max-width: 1500px) {
 	.yearly-calendar {
 		padding: 18px;
-
-		.layout-1x12 .month-container {
-			min-width: 200px;
-		}
 
 		.layout-2x6 .month-container {
 			flex: 0 0 calc(33.33% - 15px);
@@ -848,10 +909,6 @@
 		.yearly-calendar-title {
 			font-size: 1.6em;
 			padding: 10px 0;
-		}
-
-		.layout-1x12 .month-container {
-			min-width: 180px;
 		}
 
 		.layout-2x6 .month-container {
@@ -893,7 +950,6 @@
 			padding: 10px 14px;
 		}
 
-		.layout-1x12 .month-container,
 		.layout-2x6 .month-container,
 		.layout-3x4 .month-container,
 		.layout-4x3 .month-container,
@@ -929,6 +985,7 @@
 			min-height: 28px;
 			padding: 2px;
 		}
+
 	}
 }
 
@@ -937,7 +994,6 @@
 	.yearly-calendar {
 		padding: 10px;
 
-		.layout-1x12 .month-container,
 		.layout-2x6 .month-container,
 		.layout-3x4 .month-container,
 		.layout-4x3 .month-container,
@@ -1033,5 +1089,11 @@
 		.event.font-large {
 			font-size: 0.85em;
 		}
+
+		/* 最小的情况下 隐藏事件过滤器的文本 */
+		.event-legend .legend-text {
+			display: none;
+		}
 	}
+
 }
