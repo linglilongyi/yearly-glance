@@ -1,4 +1,5 @@
 export const LAYOUT_OPTIONS = ["12x1", "1x12", "6x2", "2x6", "3x4", "4x3"];
+// export const LAYOUT_OPTIONS = ["12x1", "6x2", "2x6", "3x4", "4x3"];
 export const VIEW_TYPE_OPTIONS = ["calendar", "list"];
 export const EVENT_FONT_SIZE_OPTIONS = ["small", "medium", "large"];
 
@@ -53,6 +54,10 @@ export interface YearlyGlanceSettings {
 	showLunarDay: boolean; // 是否显示农历日
 	showDebugInfo: boolean; // 是否显示调试信息
 	presetColors: IPresetColor[];
+	// 日历视图设置
+	emojiOnTop: boolean; // 是否在事件上方显示emoji（仅日历视图）
+	wrapEventText: boolean; // 是否换行显示事件文本
+	showEventTooltips: boolean; // 是否显示事件悬浮提示
 }
 
 export const DEFAULT_SETTINGS: YearlyGlanceSettings = {
@@ -76,4 +81,7 @@ export const DEFAULT_SETTINGS: YearlyGlanceSettings = {
 	showLunarDay: false,
 	showDebugInfo: false,
 	presetColors: DEFAULT_PRESET_COLORS,
+	emojiOnTop: false, // 默认在左侧显示emoji
+	wrapEventText: false,
+	showEventTooltips: false,
 };

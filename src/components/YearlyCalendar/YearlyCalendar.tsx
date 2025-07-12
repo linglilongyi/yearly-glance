@@ -10,7 +10,7 @@ import {
 	EVENT_TYPE_LIST,
 } from "@/src/core/interfaces/Events";
 import {
-	layoutOptions,
+	getLayoutOptions,
 	viewTypeOptions,
 } from "@/src/components/Settings/ViewSettings";
 import { useYearlyCalendar } from "@/src/core/hook/useYearlyCalendar";
@@ -67,6 +67,7 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 		mondayFirst,
 		hideEmptyDates,
 		showLunarDay,
+		emojiOnTop,
 	} = config;
 
 	// 添加状态来跟踪年份控制按钮是否显示
@@ -209,24 +210,33 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 
 	// 渲染单个事件
 	const renderEvent = (event: CalendarEvent, dayView = true) => {
+		const eventClasses = [
+			'event',
+			`font-${eventFontSize}`,
+			emojiOnTop ? 'emoji-top' : '',
+			config.wrapEventText ? 'wrap-text' : '',
+		].filter(Boolean).join(' ');
+
+		const eventProps: React.HTMLAttributes<HTMLDivElement> = {
+			key: `${event.text}-${event.date}`,
+			className: eventClasses,
+			style: {
+				backgroundColor: `${event.color ?? EVENT_TYPE_DEFAULT[event.eventType].color}20`,
+				borderLeft: `3px solid ${event.color ?? EVENT_TYPE_DEFAULT[event.eventType].color}`,
+			},
+			onClick: (e) => handleEventTooltip(event),
+		};
+
+		// 添加 tooltip 属性
+		if (config.showEventTooltips) {
+			eventProps.title = event.text;
+			eventProps.className += ' has-tooltip';
+		}
+
 		return (
-			<div
-				key={`${event.text}-${event.date}`}
-				className={`event font-${eventFontSize}`}
-				style={{
-					backgroundColor: `${
-						event.color ?? EVENT_TYPE_DEFAULT[event.eventType].color
-					}20`,
-					borderLeft: `3px solid ${
-						event.color ?? EVENT_TYPE_DEFAULT[event.eventType].color
-					}`,
-				}}
-				onClick={(e) => handleEventTooltip(event)}
-			>
+			<div {...eventProps}>
 				<span className="event-emoji">
-					{!event.emoji
-						? EVENT_TYPE_DEFAULT[event.eventType].emoji
-						: event.emoji}
+					{!event.emoji ? EVENT_TYPE_DEFAULT[event.eventType].emoji : event.emoji}
 				</span>
 				<span className="event-text">{event.text}</span>
 			</div>
@@ -445,6 +455,11 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 			</div>
 			{/* actionsBar */}
 			<div className="yearly-calendar-actions-bar">
+
+				<div className="yg-buttons">
+
+				<div className="yg-buttons-left">
+
 				{/* 图例 */}
 				{showLegend && (
 					<div className="event-legend">
@@ -509,86 +524,141 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 						})}
 					</div>
 				)}
-				{/* 视图预设选择 */}
-				<Select
-					options={viewPresetOptions}
-					value={currentPreset}
-					onValueChange={handlePresetChange}
-				/>
+				</div>
+				
+				<div className="yg-buttons-right">
+				<div className="yg-select-group">
+					{/* 视图预设选择 */}
+					<Select
+						options={viewPresetOptions}
+						value={currentPreset}
+						onValueChange={handlePresetChange}
+					/>
 
-				{/* 自定义模式下显示布局和视图类型选择器 */}
-				{currentPreset === "custom" && (
-					<>
-						{/* 布局选择 */}
-						<Select
-							options={layoutOptions}
-							value={layout}
-							onValueChange={(value) =>
-								updateConfig({ layout: value })
-							}
-						/>
-						{/* 视图选择 */}
-						<Select
-							options={viewTypeOptions}
-							value={viewType}
-							onValueChange={(value) =>
-								updateConfig({ viewType: value })
-							}
-						/>
-					</>
-				)}
+					{/* 自定义模式下显示布局和视图类型选择器 */}
+					{currentPreset === "custom" && (
+						<>
+							{/* 布局选择 */}
+							<Select
+								options={getLayoutOptions(viewType)}
+								value={layout}
+								onValueChange={(value) =>
+									updateConfig({ layout: value })
+								}
+							/>
+							{/* 视图选择 */}
+							<Select
+								options={viewTypeOptions}
+								value={viewType}
+								onValueChange={(value) =>
+									updateConfig({ viewType: value })
+								}
+							/>
+						</>
+					)}
+				</div>
+				
+				<div className="yg-action-buttons">
+					{/* 日历视图专用按钮 */}
+					{viewType === 'calendar' && (
+						<>
+							<button
+								className="actions-button emoji-position-button"
+								onClick={() =>
+									updateConfig({
+										emojiOnTop: !config.emojiOnTop,
+									})
+								}
+								title={t("view.yearlyGlance.actions.emojiOnTop")}
+							>
+								<span className="button-icon">
+									{config.emojiOnTop ? '⬆️' : '⬅️'}
+								</span>
+							</button>
 
-				{viewType === "list" && (
-					<>
+							<button
+								className="actions-button wrap-text-button"
+								onClick={() =>
+									updateConfig({
+										wrapEventText: !config.wrapEventText,
+									})
+								}
+								title={t("view.yearlyGlance.actions.wrapText")}
+							>
+								<span className="button-icon">
+									{config.wrapEventText ? '🔤' : '✂️'}
+								</span>
+							</button>
+
+							<button
+								className={`actions-button show-tooltips-button ${config.showEventTooltips ? 'active' : ''}`}
+								onClick={() =>
+									updateConfig({
+										showEventTooltips: !config.showEventTooltips,
+									})
+								}
+								title={t("view.yearlyGlance.actions.showTooltips")}
+							>
+								<span className="button-icon">💬</span>
+							</button>
+						</>
+					)}
+
+					{viewType === "list" && (
+						<>
 						<button
-							className="actions-button limit-list-height-button"
-							onClick={() =>
-								updateConfig({
-									limitListHeight: !limitListHeight,
-								})
-							}
-							title={t(
-								"view.yearlyGlance.actions.limitListHeight"
-							)}
-						>
-							<span className="button-icon">
-								{limitListHeight ? "🚧" : "♾️"}
-							</span>
-						</button>
-						<button
-							className="actions-button hide-empty-dates-button"
-							onClick={() =>
-								updateConfig({
-									hideEmptyDates: !hideEmptyDates,
-								})
-							}
-							title={t(
-								"view.yearlyGlance.actions.hideEmptyDates"
-							)}
-						>
-							<span className="button-icon">
-								{hideEmptyDates ? "🙈" : "👀"}
-							</span>
-						</button>
-					</>
-				)}
-				{/* 事件管理 */}
-				<button
-					className="actions-button event-manager-button"
-					onClick={handleEventManager}
-					title={t("view.yearlyGlance.actions.manager")}
-				>
-					<span className="button-icon">🗂️</span>
-				</button>
-				{/* 事件添加 */}
-				<button
-					className="actions-button event-form-button"
-					onClick={handleEventForm}
-					title={t("view.yearlyGlance.actions.form")}
-				>
-					<span className="button-icon">➕</span>
-				</button>
+								className="actions-button limit-list-height-button"
+								onClick={() =>
+									updateConfig({
+										limitListHeight: !limitListHeight,
+									})
+								}
+								title={t("view.yearlyGlance.actions.limitListHeight")}
+							>
+								<span className="button-icon">
+									{limitListHeight ? "🚧" : "♾️"}
+								</span>
+							</button>
+							<button
+								className="actions-button hide-empty-dates-button"
+								onClick={() =>
+									updateConfig({
+										hideEmptyDates: !hideEmptyDates,
+									})
+								}
+								title={t("view.yearlyGlance.actions.hideEmptyDates")}
+							>
+								<span className="button-icon">
+									{hideEmptyDates ? "🙈" : "👀"}
+								</span>
+							</button>
+						</>
+					)}
+
+					{/* 事件管理 */}
+					<button
+						className="actions-button event-manager-button"
+						onClick={handleEventManager}
+						title={t("view.yearlyGlance.actions.manager")}
+					>
+						<span className="button-icon">🗂️</span>
+					</button>
+					
+					{/* 事件添加 */}
+					<button
+						className="actions-button event-form-button"
+						onClick={handleEventForm}
+						title={t("view.yearlyGlance.actions.form")}
+					>
+						<span className="button-icon">➕</span>
+					</button>
+
+					</div>
+					</div>
+
+				</div>
 			</div>
+
 			{/* 日历网格 */}
 			<div className={`calendar-grid layout-${layout}`}>
 				{Array.from({ length: 12 }).map((_, monthIndex) => (

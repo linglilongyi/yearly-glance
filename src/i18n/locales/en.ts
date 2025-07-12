@@ -138,7 +138,9 @@ const translations: BaseMessage = {
 				manager: "Open event manager",
 				limitListHeight: "Limit list height",
 				hideEmptyDates: "Hide empty dates",
-				// other actions
+				emojiOnTop: "Display emoji on top",
+				wrapText: "Toggle text wrapping",
+				showTooltips: "Mouse hover to show full event name",
 			},
 		},
 		eventManager: {

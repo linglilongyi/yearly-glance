@@ -83,6 +83,9 @@ export type BaseMessage = {
 				manager: string;
 				limitListHeight: string;
 				hideEmptyDates: string;
+				emojiOnTop: string;
+				wrapText: string;
+				showTooltips: string;
 			};
 		};
 		eventManager: {
