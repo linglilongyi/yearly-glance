@@ -1,3 +1,27 @@
+# [2.5.0](https://github.com/Moyf/yearly-glance/compare/2.4.2...2.5.0) (2025-07-12)
+
+
+### ✨ 新功能
+
+* **settings:** 按视图类型过滤布局选项 ([7fb6821](https://github.com/Moyf/yearly-glance/commit/7fb6821a100593d0c6fa37120e7b6b3df9baca9d))
+
+
+### 🎨 样式
+
+* 适配列表和日历的最小宽度区分 ([a193145](https://github.com/Moyf/yearly-glance/commit/a19314568128c46262db0b45f7c98c3dbc9936c3))
+* 适配列表和日历的最小宽度区分，为日历界面增加了更多按钮 ([f515e80](https://github.com/Moyf/yearly-glance/commit/f515e808ef3d69429dfdbe18048b3e122b9dcfcd))
+    1. emoji 显示位置（上方）
+    2. 文字换行
+    3. 鼠标悬浮显示提示
+* 优化年度日历网格布局和样式 ([f6eeac5](https://github.com/Moyf/yearly-glance/commit/f6eeac5be69b606239ee114f6ea41dda49af6bad))
+* 更新 CSS ([5ba7a43](https://github.com/Moyf/yearly-glance/commit/5ba7a43d16d976d72d7032c22f3d96b7455abc3b))
+
+### 🐛 修复
+
+* 修复基本视图类型布局（经典年历） ([2c69661](https://github.com/Moyf/yearly-glance/commit/2c6966149007bfd5a9b15e5772a1fee75de79e07))
+
+
+
 ## [2.4.2](https://github.com/Moyf/yearly-glance/compare/2.4.1...2.4.2) (2025-07-10)
 
 

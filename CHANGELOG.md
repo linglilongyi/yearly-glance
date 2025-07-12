@@ -1,3 +1,27 @@
+# [2.5.0](https://github.com/Moyf/yearly-glance/compare/2.4.2...2.5.0) (2025-07-12)
+
+
+### ✨ Features
+
+* **settings:** Filter layout options by view type ([7fb6821](https://github.com/Moyf/yearly-glance/commit/7fb6821a100593d0c6fa37120e7b6b3df9baca9d))
+
+
+### 🎨 Styles
+
+* Distinguish minimum width for list and calendar views ([f515e80](https://github.com/Moyf/yearly-glance/commit/f515e808ef3d69429dfdbe18048b3e122b9dcfcd))
+* Optimize yearly calendar grid layout and styles, add more buttons for calendar ([f6eeac5](https://github.com/Moyf/yearly-glance/commit/f6eeac5be69b606239ee114f6ea41dda49af6bad))
+    1. Set emoji on top
+    2. Wrap text
+    3. Howver to show tooltips
+* Update CSS ([5ba7a43](https://github.com/Moyf/yearly-glance/commit/5ba7a43d16d976d72d7032c22f3d96b7455abc3b))
+
+
+### 🐛 Bug Fixes
+
+* Fix basic view types layout ([2c69661](https://github.com/Moyf/yearly-glance/commit/2c6966149007bfd5a9b15e5772a1fee75de79e07))
+
+
+
 ## [2.4.2](https://github.com/Moyf/yearly-glance/compare/2.4.1...2.4.2) (2025-07-10)
 
 
