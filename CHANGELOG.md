@@ -1,3 +1,14 @@
+## [2.5.1](https://github.com/Moyf/yearly-glance/compare/2.5.0...2.5.1) (2025-07-13)
+
+
+### 🐛 Bug Fixes
+
+* Fix list view horizontal scrolling and layout options display issues ([a36a777](https://github.com/Moyf/yearly-glance/commit/a36a777b52495d6a802b0da12afe8aad03706c8f))
+    - Adjust list view layout in YearlyCalendarView.css to prevent flex-wrap from taking effect, making list items scroll horizontally and improving user experience
+    - Add max-width limit to prevent text from overflowing and affecting layout
+    - Restore 1x12 layout options in ViewSettings.tsx for list and calendar views, ensuring consistency and completeness of layout options
+    
+
 # [2.5.0](https://github.com/Moyf/yearly-glance/compare/2.4.2...2.5.0) (2025-07-12)
 
 
