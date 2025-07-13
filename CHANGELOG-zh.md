@@ -1,3 +1,17 @@
+## [2.5.2](https://github.com/Moyf/yearly-glance/compare/2.5.1...2.5.2) (2025-07-13)
+
+
+### 🐛 修复
+
+* 事件管理器中适配长文本 ([94ca81f](https://github.com/Moyf/yearly-glance/commit/94ca81f8b5c77f273b587c99f7b0a5c85242bd94)) 修复 [#39](https://github.com/Moyf/yearly-glance/issues/39)
+
+
+* 修复列表视图横向滚动及布局选项显示问题 ([a36a777](https://github.com/Moyf/yearly-glance/commit/a36a777b52495d6a802b0da12afe8aad03706c8f))
+    - YearlyCalendarView.css中调整列表视图布局，取消flex-wrap换行，使列表项横向滚动生效，提升用户体验
+    - 增加max-width限制，防止文本溢出影响布局
+    - ViewSettings.tsx中恢复1x12布局选项在列表和日历视图中显示，保证布局选择一致性和功能完整性
+
+
 ## [2.5.1](https://github.com/Moyf/yearly-glance/compare/2.5.0...2.5.1) (2025-07-13)
 
 
