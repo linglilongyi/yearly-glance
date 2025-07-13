@@ -21,11 +21,12 @@ interface ViewSettingsProps {
 }
 
 export const getLayoutOptions = (viewType: string) => {
-  const filteredLayouts = viewType === 'list' 
-    ? LAYOUT_OPTIONS 
-    : LAYOUT_OPTIONS.filter(layout => layout !== '1x12');
-    
-  return filteredLayouts.map((layout) => ({
+	// 2025-07-13 还是都加回去吧，横向滚动
+	const filteredLayouts = (viewType === 'list' || viewType === 'calendar')
+		? LAYOUT_OPTIONS
+		: LAYOUT_OPTIONS.filter(layout => layout !== '1x12');
+
+	return filteredLayouts.map((layout) => ({
     value: layout,
     label: layout,
   }));
