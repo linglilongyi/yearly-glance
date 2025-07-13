@@ -551,6 +551,7 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		text-align: start;
+		max-width: 100%;
 	}
 
 	/* ------- 列表视图样式 ------- */
@@ -759,12 +760,12 @@
 	.layout-1x12 {
 		display: flex;
 		overflow-x: auto;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		padding-bottom: 16px;
 		scrollbar-width: thin;
-		-webkit-overflow-scrolling: touch;
+		/* -webkit-overflow-scrolling: touch;
 		scroll-behavior: smooth;
-		scroll-snap-type: x mandatory;
+		scroll-snap-type: x mandatory; */
 	}
 
 	.layout-1x12::-webkit-scrollbar {
