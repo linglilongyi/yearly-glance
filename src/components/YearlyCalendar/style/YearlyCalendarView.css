@@ -847,135 +847,6 @@
 
 /* ------- 响应式布局 ------- */
 
-/* 超大屏幕 (>2200px) */
-@media (min-width: 2201px) {
-	.yearly-calendar {
-		max-width: var(--max-screen-width);
-		padding: 30px;
-
-		.layout-3x4 .month-container,
-		.layout-4x3 .month-container {
-			min-width: 240px;
-		}
-
-		.layout-2x6 .month-container {
-			min-width: 200px;
-		}
-	}
-}
-
-/* 大屏幕 (1801px-2200px) */
-@media (max-width: 2200px) and (min-width: 1801px) {
-	.yearly-calendar {
-		padding: 25px;
-
-		.month-row {
-			gap: 15px;
-		}
-
-		.layout-3x4 .month-container,
-		.layout-4x3 .month-container {
-			min-width: 220px;
-		}
-
-		.calendar-grid.layout-3x4 {
-			/* 宽度充足时，只显示4列 */
-			grid-template-columns: repeat(4, 1fr);
-		}
-		.calendar-grid.layout-4x3 {
-			/* 宽度充足时，只显示3列 */
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-}
-
-/* 中大屏幕 (1501px-1800px) */
-@media (max-width: 1800px) {
-	.yearly-calendar {
-
-		.layout-2x6 .month-container {
-			flex: 0 0 calc(16.67% - 16px);
-			min-width: 170px;
-		}
-
-		.layout-3x4 .month-container {
-			flex: 0 0 calc(33.33% - 12px);
-			min-width: 160px;
-		}
-
-		.layout-4x3 .month-container {
-			flex: 0 0 calc(33.33% - 12px);
-			min-width: 170px;
-		}
-
-		.month-row {
-			gap: 15px;
-		}
-	}
-}
-
-/* 中等屏幕 (1201px-1500px) */
-@media (max-width: 1500px) {
-	.yearly-calendar {
-		padding: 18px;
-
-		.layout-2x6 .month-container {
-			flex: 0 0 calc(33.33% - 15px);
-			min-width: 160px;
-		}
-
-		.layout-3x4 .month-container {
-			flex: 0 0 calc(33.33% - 12px);
-			min-width: 0;
-		}
-
-		.layout-4x3 .month-container {
-			flex: 0 0 calc(33.33% - 12px);
-			min-width: 0;
-		}
-
-		.month-days {
-			font-size: 0.95em;
-		}
-	}
-}
-
-/* 中小屏幕 (901px-1200px) */
-@media (max-width: 1200px) {
-	.yearly-calendar {
-		padding: 15px;
-		overflow-x: hidden;
-
-		.month-row {
-			gap: 12px;
-			margin-bottom: 12px;
-		}
-
-		.yearly-calendar-title {
-			font-size: 1.6em;
-			padding: 10px 0;
-		}
-
-		.layout-2x6 .month-container {
-			flex: 0 0 calc(33.33% - 10px);
-		}
-
-		.layout-3x4 .month-container {
-			flex: 0 0 calc(50% - 8px);
-		}
-
-		.layout-4x3 .month-container {
-			flex: 0 0 calc(50% - 8px);
-		}
-
-		.layout-3x4 .month-row,
-		.layout-4x3 .month-row,
-		.layout-2x6 .month-row {
-			flex-wrap: wrap;
-		}
-	}
-}
-
 /* 平板屏幕 (601px-900px) */
 @media (max-width: 900px) {
 	.yearly-calendar {
@@ -1140,5 +1011,304 @@
 			display: none;
 		}
 	}
+}
 
+.yearly-glance-container {
+    container-type: inline-size;
+    container-name: yg-container ;
+}
+
+/* 超大屏幕 (>2200px) */
+@container yg-container (min-width: 2201px) {
+	.yearly-calendar {
+		max-width: var(--max-screen-width);
+		padding: 30px;
+
+		.layout-3x4 .month-container,
+		.layout-4x3 .month-container {
+			min-width: 240px;
+		}
+
+		.layout-2x6 .month-container {
+			min-width: 200px;
+		}
+	}
+}
+
+/* 大屏幕 (1801px-2200px) */
+@container yg-container  (max-width: 2200px) and (min-width: 1801px) {
+	.yearly-calendar {
+		padding: 25px;
+
+		.month-row {
+			gap: 15px;
+		}
+
+		.layout-3x4 .month-container,
+		.layout-4x3 .month-container {
+			min-width: 220px;
+		}
+
+		.calendar-grid.layout-3x4 {
+			/* 宽度充足时，只显示4列 */
+			grid-template-columns: repeat(4, 1fr);
+		}
+		.calendar-grid.layout-4x3 {
+			/* 宽度充足时，只显示3列 */
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+}
+
+/* 中大屏幕 (1501px-1800px) */
+@container yg-container (max-width: 1800px) {
+	.yearly-calendar {
+
+		.layout-2x6 .month-container {
+			flex: 0 0 calc(16.67% - 16px);
+			min-width: 170px;
+		}
+
+		.layout-3x4 .month-container {
+			flex: 0 0 calc(33.33% - 12px);
+			min-width: 160px;
+		}
+
+		.layout-4x3 .month-container {
+			flex: 0 0 calc(33.33% - 12px);
+			min-width: 170px;
+		}
+
+		.month-row {
+			gap: 15px;
+		}
+	}
+}
+
+/* 中等屏幕 (1201px-1500px) */
+@container yg-container (max-width: 1500px) {
+	.yearly-calendar {
+		padding: 18px;
+
+		.layout-2x6 .month-container {
+			flex: 0 0 calc(33.33% - 15px);
+			min-width: 160px;
+		}
+
+		.layout-3x4 .month-container {
+			flex: 0 0 calc(33.33% - 12px);
+			min-width: 0;
+		}
+
+		.layout-4x3 .month-container {
+			flex: 0 0 calc(33.33% - 12px);
+			min-width: 0;
+		}
+
+		.month-days {
+			font-size: 0.95em;
+		}
+	}
+}
+
+/* 中小屏幕 (901px-1200px) */
+@container yg-container (max-width: 1200px) {
+	.yearly-calendar {
+		padding: 15px;
+		overflow-x: hidden;
+
+		.month-row {
+			gap: 12px;
+			margin-bottom: 12px;
+		}
+
+		.yearly-calendar-title {
+			font-size: 1.6em;
+			padding: 10px 0;
+		}
+
+		.layout-2x6 .month-container {
+			flex: 0 0 calc(33.33% - 10px);
+		}
+
+		.layout-3x4 .month-container {
+			flex: 0 0 calc(50% - 8px);
+		}
+
+		.layout-4x3 .month-container {
+			flex: 0 0 calc(50% - 8px);
+		}
+
+		.layout-3x4 .month-row,
+		.layout-4x3 .month-row,
+		.layout-2x6 .month-row {
+			flex-wrap: wrap;
+		}
+	}
+}
+
+/* 平板屏幕 (601px-900px) */
+@container yg-container (max-width: 900px) {
+	.yearly-calendar {
+		padding: 12px;
+
+		.yearly-calendar-title {
+			font-size: 1.5em;
+			margin-bottom: 16px;
+			padding: 8px 0;
+		}
+
+		.yearly-calendar-title::after {
+			width: 80px;
+		}
+
+		.yearly-calendar-actions-bar {
+			padding: 10px 14px;
+		}
+
+		.layout-2x6 .month-container,
+		.layout-3x4 .month-container,
+		.layout-4x3 .month-container,
+		.layout-6x2 .month-container {
+			flex: 0 0 calc(50% - 8px);
+			min-width: 0;
+			max-width: 100%;
+		}
+
+		.month-row {
+			flex-wrap: wrap !important;
+			gap: 10px;
+			margin-bottom: 10px;
+			justify-content: space-between;
+		}
+
+		.layout-1x12 {
+			flex-wrap: wrap;
+			overflow-x: visible;
+			padding-bottom: 0;
+		}
+
+		.layout-1x12 .month-row {
+			width: 100%;
+			flex-wrap: wrap;
+		}
+
+		.month-days {
+			font-size: 0.9em;
+		}
+
+		.day {
+			min-height: 28px;
+			padding: 2px;
+		}
+
+	}
+}
+
+/* 小屏幕 (≤600px) */
+@container yg-container (max-width: 600px) {
+	.yearly-calendar {
+		padding: 10px;
+
+		.layout-2x6 .month-container,
+		.layout-3x4 .month-container,
+		.layout-4x3 .month-container,
+		.layout-6x2 .month-container,
+		.layout-12x1 .month-container {
+			flex: 0 0 100%;
+			min-width: 0;
+			margin-bottom: 12px;
+		}
+
+		.yearly-calendar-actions-bar {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 10px;
+			padding: 10px;
+		}
+
+		.event-legend {
+			margin-bottom: 10px;
+			justify-content: flex-start;
+			width: 100%;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.legend-item {
+			padding: 3px 6px;
+		}
+
+		.month-header {
+			padding: 8px;
+			font-size: 1em;
+		}
+
+		.calendar-grid {
+			gap: 12px;
+		}
+
+		.month-row {
+			margin-bottom: 0;
+			gap: 0;
+		}
+
+		.month-days-list {
+			max-height: 350px;
+		}
+
+		.day-row {
+			padding: 6px 10px;
+		}
+
+		.event-emoji {
+			font-size: 1em;
+		}
+
+		.button-icon {
+			font-size: 1.2em;
+		}
+	}
+}
+
+/* 特小屏幕 (≤400px) */
+@container yg-container (max-width: 400px) {
+	.yearly-calendar {
+		padding: 8px;
+
+		.yearly-calendar-title {
+			font-size: 1.3em;
+			margin-bottom: 12px;
+		}
+
+		.month-header {
+			padding: 6px;
+		}
+
+		.weekdays div {
+			padding: 4px 0;
+			font-size: 0.8em;
+		}
+
+		.day-number {
+			font-size: 0.8em;
+		}
+
+		.event.font-small {
+			font-size: 0.65em;
+		}
+
+		.event.font-medium {
+			font-size: 0.75em;
+		}
+
+		.event.font-large {
+			font-size: 0.85em;
+		}
+
+		/* 最小的情况下 隐藏事件过滤器的文本 */
+		.event-legend .legend-text {
+			display: none;
+		}
+	}
 }
