@@ -7,14 +7,14 @@ import {
 	Holiday,
 } from "@/src/core/interfaces/Events";
 import { Tooltip } from "../Base/Tooltip";
-import { parseDateValue } from "@/src/core/utils/dateParser";
 import { t } from "@/src/i18n/i18n";
+import { CalendarType } from "@/src/core/interfaces/Date";
+import { IsoUtils } from "@/src/core/utils/isoUtils";
 
 interface EventItemProps {
 	event: Holiday | Birthday | CustomEvent;
 	onEdit: () => void;
 	onDelete: () => void;
-	canDelete: boolean;
 	eventType: EventType;
 }
 
@@ -23,7 +23,6 @@ export const EventItem: React.FC<EventItemProps> = ({
 	event,
 	onEdit,
 	onDelete,
-	canDelete,
 	eventType,
 }) => {
 	// 获取事件特定信息
@@ -169,26 +168,8 @@ export const EventItem: React.FC<EventItemProps> = ({
 		}
 	};
 
-	const displayDate = (date: string, dateType: "SOLAR" | "LUNAR") => {
-		const { hasYear, yearName, monthName, dayName } = parseDateValue(
-			date,
-			dateType
-		);
-		let dateStr;
-		if (hasYear) {
-			if (dateType === "SOLAR") {
-				dateStr = `${yearName}-${monthName}-${dayName}`;
-			} else {
-				dateStr = `${yearName}年${monthName}月${dayName}`;
-			}
-		} else {
-			if (dateType === "SOLAR") {
-				dateStr = `${monthName}-${dayName}`;
-			} else {
-				dateStr = `${monthName}月${dayName}`;
-			}
-		}
-		return dateStr;
+	const displayDate = (isoDate: string, calendar: CalendarType) => {
+		return IsoUtils.formatDate(isoDate, calendar);
 	};
 
 	return (
@@ -218,9 +199,14 @@ export const EventItem: React.FC<EventItemProps> = ({
 
 				<div className="event-date">
 					<span className="date-icon">
-						{event.dateType === "LUNAR" ? "🌙" : "📅"}
+						{event.eventDate.calendar === "GREGORIAN" ? "📅" : "🌙"}
 					</span>
-					<span>{displayDate(event.date, event.dateType)}</span>
+					<span>
+						{displayDate(
+							event.eventDate.isoDate,
+							event.eventDate.calendar
+						)}
+					</span>
 				</div>
 
 				{event.remark && (
@@ -243,15 +229,13 @@ export const EventItem: React.FC<EventItemProps> = ({
 				>
 					✏️
 				</button>
-				{canDelete && (
-					<button
-						className="delete-button"
-						onClick={onDelete}
-						title={t("view.eventManager.actions.delete")}
-					>
-						🗑️
-					</button>
-				)}
+				<button
+					className="delete-button"
+					onClick={onDelete}
+					title={t("view.eventManager.actions.delete")}
+				>
+					🗑️
+				</button>
 			</div>
 		</div>
 	);

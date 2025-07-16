@@ -17,15 +17,10 @@ import {
 } from "@/src/core/interfaces/Events";
 import { EventFormModal } from "./components/EventForm/EventFormModal";
 import { YearlyGlanceBus } from "./core/hook/useYearlyGlanceConfig";
-import {
-	updateBirthdaysInfo,
-	updateCustomEventsInfo,
-	updateHolidaysInfo,
-} from "./core/utils/eventCalculator";
 import { t } from "./i18n/i18n";
-import { lunarTest } from "./test/date";
 import { generateUUID } from "./core/utils/uuid";
-import { migrateData } from "./core/utils/dataMerge";
+import { MigrateData } from "./core/utils/migrateData";
+import { EventCalculator } from "./core/utils/eventCalculator";
 
 export default class YearlyGlancePlugin extends Plugin {
 	settings: YearlyGlanceConfig;
@@ -33,10 +28,6 @@ export default class YearlyGlancePlugin extends Plugin {
 	async onload() {
 		// 加载设置
 		await this.loadSettings();
-
-		// 数据迁移
-		this.settings = migrateData(this);
-		await this.saveSettings();
 
 		// 注册视图
 		this.registerLeafViews();
@@ -47,9 +38,6 @@ export default class YearlyGlancePlugin extends Plugin {
 
 		// 添加设置选项卡
 		this.addSettingTab(new YearlyGlanceSettingsTab(this.app, this));
-
-		// 测试
-		lunarTest.test();
 	}
 
 	onunload() {}
@@ -57,15 +45,14 @@ export default class YearlyGlancePlugin extends Plugin {
 	async loadSettings() {
 		// 加载数据
 		const savedData = await this.loadData();
-
 		// 验证并合并数据
 		this.settings = this.validateAndMergeSettings(savedData);
-
-		// 确保所有事件都有id
-		await this.ensureEventsHaveIds();
-
+		// 数据迁移
+		this.settings = MigrateData.migrateV2(this);
 		// 更新所有事件的dateArr字段
 		await this.updateAllEventsDateObj();
+		// 保存设置，并通知其他组件
+		await this.saveSettings();
 	}
 
 	// 确保数据结构符合预期格式，移除未定义的配置
@@ -190,24 +177,6 @@ export default class YearlyGlancePlugin extends Plugin {
 		await this.saveSettings();
 	}
 
-	/**
-	 * 更新所有事件的dateArr字段
-	 */
-	public async updateAllEventsDateObj() {
-		const year = this.settings.config.year;
-		const events = this.settings.data;
-
-		// 更新节日和自定义事件的dateArr
-		events.holidays = updateHolidaysInfo(events.holidays, year);
-		events.customEvents = updateCustomEventsInfo(events.customEvents, year);
-
-		// 更新生日的完整信息（包含dateArr、nextBirthday、age、animal、zodiac等）
-		events.birthdays = updateBirthdaysInfo(events.birthdays, year);
-
-		// 不触发保存的通知，因为这是内部计算，不需要通知用户
-		await this.saveData(this.settings);
-	}
-
 	public async openPluginView(viewType: string) {
 		// 检查是否已经有打开的视图
 		const existingLeaves = this.app.workspace.getLeavesOfType(viewType);
@@ -233,18 +202,17 @@ export default class YearlyGlancePlugin extends Plugin {
 		event: Partial<CustomEvent | Birthday | Holiday> = {},
 		isEditing: boolean = false,
 		allowTypeChange: boolean = false,
-		props?: any
+		props?: {
+			date?: string;
+		}
 	) {
 		new EventFormModal(
 			this,
-			eventType,
 			event,
+			eventType,
 			isEditing,
 			allowTypeChange,
-			(props = {
-				...props,
-				plugin: this,
-			})
+			props
 		).open();
 	}
 
@@ -296,6 +264,33 @@ export default class YearlyGlancePlugin extends Plugin {
 			}
 		});
 
+		await this.saveData(this.settings);
+	}
+
+	/**
+	 * 更新所有事件的dateArr字段
+	 */
+	public async updateAllEventsDateObj() {
+		const year = this.settings.config.year;
+		const events = this.settings.data;
+
+		// 更新节日和自定义事件的dateArr
+		events.holidays = EventCalculator.updateHolidaysInfo(
+			events.holidays,
+			year
+		);
+		events.customEvents = EventCalculator.updateCustomEventsInfo(
+			events.customEvents,
+			year
+		);
+
+		// 更新生日的完整信息（包含dateArr、nextBirthday、age、animal、zodiac等）
+		events.birthdays = EventCalculator.updateBirthdaysInfo(
+			events.birthdays,
+			year
+		);
+
+		// 不触发保存的通知，因为这是内部计算，不需要通知用户
 		await this.saveData(this.settings);
 	}
 }

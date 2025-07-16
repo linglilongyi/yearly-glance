@@ -140,7 +140,7 @@ const translations: BaseMessage = {
 				hideEmptyDates: "是否隐藏空日期",
 				emojiOnTop: "将 emoji 显示在上方",
 				wrapText: "切换文本换行",
-				showTooltips: "鼠标悬浮时显示完整事件名"
+				showTooltips: "鼠标悬浮时显示完整事件名",
 			},
 		},
 		eventManager: {
@@ -148,6 +148,12 @@ const translations: BaseMessage = {
 			solar: "公历",
 			lunar: "农历",
 			date: "日期",
+			calendar: {
+				auto: "自动推断",
+				gregorian: "公历",
+				lunar: "农历",
+				lunar_leap: "农历闰月",
+			},
 			actions: {
 				add: "添加新事件",
 				search: "搜索事件...",
@@ -177,8 +183,7 @@ const translations: BaseMessage = {
 				eventDate: "事件日期",
 				eventDateType: "事件日期类型",
 				optional: "可选",
-				eventRepeat: "重复",
-				eventHidden: "隐藏",
+				eventHidden: "事件隐藏",
 				eventEmoji: "事件图标",
 				eventColor: "事件颜色",
 				eventRemark: "事件备注",
@@ -186,28 +191,58 @@ const translations: BaseMessage = {
 				cancel: "取消",
 				reset: "重置",
 				submit: "提交",
-				eventDateHelp:
-					"<b>格式：</b><br>" +
-					"YYYY-M-D 或 M-D<br>" +
-					"<b>公历：</b><br>" +
-					"• 2025-01-01 = 2025年1月1日<br>" +
-					"<b>农历：</b><br>" +
-					"• 2025-01-01 = 二〇二五年正月初一<br>" +
-					"• 2025-06-01! = 二〇二五年闰六月初一",
-				selectDateType: "选择",
-				previousDate: "上一",
-				nextDate: "下一",
-				year: "年",
-				month: "月",
-				day: "日",
 				selectPresetColor: "选择预设",
+			},
+			dateError: {
+				emptyDate: "日期不能为空，请输入日期",
+				invalidZeroDate:
+					"日期的年月日不能为零：{{input}}，请检查日期格式",
+				insufficientDate:
+					"输入的日期信息不完整：{{input}}，至少需要输入月和日",
+				invalidFormatDate:
+					"日期格式不正确：{{input}}，期望格式为<b>月日</b>，但输入可能是<b>年月</b>或<b>年日</b>格式",
+				invalidRangeDate:
+					"日期超出有效范围：{{input}}，期望格式为<b>月日</b>，但月或日的数值超出正常范围",
+				unexpectedNumberLength:
+					"日期数值长度不符合要求：{{length}} 位数字，期望为<b>月日</b>（2位）或<b>年月日</b>（3位）格式",
+				invalidLunarDate:
+					"无法识别的农历日期：{{input}}，请检查农历日期格式是否正确",
+				unknownChineseDigit:
+					"无法识别的中文数字：{{char}}，请检查中文数字书写是否正确",
+			},
+			help: {
+				eventName: "事件的名称（不可为空）",
+				eventDate:
+					"事件日期，以年月日的顺序书写<br>" +
+					"<b>公历</b>：<br>" +
+					"标准格式：2025-01-01, 2025/01/01, 2025.01.01, 01-01, 01/01, 01.01<br>" +
+					"旧格式：2025,01,01, 01,01<br>" +
+					"中文格式：2025年01月01日, 01月01日<br>" +
+					"<b>农历</b>：<br>" +
+					"标准格式：2025-01-01, 2025/01/01, 2025.01.01, 01-01, 01/01, 01.01<br>" +
+					"旧格式：2025,6,1  2025,-6,1  6,1  -6,1<br>" +
+					"中文格式：2025年正月初一, 正月初一, 闰二月初一, 二〇二五年闰六月初一",
+				eventDateType:
+					"事件日期类型，自动推断或手动选择<br>" +
+					"<b>自动推断</b>：根据输入日期自动判断是公历，农历或者农历闰月<br>" +
+					"<b>公历</b>：公历日期<br>" +
+					"<b>农历</b>：农历日期<br>" +
+					"<b>农历闰月</b>：农历闰月日期，若闰月不存在会自动转换为农历日期",
+				eventEmoji: "事件图标，目前支持使用emoji",
+				eventColor:
+					"事件颜色，可以选择预设颜色或自定义颜色<br>" +
+					"预设颜色在插件设置中添加",
+				eventHidden:
+					"是否隐藏该事件（在概览中不再显示）<br>" +
+					"注：在事件管理中保持可见",
+				eventRemark:
+					"对事件的额外说明，点击事件时（或在管理事件中）可查看备注内容",
+				customEventRepeat: "选中时，将会在每年的该日期都重复显示事件",
+				holidayFoundDate: "节日起源日期，后续计划会用于计算节庆周年",
 			},
 			holiday: {
 				name: "节日",
-				type: "类型",
 				foundDate: "节日起源时间",
-				builtin: "内置节日",
-				custom: "自定义节日",
 			},
 			birthday: {
 				name: "生日",
@@ -219,7 +254,7 @@ const translations: BaseMessage = {
 			},
 			customEvent: {
 				name: "自定义事件",
-				repeat: "重复",
+				repeat: "事件重复",
 			},
 		},
 	},

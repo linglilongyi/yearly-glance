@@ -1,0 +1,127 @@
+.date-input-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.date-input {
+	flex: 1;
+	padding: 8px 12px;
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	background-color: var(--background-primary);
+	color: var(--text-normal);
+	font-size: inherit;
+	font-family: inherit;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.date-input::placeholder {
+	color: var(--text-muted);
+	opacity: 0.6;
+}
+
+.date-input:hover {
+	border-color: var(--interactive-accent);
+}
+
+.date-input:focus {
+	border-color: var(--interactive-accent);
+	box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.2);
+	outline: none;
+}
+
+.date-input:invalid {
+	border-color: var(--text-error);
+}
+
+/* 预览区域 */
+.date-preview {
+	margin-top: 6px;
+	min-height: 24px;
+	padding: 0 4px;
+	font-size: 0.85em;
+	line-height: 1.4;
+}
+
+.preview-success {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--text-success);
+	background-color: rgba(var(--color-green-rgb), 0.1);
+	padding: 4px 8px;
+	border-radius: 3px;
+	border-left: 3px solid var(--text-success);
+}
+
+.preview-error {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--text-error);
+	background-color: rgba(var(--color-red-rgb), 0.1);
+	padding: 4px 8px;
+	border-radius: 3px;
+	border-left: 3px solid var(--text-error);
+}
+
+.preview-icon {
+	font-size: 0.9em;
+	font-weight: bold;
+	flex-shrink: 0;
+}
+
+.preview-text {
+	flex: 1;
+	font-weight: 500;
+}
+
+.preview-calendar {
+	color: var(--text-muted);
+	font-size: 0.9em;
+	font-style: italic;
+	flex-shrink: 0;
+}
+
+/* 错误状态样式 */
+.date-input-container.has-error {
+	.date-input {
+		border-color: var(--text-error);
+		background-color: rgba(var(--color-red-rgb), 0.05);
+	}
+
+	.date-input:focus {
+		border-color: var(--text-error);
+		box-shadow: 0 0 0 2px rgba(var(--color-red-rgb), 0.2);
+	}
+}
+
+/* 成功状态样式 */
+.date-input-container.has-success {
+	.date-input {
+		border-color: var(--text-success);
+	}
+
+	.date-input:focus {
+		border-color: var(--text-success);
+		box-shadow: 0 0 0 2px rgba(var(--color-green-rgb), 0.2);
+	}
+}
+
+/* 禁用状态样式 */
+.date-input-container.disabled {
+	.date-input {
+		background-color: var(--background-secondary);
+		color: var(--text-muted);
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+
+	.date-input:hover,
+	.date-input:focus {
+		border-color: var(--background-modifier-border);
+		box-shadow: none;
+	}
+}

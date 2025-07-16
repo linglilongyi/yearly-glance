@@ -93,6 +93,12 @@ export type BaseMessage = {
 			solar: string;
 			lunar: string;
 			date: string;
+			calendar: {
+				auto: string;
+				gregorian: string;
+				lunar: string;
+				lunar_leap: string;
+			};
 			actions: {
 				add: string;
 				edit: string;
@@ -122,7 +128,6 @@ export type BaseMessage = {
 				eventDate: string;
 				eventDateType: string;
 				optional: string;
-				eventRepeat: string;
 				eventHidden: string;
 				eventEmoji: string;
 				eventColor: string;
@@ -131,21 +136,32 @@ export type BaseMessage = {
 				cancel: string;
 				submit: string;
 				reset: string;
-				eventDateHelp: string;
-				selectDateType: string;
-				previousDate: string;
-				nextDate: string;
-				year: string;
-				month: string;
-				day: string;
 				selectPresetColor: string;
+			};
+			dateError: {
+				emptyDate: string;
+				invalidZeroDate: string;
+				insufficientDate: string;
+				invalidFormatDate: string;
+				invalidRangeDate: string;
+				unexpectedNumberLength: string;
+				invalidLunarDate: string;
+				unknownChineseDigit: string;
+			};
+			help: {
+				eventName: string;
+				eventDate: string;
+				eventDateType: string;
+				eventEmoji: string;
+				eventColor: string;
+				eventHidden: string;
+				eventRemark: string;
+				customEventRepeat: string;
+				holidayFoundDate: string;
 			};
 			holiday: {
 				name: string;
-				type: string;
 				foundDate: string;
-				builtin: string;
-				custom: string;
 			};
 			birthday: {
 				name: string;

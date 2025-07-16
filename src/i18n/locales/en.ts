@@ -148,6 +148,12 @@ const translations: BaseMessage = {
 			solar: "Solar",
 			lunar: "Lunar",
 			date: "Date",
+			calendar: {
+				auto: "Auto detect",
+				gregorian: "Gregorian",
+				lunar: "Lunar",
+				lunar_leap: "Lunar leap month",
+			},
 			actions: {
 				add: "Add a new event",
 				search: "Search events...",
@@ -177,8 +183,7 @@ const translations: BaseMessage = {
 				eventDate: "Event date",
 				eventDateType: "Event date type",
 				optional: "Optional",
-				eventRepeat: "Repeat",
-				eventHidden: "Hidden",
+				eventHidden: "Event hidden",
 				eventEmoji: "Event emoji",
 				eventColor: "Event color",
 				eventRemark: "Event remark",
@@ -186,28 +191,60 @@ const translations: BaseMessage = {
 				cancel: "Cancel",
 				reset: "Reset",
 				submit: "Submit",
-				eventDateHelp:
-					"<b>Format:</b><br>" +
-					"YYYY-M-D or M-D<br>" +
-					"<b>Solar Calendar:</b><br>" +
-					"• 2025-01-01 = January 1, 2025<br>" +
-					"<b>Lunar Calendar:</b><br>" +
-					"• 2025-01-01 = The 1st day of the 1st month, 2025<br>" +
-					"• 2025-06-01! = The 1st day of the intercalary (leap) 6th month, 2025",
-				selectDateType: "Select",
-				previousDate: "Previous ",
-				nextDate: "Next ",
-				year: "Year",
-				month: "Month",
-				day: "Day",
 				selectPresetColor: "Select preset",
+			},
+			dateError: {
+				emptyDate: "Date cannot be empty, please enter a date",
+				invalidZeroDate:
+					"Year, month, and day cannot be zero: {{input}}, please check the date format",
+				insufficientDate:
+					"Incomplete date information: {{input}}, at least month and day are required",
+				invalidFormatDate:
+					"Incorrect date format: {{input}}, expected format is <b>month-day</b>, but input may be <b>year-month</b> or <b>year-day</b> format",
+				invalidRangeDate:
+					"Date out of valid range: {{input}}, expected format is <b>month-day</b>, but month or day values exceed normal range",
+				unexpectedNumberLength:
+					"Date value length does not meet requirements: {{length}} digits, expected <b>month-day</b> (2 digits) or <b>year-month-day</b> (3 digits) format",
+				invalidLunarDate:
+					"Unrecognized lunar date: {{input}}, please check if the lunar date format is correct",
+				unknownChineseDigit:
+					"Unrecognized Chinese digit: {{char}}, please check if the Chinese digit is written correctly",
+			},
+			help: {
+				eventName: "Event name (cannot be empty)",
+				eventDate:
+					"Event date, must follow the order of year, month, and day.<br>" +
+					"<b>Gregorian Calendar</b>:<br>" +
+					"Standard format: 2025-01-01, 2025/01/01, 2025.01.01, 01-01, 01/01, 01.01<br>" +
+					"Legacy format: 2025,01,01, 01,01<br>" +
+					"Chinese format: 2025年01月01日, 01月01日<br>" +
+					"<b>Lunar Calendar</b>:<br>" +
+					"Standard format: 2025-01-01, 2025/01/01, 2025.01.01, 01-01, 01/01, 01.01<br>" +
+					"Legacy format: 2025,6,1  2025,-6,1  6,1  -6,1<br>" +
+					"Chinese format: 2025年正月初一, 正月初一, 闰二月初一, 二〇二五年闰六月初一",
+				eventDateType:
+					"Event date type, auto-detect or manually select<br>" +
+					"<b>Auto detect</b>: Automatically determine if the input date is Gregorian, lunar, or lunar leap month<br>" +
+					"<b>Gregorian</b>: Gregorian calendar date<br>" +
+					"<b>Lunar</b>: Lunar calendar date<br>" +
+					"<b>Lunar leap month</b>: Lunar leap month date, will automatically convert to lunar date if leap month doesn't exist",
+				eventEmoji: "Event icon, currently supports using emoji",
+				eventColor:
+					"Event color, you can select preset colors or custom colors<br>" +
+					"Preset colors are added in plugin settings",
+				eventHidden:
+					"Whether to hide the event (not displayed in the overview)<br>" +
+					"Note: The event will still be visible in the event manager",
+				eventRemark:
+					"Additional information about the event, can be viewed when clicking on the event (or in the event manager)",
+				customEventRepeat:
+					"When selected, the event will repeat every year on the same date",
+				holidayFoundDate:
+					"Holiday founding date, will be used to calculate holiday anniversaries in future plans",
 			},
 			holiday: {
 				name: "Holiday",
-				type: "Type",
 				foundDate: "Found date",
-				builtin: "Builtin holiday",
-				custom: "Custom holiday",
 			},
 			birthday: {
 				name: "Birthday",
@@ -219,7 +256,7 @@ const translations: BaseMessage = {
 			},
 			customEvent: {
 				name: "Custom event",
-				repeat: "Repeat",
+				repeat: "Event repeat",
 			},
 		},
 	},
