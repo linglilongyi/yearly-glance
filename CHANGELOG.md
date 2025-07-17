@@ -1,3 +1,79 @@
+# [3.0.0](https://github.com/Moyf/yearly-glance/compare/2.5.2...3.0.0) (2025-07-17)
+
+
+### ♻️ Refactor
+
+* Optimize responsive design of YearlyCalendar for PC using container-related properties ([ebee569](https://github.com/Moyf/yearly-glance/commit/ebee569b107c1c41cda377654206226dd3b42f7c))
+* Data structure refactoring (#60) ([b7a872c](https://github.com/Moyf/yearly-glance/commit/b7a872c1c411723a7b71a09920dcff484c377516)), closes [#60](https://github.com/Moyf/yearly-glance/issues/60)
+
+
+### ✨ Features
+
+* Replace native title with Tooltip component for improved hint functionality (#71) ([161da04](https://github.com/Moyf/yearly-glance/commit/161da04600b099656ec6f46320d259161d75f515)), closes [#71](https://github.com/Moyf/yearly-glance/issues/71)
+* Add custom display format for Gregorian dates (#75) ([38ef1b1](https://github.com/Moyf/yearly-glance/commit/38ef1b14ef117fb0dd15933dd6a483e064edcd01)), closes [#75](https://github.com/Moyf/yearly-glance/issues/75)
+* Add settings view and related command support (#74) ([c4c330f](https://github.com/Moyf/yearly-glance/commit/c4c330fde5a31bb223be44b18e1c04ed23f87ee3)), closes [#74](https://github.com/Moyf/yearly-glance/issues/74)
+* Add automatic example event creation on first installation (#72) ([bad92cc](https://github.com/Moyf/yearly-glance/commit/bad92cce75a08d15e336dd8488f871037365c155)), closes [#72](https://github.com/Moyf/yearly-glance/issues/72)
+* **EventForm:** Auto-focus first input field to improve user experience (#73) ([a1d486a](https://github.com/Moyf/yearly-glance/commit/a1d486a850989575e218dbcd04256e9368c36651)), closes [#73](https://github.com/Moyf/yearly-glance/issues/73)
+
+
+### 💥 BREAKING CHANGE
+
+* Change event date structure and fix related bugs
+
+* feat: Add date interface definitions supporting both Gregorian and lunar date processing
+
+* feat: Refactor date interfaces and add intelligent date parser
+
+* feat: Add Gregorian and lunar date validators with integrated validation logic
+
+* feat: Optimize date processing and add test configuration
+
+* fix: Optimize date validation logic, enhance Gregorian and lunar date validity checks
+
+* feat: Add v2 to v3 data migration functionality
+
+* feat: Add lunar utility class and extend ISO date parsing functionality
+
+* feat: Refactor event date calculation logic, support solar term and festival updates
+
+* refactor: Remove DatePicker related components and style code
+
+* feat: Add ObsidianApp context and extend ISO date parsing support
+
+* feat: Optimize event date processing and data structure migration
+
+* fix: Unify event date structure, simplify date parsing return types
+
+* feat: Unify date interfaces and optimize date processing logic
+
+* fix(core): Update deprecated field comments, clarify replacement field descriptions
+
+* fix: Fix several rendering and style issues in YearlyCalendar component
+
+* feat: Add date input component and optimize yearly calendar event date processing
+
+* style: Optimize date input component styles and state presentation
+
+* test: Add unit tests for leap month handling fallback logic
+
+* refactor: Simplify event list component, remove built-in holiday collapse functionality
+
+* fix: Optimize date parsing logic, enhance input validation and error messages
+
+* fix: Optimize event type determination and search filtering logic
+
+* style: Adjust event form spacing and color picker styles
+
+* feat(tooltip): Support disabled state and optimize styles with Portal rendering
+
+* feat: Optimize date input component and improve multilingual hint messages
+
+* feat: Enhance date parsing error messages, support multiple format validations
+
+* fix(i18n): Optimize date and event hint text, improve expression accuracy
+
+
+
 ## [2.5.2](https://github.com/Moyf/yearly-glance/compare/2.5.1...2.5.2) (2025-07-13)
 
 
