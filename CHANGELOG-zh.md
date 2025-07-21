@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/Moyf/yearly-glance/compare/3.0.0...3.0.1) (2025-07-21)
+
+
+### ♻️ 重构
+
+* 事件悬浮提示开关及优化Tooltip样式 (#76) ([a128778](https://github.com/Moyf/yearly-glance/commit/a128778780726c1020012e3a36bd9576cd537ecc)), closes [#76](https://github.com/Moyf/yearly-glance/issues/76)
+
+
+
 # [3.0.0](https://github.com/Moyf/yearly-glance/compare/2.5.2...3.0.0) (2025-07-17)
 
 
