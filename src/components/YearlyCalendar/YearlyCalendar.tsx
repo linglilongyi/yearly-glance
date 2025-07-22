@@ -604,11 +604,13 @@ const renderMonth = (monthIndex: number) => {
 									aria-label={t('view.yearlyGlance.actions.futureMonths')}
 								>
 									<span className="legend-icon">⏩</span>
-									<span className="legend-text">\
+									<span className="legend-text">
 										{t('view.yearlyGlance.actions.futureMonths')}
 									</span>
 								</button>
+
 							</Tooltip>
+							
 						</div>
 					</div>
 
