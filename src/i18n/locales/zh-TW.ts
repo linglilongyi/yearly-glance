@@ -159,6 +159,12 @@ const translations: BaseMessage = {
 				emojiOnTop: "將 emoji 顯示在上方",
 				wrapText: "切換文字換行",
 				showTooltips: "滑鼠懸浮時顯示完整事件名",
+				hidePreviousMonths: "隱藏當月之前的月份",
+				showPreviousMonths: "顯示當月之前的月份",
+				previousMonths: "过往",
+				hideFutureMonths: "隱藏當月之後的月份",
+				showFutureMonths: "顯示當月之後的月份",
+				futureMonths: "未來",
 			},
 		},
 		eventManager: {

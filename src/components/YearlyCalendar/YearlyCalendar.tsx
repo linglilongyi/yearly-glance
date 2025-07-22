@@ -49,6 +49,8 @@ const presetConfigs = {
 
 const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 	const { config, updateConfig } = useYearlyGlanceConfig(plugin);
+	const [hidePreviousMonths, setHidePreviousMonths] = React.useState(false);
+	const [hideFutureMonths, setHideFutureMonths] = React.useState(false);
 
 	const {
 		year,
@@ -247,7 +249,29 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 	};
 
 	// 渲染单个月份
-	const renderMonth = (monthIndex: number) => {
+	const shouldRenderMonth = (monthIndex: number) => {
+	const currentDate = new Date();
+	const currentMonth = currentDate.getMonth();
+	const currentYear = currentDate.getFullYear();
+	const targetYear = year + Math.floor(monthIndex / 12);
+	const targetMonth = monthIndex % 12;
+
+	if (hidePreviousMonths && (targetYear < currentYear || (targetYear === currentYear && targetMonth < currentMonth))) {
+		return false;
+	}
+
+	if (hideFutureMonths && (targetYear > currentYear || (targetYear === currentYear && targetMonth > currentMonth))) {
+		return false;
+	}
+
+	return true;
+};
+
+const renderMonth = (monthIndex: number) => {
+	if (!shouldRenderMonth(monthIndex)) {
+		return null;
+	}
+
 		const monthData = monthsData[monthIndex];
 		const monthColorStyle = colorful
 			? {
@@ -721,6 +745,171 @@ const YearlyCalendarView: React.FC<YearlyCalendarViewProps> = ({ plugin }) => {
 							</Tooltip>
 						</div>
 					</div>
+				)}
+				
+				{/* 月份可见性切换按钮 */}
+				<div className="month-visibility-controls">
+					<button
+						className={`month-visibility-toggle ${hidePreviousMonths ? 'active' : ''}`}
+						onClick={() => setHidePreviousMonths(!hidePreviousMonths)}
+						title={hidePreviousMonths ? t('view.yearlyGlance.actions.showPreviousMonths') : t('view.yearlyGlance.actions.hidePreviousMonths')}
+					>
+						<span className="legend-icon">⏪</span>
+						<span className="legend-text">{t('view.yearlyGlance.actions.previousMonths')}</span>
+					</button>
+					<button
+						className={`month-visibility-toggle ${hideFutureMonths ? 'active' : ''}`}
+						onClick={() => setHideFutureMonths(!hideFutureMonths)}
+						title={hideFutureMonths ? t('view.yearlyGlance.actions.showFutureMonths') : t('view.yearlyGlance.actions.hideFutureMonths')}
+					>
+						<span className="legend-icon">⏩</span>
+						<span className="legend-text">{t('view.yearlyGlance.actions.futureMonths')}</span>
+					</button>
+				</div>
+
+				</div>
+				
+				<div className="yg-buttons-right">
+				<div className="yg-select-group">
+					{/* 视图预设选择 */}
+					<Select
+						options={viewPresetOptions}
+						value={currentPreset}
+						onValueChange={handlePresetChange}
+					/>
+
+							{/* 自定义模式下显示布局和视图类型选择器 */}
+							{currentPreset === "custom" && (
+								<>
+									{/* 布局选择 */}
+									<Select
+										options={getLayoutOptions(viewType)}
+										value={layout}
+										onValueChange={(value) =>
+											updateConfig({
+												...config,
+												layout: value,
+											})
+										}
+									/>
+									{/* 视图选择 */}
+									<Select
+										options={viewTypeOptions}
+										value={viewType}
+										onValueChange={(value) =>
+											updateConfig({
+												...config,
+												viewType: value,
+											})
+										}
+									/>
+								</>
+							)}
+						</div>
+
+						<div className="yg-action-buttons">
+							{/* 日历视图专用按钮 */}
+							{viewType === "calendar" && (
+								<>
+									<Tooltip
+										text={t(
+											"view.yearlyGlance.actions.emojiOnTop"
+										)}
+									>
+										<button
+											className="actions-button emoji-position-button"
+											onClick={() =>
+												updateConfig({
+													...config,
+													emojiOnTop:
+														!config.emojiOnTop,
+												})
+											}
+										>
+											<span className="button-icon">
+												{config.emojiOnTop
+													? "⬆️"
+													: "⬅️"}
+											</span>
+										</button>
+									</Tooltip>
+									<Tooltip
+										text={t(
+											"view.yearlyGlance.actions.wrapText"
+										)}
+									>
+										<button
+											className="actions-button wrap-text-button"
+											onClick={() =>
+												updateConfig({
+													...config,
+													wrapEventText:
+														!config.wrapEventText,
+												})
+											}
+										>
+											<span className="button-icon">
+												{config.wrapEventText
+													? "🔤"
+													: "✂️"}
+											</span>
+										</button>
+									</Tooltip>
+								</>
+							)}
+
+					{viewType === "list" && (
+						<>
+						<button
+								className="actions-button limit-list-height-button"
+								onClick={() =>
+									updateConfig({
+										limitListHeight: !limitListHeight,
+									})
+								}
+								title={t("view.yearlyGlance.actions.limitListHeight")}
+							>
+								<span className="button-icon">
+									{limitListHeight ? "🚧" : "♾️"}
+								</span>
+							</button>
+							<button
+								className="actions-button hide-empty-dates-button"
+								onClick={() =>
+									updateConfig({
+										hideEmptyDates: !hideEmptyDates,
+									})
+								}
+								title={t("view.yearlyGlance.actions.hideEmptyDates")}
+							>
+								<span className="button-icon">
+									{hideEmptyDates ? "🙈" : "👀"}
+								</span>
+							</button>
+						</>
+					)}
+
+					{/* 事件管理 */}
+					<button
+						className="actions-button event-manager-button"
+						onClick={handleEventManager}
+						title={t("view.yearlyGlance.actions.manager")}
+					>
+						<span className="button-icon">🗂️</span>
+					</button>
+					
+					{/* 事件添加 */}
+					<button
+						className="actions-button event-form-button"
+						onClick={handleEventForm}
+						title={t("view.yearlyGlance.actions.form")}
+					>
+						<span className="button-icon">➕</span>
+					</button>
+
+					</div>
+					</div>
+
 				</div>
 			</div>
 

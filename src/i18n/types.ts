@@ -102,6 +102,12 @@ export type BaseMessage = {
 				emojiOnTop: string;
 				wrapText: string;
 				showTooltips: string;
+				hidePreviousMonths: string;
+				showPreviousMonths: string;
+				previousMonths: string;
+				hideFutureMonths: string;
+				showFutureMonths: string;
+				futureMonths: string;
 			};
 		};
 		eventManager: {
