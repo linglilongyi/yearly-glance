@@ -1,3 +1,18 @@
+# [3.1.0](https://github.com/Moyf/yearly-glance/compare/3.0.2...3.1.0) (2025-07-22)
+
+
+### ✨ 新功能
+
+* 新增年份视图中隐藏前后月份的功能 ([d2bed8d](https://github.com/Moyf/yearly-glance/commit/d2bed8d04774affe411f393e6381c5c9d9b00ab7))
+* 增加标题前方 emoji 的选项 ([7754b08](https://github.com/Moyf/yearly-glance/commit/7754b088bcf5413a406104d0fbbd762190376bb7))
+
+
+### 🎨 样式
+
+* 为Tooltip添加淡入动画提升用户体验 ([7b24340](https://github.com/Moyf/yearly-glance/commit/7b2434083f06082cd1c75037a1079c9b6fa75728))
+
+
+
 ## [3.0.2](https://github.com/Moyf/yearly-glance/compare/3.0.1...3.0.2) (2025-07-22)
 
 
