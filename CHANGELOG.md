@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/Moyf/yearly-glance/compare/3.1.0...3.1.1) (2025-07-22)
+
+
+### 🐛 Bug Fixes
+
+* fix a typo ([94ce529](https://github.com/Moyf/yearly-glance/commit/94ce52978e9872eb6fd5944090538b08ec06eb2e))
+
+
+
 # [3.1.0](https://github.com/Moyf/yearly-glance/compare/3.0.2...3.1.0) (2025-07-22)
 
 
