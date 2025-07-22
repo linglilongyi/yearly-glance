@@ -1,3 +1,13 @@
+## [3.1.2](https://github.com/Moyf/yearly-glance/compare/3.1.1...3.1.2) (2025-07-22)
+
+
+### 🐛 Bug Fixes
+
+* Uniformly use local date format and fix timezone issues (#83) ([f45a2a7](https://github.com/Moyf/yearly-glance/commit/f45a2a7ca1a418ce18cd0f57e7cd5bfe79b45640)), closes [#83](https://github.com/Moyf/yearly-glance/issues/83)
+* **DateInput:** Supports HTML rendering of error messages (#84) ([d92e39c](https://github.com/Moyf/yearly-glance/commit/d92e39c9bae3049f0a12f85205753d409c8e2d9b)), closes [#84](https://github.com/Moyf/yearly-glance/issues/84)
+
+
+
 ## [3.1.1](https://github.com/Moyf/yearly-glance/compare/3.1.0...3.1.1) (2025-07-22)
 
 
