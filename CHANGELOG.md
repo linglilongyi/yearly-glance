@@ -1,3 +1,12 @@
+## [3.1.3](https://github.com/Moyf/yearly-glance/compare/3.1.2...3.1.3) (2025-07-25)
+
+
+### 🐛 Bug Fixes
+
+* Fixed timezone issue in date comparison for useYearlyCalendar (#88) ([1e94f93](https://github.com/Moyf/yearly-glance/commit/1e94f93526e3941a435915f336ce8f910ed66b38)), closes [#88](https://github.com/Moyf/yearly-glance/issues/88)
+
+
+
 ## [3.1.2](https://github.com/Moyf/yearly-glance/compare/3.1.1...3.1.2) (2025-07-22)
 
 
