@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/Moyf/yearly-glance/compare/3.1.3...3.1.4) (2025-07-27)
+
+
+### 🐛 Bug Fixes
+
+* Fixed the parameter type and passing of recurring events in the event calculator (#92) ([87fc96e](https://github.com/Moyf/yearly-glance/commit/87fc96e4ab42b514e536bf14ca81fd30f076f0c7)), closes [#92](https://github.com/Moyf/yearly-glance/issues/92)
+
+
+
 ## [3.1.3](https://github.com/Moyf/yearly-glance/compare/3.1.2...3.1.3) (2025-07-25)
 
 

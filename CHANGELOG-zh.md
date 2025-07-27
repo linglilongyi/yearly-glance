@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/Moyf/yearly-glance/compare/3.1.3...3.1.4) (2025-07-27)
+
+
+### 🐛 修复
+
+* 修正事件计算器中重复事件参数类型及传递 (#92) ([87fc96e](https://github.com/Moyf/yearly-glance/commit/87fc96e4ab42b514e536bf14ca81fd30f076f0c7)), closes [#92](https://github.com/Moyf/yearly-glance/issues/92)
+
+
+
 ## [3.1.3](https://github.com/Moyf/yearly-glance/compare/3.1.2...3.1.3) (2025-07-25)
 
 
