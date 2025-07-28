@@ -1,3 +1,12 @@
+## [3.1.5](https://github.com/Moyf/yearly-glance/compare/3.1.4...3.1.5) (2025-07-28)
+
+
+### 🐛 修复
+
+* 优化生日事件星座和生肖计算逻辑 (#94) ([a59a254](https://github.com/Moyf/yearly-glance/commit/a59a254aaf234e4a77f3201aec6051f90f397f34)), closes [#94](https://github.com/Moyf/yearly-glance/issues/94)
+
+
+
 ## [3.1.4](https://github.com/Moyf/yearly-glance/compare/3.1.3...3.1.4) (2025-07-27)
 
 
