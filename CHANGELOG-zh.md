@@ -1,3 +1,13 @@
+## [3.1.6](https://github.com/Moyf/yearly-glance/compare/3.1.5...3.1.6) (2025-07-31)
+
+
+### ✨ 新功能
+
+* 统一使用时区安全的日期处理方法 (#96) ([10ce9fc](https://github.com/Moyf/yearly-glance/commit/10ce9fc34e1ff881071d79cffe92d2c58e78c0bc)), closes [#96](https://github.com/Moyf/yearly-glance/issues/96)
+* 优化事件日期计算逻辑，支持事件类型区分 (#97) ([14555d5](https://github.com/Moyf/yearly-glance/commit/14555d5497fa50b3738d836c02b9bae94c0eb44f)), closes [#97](https://github.com/Moyf/yearly-glance/issues/97)
+
+
+
 ## [3.1.5](https://github.com/Moyf/yearly-glance/compare/3.1.4...3.1.5) (2025-07-28)
 
 
