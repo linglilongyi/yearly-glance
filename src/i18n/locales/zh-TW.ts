@@ -140,6 +140,11 @@ const translations: BaseMessage = {
 		},
 	},
 	view: {
+		glanceManager: {
+			name: "概覽管理",
+			events: "事件管理",
+			settings: "外掛設定",
+		},
 		yearlyGlance: {
 			name: "年度概覽",
 			yearlyCalendar: "年 年曆",
@@ -157,7 +162,7 @@ const translations: BaseMessage = {
 				clickToShow: "點擊顯示",
 				clickToHide: "點擊隱藏",
 				form: "新增事件",
-				manager: "開啟事件管理器",
+				manager: "開啟概覽管理",
 				limitListHeight: "是否限制清單高度",
 				hideEmptyDates: "是否隱藏空日期",
 				emojiOnTop: "將 emoji 顯示在上方",
@@ -172,7 +177,6 @@ const translations: BaseMessage = {
 			},
 		},
 		eventManager: {
-			name: "事件管理",
 			solar: "公曆",
 			lunar: "農曆",
 			date: "日期",
@@ -285,14 +289,10 @@ const translations: BaseMessage = {
 				repeat: "重複",
 			},
 		},
-		settingsTab: {
-			name: "設定面板",
-		},
 	},
 	command: {
 		openYearlyGlance: "開啟年度概覽",
-		openEventManager: "開啟事件管理",
-		openSettingsView: "開啟設定檢視",
+		openGlanceManager: "開啟概覽管理",
 		addEvent: "新增事件",
 		reloadPlugin: "重新載入外掛程式",
 	},

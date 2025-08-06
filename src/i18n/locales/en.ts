@@ -140,6 +140,11 @@ const translations: BaseMessage = {
 		},
 	},
 	view: {
+		glanceManager: {
+			name: "Glance manager",
+			events: "Events manager",
+			settings: "Settings",
+		},
 		yearlyGlance: {
 			name: "Yearly glance",
 			yearlyCalendar: "Year calendar",
@@ -157,7 +162,7 @@ const translations: BaseMessage = {
 				clickToShow: "Click to show ",
 				clickToHide: "Click to hide ",
 				form: "Add event",
-				manager: "Open event manager",
+				manager: "Open glance manager",
 				limitListHeight: "Limit list height",
 				hideEmptyDates: "Hide empty dates",
 				emojiOnTop: "Display emoji on top",
@@ -172,7 +177,6 @@ const translations: BaseMessage = {
 			},
 		},
 		eventManager: {
-			name: "Event manager",
 			solar: "Solar",
 			lunar: "Lunar",
 			date: "Date",
@@ -287,14 +291,10 @@ const translations: BaseMessage = {
 				repeat: "Repeat",
 			},
 		},
-		settingsTab: {
-			name: "Settings panel",
-		},
 	},
 	command: {
 		openYearlyGlance: "Open yearly glance",
-		openEventManager: "Open events manager",
-		openSettingsView: "Open settings view",
+		openGlanceManager: "Open glance manager",
 		addEvent: "Add event",
 		reloadPlugin: "Reload plugin",
 	},
