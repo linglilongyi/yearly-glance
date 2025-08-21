@@ -1,3 +1,18 @@
+# [3.2.0](https://github.com/Moyf/yearly-glance/compare/3.1.6...3.2.0) (2025-08-21)
+
+
+### ♻️ 重构
+
+* 移除旧事件管理视图，新增总览管理视图 (#100) ([9a9954a](https://github.com/Moyf/yearly-glance/commit/9a9954a4981d974c01c1724b16ba99b4faa09534)), closes [#100](https://github.com/Moyf/yearly-glance/issues/100)
+
+
+### ✨ 新功能
+
+* 支持 Ctrl+Enter / Cmd+Enter 快捷键提交表单 (#99) ([92b204e](https://github.com/Moyf/yearly-glance/commit/92b204eb43f544bc60737fd8788b1c7a49afe3c8)), closes [#99](https://github.com/Moyf/yearly-glance/issues/99)
+* 支持事件的导入导出 (#86) ([b8619b7](https://github.com/Moyf/yearly-glance/commit/b8619b76e8a2daa42fd72c409589ca3dab7385a9)), closes [#86](https://github.com/Moyf/yearly-glance/issues/86)
+
+
+
 ## [3.1.6](https://github.com/Moyf/yearly-glance/compare/3.1.5...3.1.6) (2025-07-31)
 
 

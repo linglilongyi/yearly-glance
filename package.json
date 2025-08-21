@@ -1,6 +1,6 @@
 {
 	"name": "yearly-glance",
-	"version": "3.1.6",
+	"version": "3.2.0",
 	"description": "Year at a glance - overview of annual events with customizable management options.",
 	"main": "main.js",
 	"scripts": {
