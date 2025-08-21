@@ -1,5 +1,5 @@
 import { Notice, Plugin } from "obsidian";
-import { DEFAULT_CONFIG, YearlyGlanceConfig } from "./core/interfaces/types";
+import { DEFAULT_CONFIG, YearlyGlanceConfig } from "./type/Config";
 import YearlyGlanceSettingsTab from "./components/Settings/SettingsTab";
 import {
 	VIEW_TYPE_YEARLY_GLANCE,
@@ -10,22 +10,17 @@ import {
 	GlanceManagerView,
 	VIEW_TYPE_GLANCE_MANAGER,
 } from "./views/GlanceManagerView";
-import {
-	Birthday,
-	CustomEvent,
-	EventType,
-	Holiday,
-} from "@/src/core/interfaces/Events";
+import { Birthday, CustomEvent, EventType, Holiday } from "@/src/type/Events";
 import {
 	EventFormModal,
 	EventFormModalProps,
 } from "./components/EventForm/EventFormModal";
-import { YearlyGlanceBus } from "./core/hook/useYearlyGlanceConfig";
+import { YearlyGlanceBus } from "./hooks/useYearlyGlanceConfig";
 import { t } from "./i18n/i18n";
-import { generateUUID } from "./core/utils/uuid";
-import { MigrateData } from "./core/utils/migrateData";
-import { EventCalculator } from "./core/utils/eventCalculator";
-import { IsoUtils } from "./core/utils/isoUtils";
+import { MigrateData } from "./utils/migrateData";
+import { EventCalculator } from "./utils/eventCalculator";
+import { IsoUtils } from "./utils/isoUtils";
+import { generateEventId } from "./utils/uniqueEventId";
 
 export default class YearlyGlancePlugin extends Plugin {
 	settings: YearlyGlanceConfig;
@@ -279,38 +274,24 @@ export default class YearlyGlancePlugin extends Plugin {
 		}
 	}
 
-	private generateEventId(eventType?: EventType): string {
-		const prefixMap: Record<EventType, string> = {
-			birthday: "birth",
-			holiday: "holi",
-			customEvent: "event",
-		};
-
-		const prefix = eventType ? prefixMap[eventType] : "event";
-
-		return generateUUID({
-			prefix: prefix,
-		});
-	}
-
 	private async ensureEventsHaveIds(): Promise<void> {
 		const events = this.settings.data;
 
 		events.birthdays.forEach((birthday) => {
 			if (!birthday.id) {
-				birthday.id = this.generateEventId("birthday");
+				birthday.id = generateEventId("birthday");
 			}
 		});
 
 		events.holidays.forEach((holiday) => {
 			if (!holiday.id) {
-				holiday.id = this.generateEventId("holiday");
+				holiday.id = generateEventId("holiday");
 			}
 		});
 
 		events.customEvents.forEach((customEvent) => {
 			if (!customEvent.id) {
-				customEvent.id = this.generateEventId("customEvent");
+				customEvent.id = generateEventId("customEvent");
 			}
 		});
 
@@ -369,7 +350,7 @@ export default class YearlyGlancePlugin extends Plugin {
 
 			// 创建示例事件
 			const sampleEvent: CustomEvent = {
-				id: this.generateEventId("customEvent"),
+				id: generateEventId("customEvent"),
 				text: t("data.sampleEvent.text"),
 				eventDate: {
 					isoDate: todayIsoDate,

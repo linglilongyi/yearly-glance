@@ -1,15 +1,10 @@
 import { Lunar, Solar } from "lunar-typescript";
-import {
-	Birthday,
-	CustomEvent,
-	EventType,
-	Holiday,
-} from "@/src/core/interfaces/Events";
-import { getBirthdayTranslation } from "../../i18n/birthday";
+import { Birthday, CustomEvent, EventType, Holiday } from "@/src/type/Events";
+import { getBirthdayTranslation } from "@/src/i18n/birthday";
 import { IsoUtils } from "./isoUtils";
 import { LunarLibrary } from "./lunarLibrary";
 import { SpecialHoliday } from "./specialHoliday";
-import { CalendarType } from "../interfaces/Date";
+import { CalendarType } from "@/src/type/Date";
 
 export class EventCalculator {
 	/**
@@ -96,7 +91,7 @@ export class EventCalculator {
 				dateArr.push(lunarLast.getSolar().toString());
 			}
 
-			return dateArr;
+			return dateArr.sort((a, b) => a.localeCompare(b));
 		} else {
 			return [];
 		}

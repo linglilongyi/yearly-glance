@@ -6,15 +6,18 @@ import {
 	lunarKeywords,
 	lunarMonths,
 	StandardDate,
-} from "../interfaces/Date";
-import { GregorianDateValidator, LunarDateValidator } from "./dateValidator";
-import { LunarLibrary } from "./lunarLibrary";
+} from "@/src/type/Date";
+import {
+	GregorianDateValidator,
+	LunarDateValidator,
+} from "@/src/utils/dateValidator";
+import { LunarLibrary } from "@/src/utils/lunarLibrary";
 
 /**
  * 智能日期处理器
  * 解析用户输入的各种日期格式，返回标准化的日期对象
  */
-export class SmartDateProcessor {
+export class DateParseService {
 	/**
 	 * 解析用户输入的日期字符串
 	 * @param input 用户输入的日期字符串
@@ -71,7 +74,7 @@ export class SmartDateProcessor {
 		input: string,
 		calendar: CalendarType
 	): StandardDate {
-		switch (calendar) {
+		switch (calendar.toUpperCase()) {
 			case "GREGORIAN":
 				return this.parseGregorianDate(input);
 			case "LUNAR":
@@ -494,5 +497,5 @@ export function parseUserDateInput(
 	input: string,
 	calendar?: CalendarType
 ): StandardDate {
-	return SmartDateProcessor.parseUserInput(input, calendar);
+	return DateParseService.parseUserInput(input, calendar);
 }

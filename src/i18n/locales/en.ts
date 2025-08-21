@@ -142,8 +142,9 @@ const translations: BaseMessage = {
 	view: {
 		glanceManager: {
 			name: "Glance manager",
-			events: "Events manager",
+			events: "Events",
 			settings: "Settings",
+			dataPort: "Data",
 		},
 		yearlyGlance: {
 			name: "Yearly glance",
@@ -289,6 +290,93 @@ const translations: BaseMessage = {
 			customEvent: {
 				name: "Custom event",
 				repeat: "Repeat",
+			},
+		},
+		dataPortView: {
+			common: {
+				actions: {
+					selectAll: "Select all ",
+					reverseAll: "Deselect all ",
+					selectSummary: "Selected {{count}} events",
+				},
+			},
+			export: {
+				name: "Export",
+				type: {
+					configure: " Configure",
+					markdown: {
+						folderLabel: "Export folder",
+						fieldsTitle: "Export fields",
+						success:
+							"Successfully exported {{count}} events to markdown files",
+						failure:
+							"Failed to export {{count}} events, please check the logs",
+					},
+				},
+				actions: {
+					handle: "Export selected events",
+				},
+				config: {
+					fileName: "Export file name",
+					year: "Export year",
+					id: "ID",
+					isoDate: "ISO date",
+					calendar: "Calendar type",
+					dateArr: "Date array",
+					emoji: "Emoji",
+					color: "Color",
+					remark: "Remark",
+					isHidden: "Is hidden",
+					foundDate: "Found date",
+					nextBirthday: "Next birthday",
+					age: "Age",
+					animal: "Chinese zodiac",
+					zodiac: "Zodiac",
+					isRepeat: "Is repeat",
+				},
+				empty: {
+					text: "No data to export",
+					subtext: "Please add events first",
+					noDate: "No date",
+					noSelectedEvents: "No events selected for export",
+				},
+			},
+			import: {
+				name: "Import",
+				actions: {
+					reset: "Reset selection",
+					handle: "Import selected events",
+					parseSummary:
+						"Found {{validCount}} valid events, {{invalidCount}} invalid events",
+				},
+				type: {
+					json: {
+						title: "JSON File Import",
+						format_example: "Example of valid JSON format",
+						message:
+							"<ul>" +
+							"<li>File must be in JSON format</li>" +
+							"<li>Events must contain <code>text</code> and <code>userInput</code> fields</li>" +
+							"<li>Supports three event types: <code>holidays</code>, <code>birthdays</code>, <code>customEvents</code></li>" +
+							"<ul>",
+						upload: "Choose",
+						paste: "Paste",
+						pastePlaceholder: "Paste JSON content here",
+						pasteError: "Parse error: {{error}}",
+						submitPaste: "Parse JSON",
+						success: "Successfully imported {{count}} events",
+					},
+				},
+				empty: {
+					text: "No importable events found",
+					subtext: "Please check file content or file format",
+				},
+				warn: {
+					invalidEvents: "Invalid events",
+					nullText: "Missing event text",
+					nullDate: "Missing user input date",
+					duplicateEvent: "Event may already exist",
+				},
 			},
 		},
 	},

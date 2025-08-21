@@ -144,6 +144,7 @@ const translations: BaseMessage = {
 			name: "概覽管理",
 			events: "事件管理",
 			settings: "外掛設定",
+			dataPort: "數據流轉",
 		},
 		yearlyGlance: {
 			name: "年度概覽",
@@ -170,7 +171,7 @@ const translations: BaseMessage = {
 				showTooltips: "滑鼠懸浮時顯示完整事件名",
 				hidePreviousMonths: "隱藏當月之前的月份",
 				showPreviousMonths: "顯示當月之前的月份",
-				previousMonths: "过往",
+				previousMonths: "過往",
 				hideFutureMonths: "隱藏當月之後的月份",
 				showFutureMonths: "顯示當月之後的月份",
 				futureMonths: "未來",
@@ -287,6 +288,91 @@ const translations: BaseMessage = {
 			customEvent: {
 				name: "自訂事件",
 				repeat: "重複",
+			},
+		},
+		dataPortView: {
+			common: {
+				actions: {
+					selectAll: "全選",
+					reverseAll: "反選全部",
+					selectSummary: "已選擇 {{count}} 個事件",
+				},
+			},
+			export: {
+				name: "資料匯出",
+				type: {
+					configure: "配置",
+					markdown: {
+						folderLabel: "匯出位置",
+						fieldsTitle: "匯出欄位",
+						success: "成功導出 {{count}} 個事件到 markdown 文件",
+						failure: "導出失敗 {{count}} 個事件, 請檢查日誌",
+					},
+				},
+				actions: {
+					handle: "匯出選中事件",
+				},
+				config: {
+					fileName: "檔案名稱",
+					year: "匯出年份",
+					id: "ID",
+					isoDate: "ISO日期",
+					calendar: "日曆類型",
+					dateArr: "日期陣列",
+					emoji: "表情符號",
+					color: "顏色",
+					remark: "備註",
+					isHidden: "是否隱藏",
+					foundDate: "節日起源時間",
+					nextBirthday: "下一次生日",
+					age: "年齡",
+					animal: "生肖",
+					zodiac: "星座",
+					isRepeat: "是否重複",
+				},
+				empty: {
+					text: "暫無事件資料",
+					subtext: "請先新增一些事件再進行匯出操作",
+					noDate: "無日期",
+					noSelectedEvents: "未選擇任何事件",
+				},
+			},
+			import: {
+				name: "資料匯入",
+				actions: {
+					reset: "重新選擇匯入",
+					handle: "匯入選中事件",
+					parseSummary:
+						"發現 {{validCount}} 個有效事件，{{invalidCount}} 個無效事件",
+				},
+				type: {
+					json: {
+						title: "JSON 檔案匯入",
+						format_example: "有效 JSON 格式範例",
+						message:
+							"<ul>" +
+							"<li>檔案必須為 JSON 格式</li>" +
+							"<li>事件必須包含 <code>text</code> 和 <code>userInput</code> 欄位</li>" +
+							"<li>支援 <code>holidays</code>、<code>birthdays</code>、<code>customEvents</code> 三種事件類型</li>" +
+							"</ul>",
+						upload: "選擇",
+						paste: "貼上",
+						pastePlaceholder: "在此貼上 JSON 內容",
+						pasteError: "解析錯誤: {{error}}",
+						submitPaste: "解析 JSON",
+						success: "成功匯入 {{count}} 個事件",
+					},
+				},
+				empty: {
+					text: "未找到可匯入的事件",
+					subtext: "請檢查檔案內容或檔案格式",
+				},
+				warn: {
+					invalidEvents: "無效事件",
+					nullText: "缺少事件名稱",
+					nullDate: "缺少使用者輸入的日期",
+					duplicateEvent: "該事件可能已存在",
+				},
 			},
 		},
 	},
