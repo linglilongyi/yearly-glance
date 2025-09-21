@@ -102,6 +102,10 @@ export interface YearlyGlanceSettings {
 	showHolidays: boolean; // 是否显示节假日
 	showBirthdays: boolean; // 是否显示生日
 	showCustomEvents: boolean; // 是否显示自定义事件
+	showTasks: boolean; // 是否显示任务
+	showFiles: boolean; // 是否显示文件
+	eventFolder: string; // 从哪个文件夹获取
+	fileDateProperty: string; // 文件日期属性
 	mondayFirst: boolean; // 是否以周一为一周的第一天
 	title: string; // 年历标题
 	showEmojiBeforeTabName: boolean; // 是否在标签名称前显示emoji
@@ -130,6 +134,10 @@ export const DEFAULT_SETTINGS: YearlyGlanceSettings = {
 	showHolidays: true,
 	showBirthdays: true,
 	showCustomEvents: true,
+	showTasks: true,
+	showFiles: true,
+	eventFolder: "yearglance",
+	fileDateProperty: "ctime", // 默认使用文件名作为日期属性
 	mondayFirst: true,
 	title: "",
 	showEmojiBeforeTabName: true,

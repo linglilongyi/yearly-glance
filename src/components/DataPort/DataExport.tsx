@@ -153,6 +153,8 @@ export const DataExport: React.FC<DataExportProps> = ({
 					type: "customEvent" as EventType,
 				}))
 			),
+			tasks: [],
+			files: [],
 		};
 		return groups;
 	}, [currentData, config]);

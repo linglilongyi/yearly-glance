@@ -44,6 +44,10 @@ export type BaseMessage = {
 			showHolidays: IBaseSettingsItem;
 			showBirthdays: IBaseSettingsItem;
 			showCustomEvents: IBaseSettingsItem;
+			showTasks: IBaseSettingsItem;
+			showFiles: IBaseSettingsItem;
+			eventFolder: IBaseSettingsItem;
+			fileDateProperty: IBaseSettingsItem;
 			mondayFirst: IBaseSettingsItem;
 			showTooltips: IBaseSettingsItem;
 			colorful: IBaseSettingsItem;
@@ -202,6 +206,12 @@ export type BaseMessage = {
 			customEvent: {
 				name: string;
 				repeat: string;
+			};
+			tasks: {
+				name: string;
+			};
+			files: {
+				name: string;
 			};
 		};
 		dataPortView: {

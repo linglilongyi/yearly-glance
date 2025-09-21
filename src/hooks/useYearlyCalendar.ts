@@ -4,7 +4,9 @@ import { CalendarDay, CalendarEvent } from "@/src/type/CalendarEvent";
 import { useYearlyGlanceConfig } from "@/src/hooks/useYearlyGlanceConfig";
 import { LunarLibrary } from "@/src/utils/lunarLibrary";
 import { IsoUtils } from "@/src/utils/isoUtils";
+import { getFileEvents, getTasksEvents } from "@/src/utils/eventFromOB";
 import { t } from "@/src/i18n/i18n";
+import { FilesEvent, TasksEvent } from "@/src/type/Events";
 
 export const MonthMap: Array<{ name: string; color: string }> = [
 	{
@@ -93,7 +95,7 @@ function hexToRgb(hex: string): string {
 // 主要 Hook
 export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 	const { config, events } = useYearlyGlanceConfig(plugin);
-
+	const App = plugin.app;
 	const {
 		year,
 		highlightWeekends,
@@ -102,9 +104,46 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 		showHolidays,
 		showBirthdays,
 		showCustomEvents,
+		showTasks,
+        showFiles,
+		eventFolder,
+		fileDateProperty,
 	} = config;
 
-	const { holidays, birthdays, customEvents } = events;
+    const { holidays, birthdays, customEvents } = events;
+
+    const [tasksEvents, setTasksEvents] = React.useState<TasksEvent[]>([]);
+    const [fileEvents, setFileEvents] = React.useState<FilesEvent[]>([]);
+
+	React.useEffect(() => {
+		const fetchTasksEvents = async () => {
+			if (showTasks) {
+				try {
+					const tasksEvents = await getTasksEvents(App, eventFolder);
+					setTasksEvents(tasksEvents);
+				} catch (error) {
+					console.error("Failed to fetch tasks events:", error);
+				}
+			}
+		};
+
+		fetchTasksEvents();
+	}, [showTasks, eventFolder, App]);
+
+	React.useEffect(() => {
+		const fetchFileEvents = async () => {
+			if (showFiles) {
+				try {
+					const filesEvents = await getFileEvents(App, eventFolder, fileDateProperty);
+					setFileEvents(filesEvents);
+				} catch (error) {
+					console.error("Failed to fetch file events:", error);
+				}
+			}
+		};
+
+		fetchFileEvents();
+	}, [showFiles, eventFolder, fileDateProperty, App]);
 
 	// 当前日期 - 使用时区安全的方法
 	const today = React.useMemo(() => new Date(), []);
@@ -148,6 +187,26 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 				}
 			});
 		}
+
+        // 处理文件
+        if (showFiles) {
+            fileEvents.forEach((fileEvent) => {
+                events.push({
+                    ...fileEvent,
+                    eventType: "files",
+                });
+            });
+        }
+
+        // 处理任务
+        if (showTasks) {
+            tasksEvents.forEach((taskEvent) => {
+                events.push({
+                    ...taskEvent,
+                    eventType: "tasks",
+                });
+            });
+        }
 
 		return events;
 	}, [config, events]);
@@ -216,7 +275,7 @@ export function useYearlyCalendar(plugin: YearlyGlancePlugin) {
 				firstDayPosition: firstDayWeekday,
 			};
 		});
-	}, [config, events]);
+	}, [config, events, tasksEvents, fileEvents]);
 
 	// 获取星期几标题
 	const weekdays = React.useMemo(() => {

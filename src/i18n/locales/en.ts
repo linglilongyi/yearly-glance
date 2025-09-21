@@ -64,6 +64,22 @@ const translations: BaseMessage = {
 				name: "Show custom events",
 				desc: "Show custom events in view",
 			},
+			showTasks: {
+				name: "Show tasks",
+				desc: "Show tasks in view",
+			},
+			showFiles: {
+				name: "Show files",
+				desc: "Show files in view",
+			},
+			eventFolder: {
+				name: "event folder",
+				desc: "Get events from files and tasks in a folder",
+			},
+			fileDateProperty: {
+				name: "File date property",
+				desc: "Choose which file property to get the date from",
+			},
 			mondayFirst: {
 				name: "Start week on Monday",
 				desc: "Use Monday as the first day of the week",
@@ -290,6 +306,12 @@ const translations: BaseMessage = {
 			customEvent: {
 				name: "Custom event",
 				repeat: "Repeat",
+			},
+			tasks: {
+				name: "Task",
+			},
+			files: {
+				name: "File",
 			},
 		},
 		dataPortView: {

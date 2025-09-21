@@ -9,6 +9,8 @@ import {
 	Events,
 	EventType,
 	Holiday,
+	FilesEvent,
+	TasksEvent,
 } from "@/src/type/Events";
 import { EventForm } from "./EventForm";
 import { EventCalculator } from "@/src/utils/eventCalculator";
@@ -79,7 +81,7 @@ export class EventFormModal extends Modal {
 	}
 
 	async onSave(
-		event: CustomEvent | Birthday | Holiday,
+		event: CustomEvent | Birthday | Holiday | FilesEvent | TasksEvent,
 		eventType: EventType
 	) {
 		const events: Events = this.plugin.getData();
@@ -90,6 +92,8 @@ export class EventFormModal extends Modal {
 		if (!newEvents.customEvents) newEvents.customEvents = [];
 		if (!newEvents.birthdays) newEvents.birthdays = [];
 		if (!newEvents.holidays) newEvents.holidays = [];
+		if (!newEvents.files) newEvents.files = [];
+		if (!newEvents.tasks) newEvents.tasks = [];
 
 		// 根据事件类型进行不同的处理
 		switch (eventType) {
@@ -139,6 +143,8 @@ export class EventFormModal extends Modal {
 				}
 				break;
 			}
+			case "files":{newEvents.files.push(event as FilesEvent);}
+			case "tasks":{newEvents.tasks.push(event as TasksEvent);}
 			default: {
 				throw new Error(`Unsupported event type: ${eventType}`);
 			}

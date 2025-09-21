@@ -316,6 +316,56 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({ plugin }) => {
 						}
 					/>
 				</SettingsItem>
+				{/* 显示任务 */}
+				<SettingsItem
+					name={t("setting.general.showTasks.name")}
+					desc={t("setting.general.showTasks.desc")}
+				>
+					<Toggle
+						checked={config.showTasks}
+						onChange={(value) =>
+							handleUpdateConfig({ showTasks: value })
+						}
+					/>
+				</SettingsItem>
+				{/* 显示文件 */}
+				<SettingsItem
+					name={t("setting.general.showFiles.name")}
+					desc={t("setting.general.showFiles.desc")}
+				>
+					<Toggle
+						checked={config.showFiles}
+						onChange={(value) =>
+							handleUpdateConfig({ showFiles: value })
+						}
+					/>
+				</SettingsItem>
+				{/* 事件文件夾 */}
+				<SettingsItem
+					name={t("setting.general.eventFolder.name")}
+					desc={t("setting.general.eventFolder.desc")}
+				>
+					<Input
+						type="text"
+						value={config.eventFolder}
+						onChange={(value) =>
+							handleUpdateConfig({ eventFolder: value })
+						}
+					/>
+				</SettingsItem>
+				{/* 日期属性 */}
+				<SettingsItem
+					name={t("setting.general.fileDateProperty.name")}
+					desc={t("setting.general.fileDateProperty.desc")}
+				>
+					<Input
+						type="text"
+						value={config.fileDateProperty}
+						onChange={(value) =>
+							handleUpdateConfig({ fileDateProperty: value })
+						}
+					/>
+				</SettingsItem>
 			</SettingsBlock>
 
 			{/* 颜色设置 */}

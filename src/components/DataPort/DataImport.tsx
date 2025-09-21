@@ -240,12 +240,21 @@ export const DataImport: React.FC<DataImportProps> = ({
 
 	// 按事件类型分组
 	const eventGroups = React.useMemo(() => {
-		if (!parseResult) return { holiday: [], birthday: [], customEvent: [] };
+		if (!parseResult)
+			return {
+				holiday: [],
+				birthday: [],
+				customEvent: [],
+				tasks: [],
+				files: [],
+			};
 
 		const groups: Record<EventType, JsonEventParse[]> = {
 			holiday: [],
 			birthday: [],
 			customEvent: [],
+			tasks: [],
+			files: [],
 		};
 
 		parseResult.validEvents.forEach((event) => {

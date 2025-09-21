@@ -4,6 +4,8 @@ export interface Events {
 	holidays: Holiday[];
 	birthdays: Birthday[];
 	customEvents: CustomEvent[];
+	files?: FilesEvent[];
+	tasks?: TasksEvent[];
 }
 
 export interface BaseEvent {
@@ -53,11 +55,22 @@ export interface CustomEvent extends BaseEvent {
 	isRepeat: boolean;
 }
 
-export type EventData = Holiday | Birthday | CustomEvent;
+/**
+ * 文件和任务事件接口
+ * isRepeat: 是否重复
+ */
+export interface FilesEvent extends BaseEvent {
+}
+
+export interface TasksEvent extends BaseEvent {
+}
+
+
+export type EventData = Holiday | Birthday | CustomEvent | FilesEvent | TasksEvent;
 
 // 事件类型
 export type EventType = (typeof EVENT_TYPE_LIST)[number];
-export const EVENT_TYPE_LIST = ["customEvent", "birthday", "holiday"] as const;
+export const EVENT_TYPE_LIST = ["customEvent", "birthday", "holiday","tasks","files"] as const;
 
 // 事件类型默认图标
 export const EVENT_TYPE_DEFAULT: Record<
@@ -67,6 +80,8 @@ export const EVENT_TYPE_DEFAULT: Record<
 	customEvent: { emoji: "📌", color: "#73d13d" },
 	birthday: { emoji: "🎂", color: "#fa8c16" },
 	holiday: { emoji: "🎉", color: "#ff7875" },
+	tasks: { emoji: "✅", color: "#fdcb6e" },
+	files: { emoji: "📁", color: "#00cec9" },
 };
 
 export const DEFAULT_EVENTS: Events = {

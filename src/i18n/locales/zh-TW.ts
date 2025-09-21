@@ -64,6 +64,22 @@ const translations: BaseMessage = {
 				name: "顯示自訂事件",
 				desc: "在視圖中顯示自訂事件",
 			},
+			showTasks: {
+				name: "顯示任务",
+				desc: "在視圖中顯示任務",
+			},
+			showFiles: {
+				name: "顯示文件",
+				desc: "在視圖中顯示文件",
+			},
+			eventFolder: {
+				name: "事件路徑",
+				desc: "讀取文件和任務事件的路徑",
+			},
+			fileDateProperty: {
+				name: "文件日期屬性",
+				desc: "選擇從哪個文件屬性獲取日期，默認為文件名稱",
+			},
 			mondayFirst: {
 				name: "週一作為一週的第一天",
 				desc: "設定週一（而不是週日）作為一週的第一天",
@@ -288,6 +304,12 @@ const translations: BaseMessage = {
 			customEvent: {
 				name: "自訂事件",
 				repeat: "重複",
+			},
+			tasks: {
+				name: "任務",
+			},
+			files: {
+				name: "文件",
 			},
 		},
 		dataPortView: {
